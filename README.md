@@ -41,6 +41,10 @@ pre-commit install
 
 Hooks run on `state/*.md` (sanitize) and `state/handoff_latest.md` (handoff SCP validation). When copying harness into a project with `.cursor/state/`, set `HARNESS_STATE_DIR=.cursor/state` and update `.pre-commit-config.yaml` paths.
 
+## Delineation
+
+When extending harness or adding components, use [docs/DELINEATION.md](docs/DELINEATION.md) to decide what belongs in harness vs your portfolio. Primary prompt: "Would a developer with no knowledge of my portfolio use this in their own project?" Yes → harness; No → portfolio.
+
 ## References
 
 - [HARNESS_ARCHITECTURE.md](docs/HARNESS_ARCHITECTURE.md)

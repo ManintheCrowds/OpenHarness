@@ -1,0 +1,3 @@
+# Harness optional dependencies
+# Install for pre-commit hooks (sanitize_input, validate_handoff_scp)
+scp-mcp
