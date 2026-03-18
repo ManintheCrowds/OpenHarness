@@ -22,11 +22,14 @@ from scp.scp_utils import run_pipeline
 
 
 def _run_check(content: str, sink: str = "state") -> tuple[bool, dict]:
-    """Run pipeline; return (blocked, report)."""
+    """Run pipeline; return (should_fail, report). should_fail=True for injection or reversal tier."""
     result = run_pipeline(content, sink=sink)
     blocked = result.get("blocked", False)
     report = result.get("report", {})
-    return blocked, report
+    tier = report.get("tier", "clean")
+    # run_pipeline only sets blocked=True for injection; reversal is sanitized but not blocked
+    should_fail = blocked or tier in ("injection", "reversal")
+    return should_fail, report
 
 
 def main() -> int:
@@ -48,8 +51,8 @@ def main() -> int:
         if len(args) < 2:
             print("Usage: sanitize_input.py --check \"text\"", file=sys.stderr)
             return 2
-        blocked, report = _run_check(args[1])
-        if blocked:
+        should_fail, report = _run_check(args[1])
+        if should_fail:
             print(f"FINDINGS: <inline> tier={report.get('tier', 'injection')}", file=sys.stderr)
             return 1
         print("OK: <inline> - no injection patterns or hidden Unicode")
@@ -57,8 +60,8 @@ def main() -> int:
 
     if args[0] == "-":
         content = sys.stdin.read()
-        blocked, report = _run_check(content)
-        if blocked:
+        should_fail, report = _run_check(content)
+        if should_fail:
             print(f"FINDINGS: <stdin> tier={report.get('tier', 'injection')}", file=sys.stderr)
             return 1
         print("OK: <stdin> - no injection patterns or hidden Unicode")
@@ -73,8 +76,8 @@ def main() -> int:
             failed = True
             continue
         content = path.read_text(encoding="utf-8", errors="replace")
-        blocked, report = _run_check(content)
-        if blocked:
+        should_fail, report = _run_check(content)
+        if should_fail:
             failed = True
             print(f"FINDINGS: {path} tier={report.get('tier', 'injection')}", file=sys.stderr)
         else:

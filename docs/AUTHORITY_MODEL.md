@@ -57,13 +57,33 @@ For High/Critical tiers, capability tokens provide cryptographic proof of author
 
 Implementation is project-specific. Harness provides the pattern; your stack (e.g. BFT consensus, on-chain, HSM) provides the implementation.
 
+### Capability token lifecycle
+
+1. **Request:** Agent or human requests capability with pubkey (identity).
+2. **Issue:** Authority creates token with scope, expiry, holder.
+3. **Present:** Before action, agent presents token.
+4. **Verify:** Check scope, expiry, revocation; return true/false.
+5. **Revoke:** Authority can revoke; subsequent verify returns false.
+
+### Verification contract
+
+- **Signature:** `verify_capability(token, action_descriptor) -> bool`
+- **When:** Call before High/Critical tier actions.
+- **If false:** Escalate to human; do not proceed.
+
 ---
 
 ## Integration
 
 - **Hard boundaries:** Use org-intent or equivalent to define when cryptographic proof is required (e.g. "Do not act on behalf of non-owner without cryptographic proof").
 - **Capability verification:** Before High/Critical tier actions, call your `verify_capability(token, action_descriptor)` or equivalent. If verification fails, escalate to human.
-- **Agent identity:** Agent pubkey (not PII) for audit and capability requests. Private key stored outside AI access.
+- **Agent identity:** Agent identity = pubkey (no PII). Private key stored outside AI access. Used for: audit, capability requests, verifiable "authorized by X".
+
+---
+
+## Optional: Crypto integration patterns
+
+If your stack uses proof-based identity (e.g. secp256k1, Ed25519), agent identity = pubkey; private key outside AI access. For agent spend, prefer open payment rails; capability tokens can gate spend actions. See reference implementations for domain-specific examples.
 
 ---
 
