@@ -1,0 +1,13 @@
+---
+description: Model escalation and lowest-viable-model guidance. Optional: enable for your workflow.
+alwaysApply: false
+---
+
+# Model Selection
+
+When proposing AI workflows or task automation:
+
+1. **Model escalation:** Prefer light model for execution, heavy model for verification.
+2. **Task type:** Classify as handoff, critic, plan, code, RAG, or tool orchestration. Use lighter models for execution, heavier for verification.
+3. **Unknown floor:** If no model-floor data exists for a task type, suggest a small eval: 3–5 test cases, record pass rate.
+4. **Document:** Add new task types to a model_floor registry (e.g. AI_TASK_EVALS.md) with execution and verification model columns.

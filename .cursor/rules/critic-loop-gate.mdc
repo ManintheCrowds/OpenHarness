@@ -1,0 +1,28 @@
+---
+description: Require model-as-judge critic loop for multi-file outputs. Optional: enable for your workflow.
+alwaysApply: false
+---
+
+# Critic Loop Gate
+
+**CONTEXT:** Before marking any multi-file change (docs, workflow UI, or code) as complete, you MUST produce the critic JSON below. Do not skip this step.
+
+When generating RAG outputs (docs, workflow UI, or code), ALWAYS produce a model-as-judge critic report before finalizing the answer.
+
+Required critic JSON (must be valid JSON only):
+```json
+{
+  "pass": true|false,
+  "score": 0.0-1.0,
+  "issues": [{"type": "...", "detail": "..."}],
+  "fixes": [{"action": "...", "detail": "..."}]
+}
+```
+
+Rules:
+- If pass=false or score below threshold, revise output at least once.
+- **Bounded revision:** If pass=false, perform at most 2 revision rounds; if score delta < 1, stop and attach report for user decision.
+- **Quality gate:** Before finalizing, ensure all referenced files exist and imports resolve.
+- Include the final critic report in the response summary.
+- Domains must be one of: docs, workflow_ui, code.
+- When implementing multi-file changes (docs, workflow UI, or code), produce the critic JSON before marking the task complete.
