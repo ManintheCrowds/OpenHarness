@@ -1,44 +1,47 @@
-# Harness vs Portfolio Delineation
+# Core vs Implementation Delineation
 
-Use these prompts to decide whether a component belongs in **harness** (portable) or **portfolio** (your implementation).
+Decide whether a component belongs in the **core** (portable, reusable) or **implementation** (your project, domain-specific). In this repo: core = harness; implementation = your project.
 
 ## Primary Prompt (use first)
 
-> **"Would a developer with no knowledge of my portfolio or domain-specific projects be able to use this in their own project?"**
-> - **Yes** → candidate for harness
-> - **No** → stays in portfolio
+> **"Would any developer be able to use this in their own project without context from other projects?"**
+> - **Yes** → candidate for core
+> - **No** → stays in implementation
 
 ## Secondary Prompts (when primary is ambiguous)
 
-| Question | Harness | Portfolio |
-|----------|---------|-----------|
-| Does this depend on a specific domain (Bitcoin, TTRPG, Moltbook, Obsidian, etc.)? | No | Yes |
-| Is this a Cursor/Codex-agnostic pattern (handoff, state schema, context engineering)? | Yes | No |
-| Would removing this break a minimal harness for a new user? | Yes | No |
-| Is this a security baseline that applies to any agent workflow? | Yes (SCP) | No (domain-specific threats) |
-| Does this reference a specific MCP server only I use (observation, provenance, Daggr, etc.)? | No | Yes |
-| Is this a convention or preference (e.g. CL4R1T4S, anti-vibe-coding)? | No | Yes |
+Adapt these to your stack. For harness:
+
+| Question | Core | Implementation |
+|----------|------|-----------------|
+| Does this depend on a specific domain? | No | Yes |
+| Is this a platform-agnostic pattern? | Yes | No |
+| Would removing this break a minimal setup for a new user? | Yes | No |
+| Is this a security baseline that applies broadly? | Yes | No (domain-specific) |
+| Does this reference project-specific integrations not in the core baseline? | No | Yes |
+| Is this a convention or preference? | No | Yes |
 
 ## Rule of Thumb
 
-- **Harness** = portable, reusable, minimal setup.
-- **Portfolio** = your implementation, preferences, domain-specific integrations.
+- **Core** = portable, reusable, minimal setup.
+- **Implementation** = your project, preferences, domain-specific integrations.
 
 ## Checklist for New Components
 
-When adding a new doc, rule, skill, or script:
-
 1. Run primary prompt.
-2. If unclear, run secondary prompts.
-3. If still unclear: start in portfolio; promote to harness when it proves reusable.
+2. If unclear, run secondary prompts (adapt questions to your context).
+3. If still unclear: start in implementation; promote to core when it proves reusable.
 
-## Promotion Checklist (portfolio → harness)
+## Promotion Checklist (implementation → core)
 
-Before promoting a component to harness:
+Before promoting a component:
 
 - [ ] Primary delineation prompt passes
-- [ ] No references to portfolio projects (Arc_Forge, WatchTower, etc.)
-- [ ] No references to domain-specific MCPs (observation, provenance, Daggr)
-- [ ] Dependencies documented (e.g. scp package)
-- [ ] Paths use generic placeholders (.cursor/state, etc.)
-- [ ] README or CHEATSHEET updated if it adds new concepts
+- [ ] No references to implementation-specific projects or integrations
+- [ ] Dependencies documented
+- [ ] Paths use generic placeholders
+- [ ] README or docs updated if it adds new concepts
+
+## Reusing This Pattern
+
+Copy this doc and replace "core" / "implementation" with your names (e.g. framework vs app, upstream vs fork). The primary prompt stays the same; adapt the secondary prompts to your stack.

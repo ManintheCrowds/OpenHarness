@@ -89,5 +89,5 @@ If your stack uses proof-based identity (e.g. secp256k1, Ed25519), agent identit
 
 ## See also
 
-- [DELINEATION.md](DELINEATION.md) — harness vs portfolio
+- [DELINEATION.md](DELINEATION.md) — core vs implementation
 - [HARNESS_ARCHITECTURE.md](HARNESS_ARCHITECTURE.md) — Guard–Guide–Build taxonomy

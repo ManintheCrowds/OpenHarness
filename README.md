@@ -46,7 +46,7 @@ Hooks run on `state/*.md` (sanitize) and `state/handoff_latest.md` (handoff SCP 
 
 ## Delineation
 
-When extending harness or adding components, use [docs/DELINEATION.md](docs/DELINEATION.md) to decide what belongs in harness vs your portfolio. Primary prompt: "Would a developer with no knowledge of my portfolio use this in their own project?" Yes → harness; No → portfolio.
+When extending harness or adding components, use [docs/DELINEATION.md](docs/DELINEATION.md) to decide what belongs in core (harness) vs your project. Primary prompt: "Would any developer be able to use this without context from other projects?" Yes → core; No → your project.
 
 ## References
 
