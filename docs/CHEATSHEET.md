@@ -1,0 +1,38 @@
+# Harness Cheat Sheet
+
+One-page harness compression.
+
+## Components
+
+| Component | What it does | Portable? |
+| --------- | ----------------------------------------------------- | --------- |
+| Rules | Operating principles, tool limits, redundancy scanner | Yes (prose) |
+| Skills | JIT-loaded per-task instructions (SKILL.md pattern) | Yes |
+| state/ | handoff, decision-log, known-issues, preferences | Yes (schema) |
+| Handoff | Archive → write Done/Next → continue prompt | Yes |
+| MCP | Context7, browser, etc. | Platform-specific |
+
+## Memory load order
+
+intent_surface → session_brief → handoff → preferences → rejection_log
+
+## Feedback loops (learning from corrections)
+
+- **Preferences:** Human-stated preferences agents follow. Load at session start.
+- **Rejection_log:** When human rejects a proposal, ask "Log this for future sessions?" If yes, append to rejection_log.
+- **Flow:** Correction → "Log this?" → preferences (preference) or rejection_log (rejection) → future sessions avoid the same mistake.
+
+## Handoff schema (essential fields)
+
+- decision_id
+- Done (2–5 bullets)
+- Next (one clear action)
+- Paths/artifacts
+- scope (optional)
+- human_gate (optional)
+- latency_tolerance (sync | async_ok)
+- intent (optional)
+
+## Archive rule
+
+Before overwriting handoff_latest, copy to handoff_archive/YYYYMMDD-HHMMSS.md.
