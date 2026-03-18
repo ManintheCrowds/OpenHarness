@@ -20,6 +20,7 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 | **Intent engineering** | Human intent as primary signal; scope, constraints, human gates |
 | **Handoff** | Document-then-continue: write handoff, new chat, paste continue prompt |
 | **State schema** | handoff_latest, decision-log, known-issues, preferences, rejection_log |
+| **Authority model** | Cryptographic vs social; risk-tier mapping; pseudoanonymous proof |
 
 ## Integration
 
@@ -55,6 +56,7 @@ When extending harness or adding components, use [docs/DELINEATION.md](docs/DELI
 - [CONTEXT_ENGINEERING.md](docs/CONTEXT_ENGINEERING.md)
 - [INTENT_ENGINEERING.md](docs/INTENT_ENGINEERING.md)
 - [HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md)
+- [AUTHORITY_MODEL.md](docs/AUTHORITY_MODEL.md)
 - [state/README.md](state/README.md)
 
 ## License
