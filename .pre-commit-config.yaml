@@ -1,0 +1,24 @@
+# Harness pre-commit: SCP validation for handoff/state.
+# Install: pre-commit install
+# Run manually: pre-commit run --all-files
+#
+# Paths: harness uses state/ at repo root. When copying to a project with .cursor/state/,
+# update entry to python .cursor/scripts/sanitize_input.py and files to ^\.cursor/state/.*\.md$
+
+repos:
+  - repo: local
+    hooks:
+      - id: sanitize-input
+        name: Sanitize input (handoff/state)
+        entry: python scripts/sanitize_input.py
+        language: system
+        files: ^state/.*\.md$
+        stages: [pre-commit]
+
+      - id: handoff-scp
+        name: Handoff SCP validation
+        entry: python scripts/validate_handoff_scp.py
+        language: system
+        files: ^state/handoff_latest\.md$
+        pass_filenames: false
+        stages: [pre-commit]

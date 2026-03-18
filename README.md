@@ -30,7 +30,16 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 
 ## Dependencies
 
-- **SCP** (optional): For handoff validation, use the [SCP](https://github.com/ManintheCrowds/SCP) package. Run `validate_handoff_scp.py` as a pre-commit hook when handoff is staged.
+- **SCP** (optional): For handoff validation, use the [SCP](https://github.com/ManintheCrowds/scp) package (`pip install scp-mcp`). Run `validate_handoff_scp.py` and `sanitize_input.py` as pre-commit hooks when handoff/state files are staged.
+
+## Pre-commit
+
+```bash
+pip install pre-commit scp-mcp
+pre-commit install
+```
+
+Hooks run on `state/*.md` (sanitize) and `state/handoff_latest.md` (handoff SCP validation). When copying harness into a project with `.cursor/state/`, set `HARNESS_STATE_DIR=.cursor/state` and update `.pre-commit-config.yaml` paths.
 
 ## References
 
