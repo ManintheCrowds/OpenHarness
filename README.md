@@ -9,6 +9,8 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 - **docs/** — Architecture, context, intent, handoff flow
 - **state/** — State schema (handoff, decision-log, preferences, etc.)
 - **scripts/** — Reference scripts (copy prompt, validate handoff)
+- **.cursor/rules/** — Starter rules (role-routing, capability-summary, critic-loop-gate, model-selection)
+- **.cursor/skills/** — Domain-agnostic skills (planning, product-scope, docs, tech-lead, refactor-reuse, qa-verifier, secure-contain-protect)
 
 ## Key Concepts
 
@@ -21,9 +23,10 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 
 ## Integration
 
-1. Copy or symlink `docs/` and `state/README.md` into your project (e.g. `.cursor/docs/`, `.cursor/state/`).
-2. Configure `.cursorrules` or agent instructions to reference harness docs.
+1. Copy or symlink `docs/`, `state/`, `.cursor/rules/`, and `.cursor/skills/` into your project (e.g. `.cursor/docs/`, `.cursor/state/`, `.cursor/rules/`, `.cursor/skills/`).
+2. Configure `.cursorrules` or agent instructions to reference harness docs and rules.
 3. Use `scripts/` as templates; adapt paths for your layout (e.g. `.cursor/state/`).
+4. Run `pre-commit install` if using the included pre-commit config for handoff/state validation.
 
 ## Dependencies
 

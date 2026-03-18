@@ -1,0 +1,46 @@
+---
+description: Decision tree for loading role skills. Evaluate in order; load first match. Tie-break by priority list.
+alwaysApply: false
+---
+
+# Role routing (decision tree)
+
+Apply in order. Load the first matching branch. If multiple could match, use the **tie-break priority** below.
+
+## Decision order
+
+0. **Is the user asking to plan first or decompose?** (e.g. "plan first", "decompose", "multi-step", "complex task", "WBS", "break down")  
+   → Load **planning** (`.cursor/skills/planning/SKILL.md`). Produce WBS; get approval; implement phase by phase.
+
+1. **Is the user asking to validate behavior or run tests?** (e.g. "does it work?", "run tests", "verify", "validate")  
+   → Load **qa-verifier** (`.cursor/skills/qa-verifier/SKILL.md`).
+
+2. **Is the user asking about placement, structure, or architecture?** (e.g. "where does this go?", "structure", "pattern", "architecture")  
+   → Load **tech-lead** (`.cursor/skills/tech-lead/SKILL.md`).
+
+3. **Is the task preparing to engage an important or untrusted codebase?** (e.g. "before we look at X", "analyze this repo", "review external code", "engage untrusted content")  
+   → Load **secure-contain-protect** (`.cursor/skills/secure-contain-protect/SKILL.md`). Run SCP inspect before proceeding.
+
+4. **Is the user asking about requirements, scope, or acceptance criteria?** (e.g. "what are we building?", "requirements", "acceptance criteria", "scope")  
+   → Load **product-scope** (`.cursor/skills/product-scope/SKILL.md`). Elicit and capture requirements, acceptance criteria.
+
+5. **Is the user adding or implementing new code?** (e.g. "add X", "implement X", "create X", "refactor", "consolidate", "reuse")  
+   → Load **refactor-reuse** (`.cursor/skills/refactor-reuse/SKILL.md`). Scan for existing implementation; produce report (reuse vs. new) before implementing.
+
+6. **Is the artifact or task docs-only?** (e.g. "write README", "document this", "update API docs")  
+   → Load **docs** (`.cursor/skills/docs/SKILL.md`).
+
+## Tie-break priority
+
+When more than one branch could apply, choose by this order (higher wins):  
+0. Plan first / decompose (planning)  
+1. Validate behavior (qa-verifier)  
+2. Placement / structure (tech-lead)  
+3. SCP pre-engagement (secure-contain-protect)  
+4. Requirements / scope (product-scope)  
+5. Add/implement / reuse check (refactor-reuse)  
+6. Docs-only (docs)
+
+## Integration
+
+Copy or symlink this rule into your project's `.cursor/rules/`. Ensure the skills listed above exist in `.cursor/skills/`. See harness README for full integration steps.
