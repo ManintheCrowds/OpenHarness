@@ -1,13 +1,13 @@
 # Public harness (OpenHarness) vs private workspace
 
-How to split what ships in **OpenHarness** (public reference) from what stays in **private / experimental** repos (e.g. portfolio-harness).
+How to split what ships in **OpenHarness** (public reference) from what stays in **private / experimental** repos (e.g. YourRepoNameHere).
 
 ## Roles
 
 | Layer | Typical repo | What belongs here |
 |-------|----------------|-----------------|
 | **Public reference** | OpenHarness | Patterns, skills, `state/` **schema** description, **synthetic** examples, audit/E2E playbooks, architecture docs |
-| **Private / experimental** | portfolio-harness, org-internal forks | Real `.cursor/state/`, `handoff_latest.md`, `handoff_archive/`, `daily/`, credentials, experiment code, Med-Vis app data |
+| **Private / experimental** | INSERT_YOUR_PRIVATE_HARNESS, org-internal forks | Real `.cursor/state/`, `handoff_latest.md`, `handoff_archive/`, `daily/`, credentials, experiment code, OpenAtlas app data |
 
 **Rule of thumb:** If it names real projects, people, internal URLs, or unreleased decisions, **do not** commit it to OpenHarness. Teach the pattern with **fabricated** content instead.
 
@@ -20,7 +20,7 @@ How to split what ships in **OpenHarness** (public reference) from what stays in
 ## Brain Map and audits
 
 - OpenHarness: standalone viewer + [BRAIN_MAP_AUDIT.md](BRAIN_MAP_AUDIT.md) / [BRAIN_MAP_E2E.md](BRAIN_MAP_E2E.md) (no real graph data required in git).
-- portfolio-harness: parser against real `.cursor/state/`, Med-Vis, optional **BrowserStack scan log** rows with real scan IDs (private unless you redact).
+- portfolio-harness: parser against real `.cursor/state/`, OpenAtlas, optional **BrowserStack scan log** rows with real scan IDs (private unless you redact).
 
 ## Operational todos (BrowserStack, etc.)
 

@@ -62,9 +62,9 @@ Output: `brain-map-graph.json` in the state directory (or `BRAIN_MAP_OUTPUT`).
 
 Alternatively, use the file input in the viewer to load a JSON file directly (works without a server).
 
-### Next.js / Med-Vis
+### Next.js / OpenAtlas (folder `OpenAtlas`)
 
-Projects with Med-Vis can serve the graph via `/api/brain-map/graph` and use the BrainMapGraph component at `/brain-map`. Set `BRAIN_MAP_OUTPUT` to `Med-Vis/public/brain-map-graph.json` and run the parser before viewing.
+In **portfolio-harness**, the **OpenAtlas** app (folder `OpenAtlas`) serves the graph via `GET /api/brain-map/graph` and the D3 viewer at **`/context-atlas`** (canonical) or **`/brain-map`** (legacy alias). Set `BRAIN_MAP_OUTPUT` to `OpenAtlas/public/brain-map-graph.json` and run the parser before viewing. JSON schema (optional fields, API notes): see portfolio-harness `OpenAtlas/docs/BRAIN_MAP_SCHEMA.md` when that repo is checked out beside OpenHarness. The GitHub remote may still be named `Med-Vis` until the repo is renamed.
 
 ## One-Command Audit Flow (Standalone)
 
