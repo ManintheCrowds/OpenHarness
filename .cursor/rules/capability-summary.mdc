@@ -9,7 +9,7 @@ Per-server tool reference. **Optional: enable for your workflow.** Add rows for 
 
 | Server | Tools |
 |--------|-------|
-| harness | run_terminal_cmd → scripts (copy_continue_prompt, sanitize_input, validate_handoff_scp) |
+| harness | run_terminal_cmd → scripts (copy_continue_prompt, sanitize_input, validate_handoff_scp, build_brain_map); brain_map_viewer.html (standalone vis-network); browser_navigate → Brain Map viewer; startAccessibilityScan → accessibility |
 | git | status, diff, log, commit, push, pull |
 | scp | scp_inspect, scp_sanitize, scp_contain, scp_quarantine, scp_validate_output, scp_run_pipeline |
 | context7 | resolve-library-id, query-docs (library documentation) |

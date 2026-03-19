@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Map Viewer</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@10/standalone/umd/vis-network.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: #1a1a1a; color: #e5e5e5; }
+    #header { padding: 0.75rem 1rem; background: #262626; border-bottom: 1px solid #404040; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    #header h1 { margin: 0; font-size: 1rem; font-weight: 600; }
+    #mynetwork { width: 100%; height: calc(100vh - 52px); }
+    #dropzone { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; z-index: 10; }
+    #dropzone.visible { display: flex; flex-direction: column; gap: 1rem; }
+    #dropzone p { margin: 0; font-size: 0.95rem; }
+    #dropzone input[type="file"] { display: none; }
+    #dropzone label { padding: 0.5rem 1rem; background: #3b82f6; color: white; border-radius: 6px; cursor: pointer; }
+    #dropzone label:hover { background: #2563eb; }
+    #status { font-size: 0.8rem; color: #a3a3a3; }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <h1>Brain Map</h1>
+    <span id="status">Loading…</span>
+  </div>
+  <div id="mynetwork"></div>
+  <div id="dropzone">
+    <p>Drag <code>brain-map-graph.json</code> here or choose a file.</p>
+    <label for="fileinput">Choose JSON file</label>
+    <input type="file" id="fileinput" accept=".json,application/json" />
+  </div>
+
+  <script>
+    (function () {
+      var GROUP_COLORS = {
+        core: '#c8a84b',
+        memory: '#a78bfa',
+        publishing: '#22c55e',
+        tools: '#60a5fa',
+        skills: '#f97316',
+        general: '#6b7280'
+      };
+
+      function basename(path) {
+        var parts = path.replace(/\\/g, '/').split('/');
+        return parts[parts.length - 1] || path;
+      }
+
+      function toVisData(graph) {
+        if (!graph || !graph.nodes || !graph.edges) return null;
+        var nodes = graph.nodes.map(function (n) {
+          return {
+            id: n.id,
+            label: basename(n.path),
+            group: n.group || 'general',
+            title: n.path + '\nGroup: ' + (n.group || 'general') + '\nAccess count: ' + (n.accessCount || 0),
+            color: { background: GROUP_COLORS[n.group] || GROUP_COLORS.general, border: '#374151' }
+          };
+        });
+        var edges = graph.edges.map(function (e) {
+          return { from: e.source, to: e.target, value: e.weight || 1 };
+        });
+        return { nodes: nodes, edges: edges };
+      }
+
+      function render(data) {
+        var container = document.getElementById('mynetwork');
+        if (!data || data.nodes.length === 0) {
+          document.getElementById('status').textContent = 'No nodes. Run build_brain_map.py first.';
+          showDropzone();
+          return;
+        }
+        var options = {
+          nodes: {
+            shape: 'dot',
+            size: 12,
+            font: { size: 11, color: '#e5e5e5' },
+            borderWidth: 2
+          },
+          edges: {
+            width: 1,
+            color: { color: '#525252' },
+            smooth: { type: 'continuous', roundness: 0.2 }
+          },
+          physics: {
+            enabled: true,
+            forceAtlas2Based: { gravitationalConstant: -50, centralGravity: 0.01, springLength: 150 },
+            solver: 'forceAtlas2Based',
+            stabilization: { iterations: 150 }
+          },
+          interaction: { hover: true }
+        };
+        var network = new vis.Network(container, data, options);
+        document.getElementById('status').textContent = data.nodes.length + ' nodes, ' + data.edges.length + ' edges';
+      }
+
+      function showDropzone() {
+        document.getElementById('dropzone').classList.add('visible');
+      }
+
+      function hideDropzone() {
+        document.getElementById('dropzone').classList.remove('visible');
+      }
+
+      function loadFromFile(file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var graph = JSON.parse(reader.result);
+            var data = toVisData(graph);
+            if (data) {
+              hideDropzone();
+              render(data);
+            } else {
+              document.getElementById('status').textContent = 'Invalid graph format.';
+              showDropzone();
+            }
+          } catch (e) {
+            document.getElementById('status').textContent = 'Parse error: ' + e.message;
+            showDropzone();
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      // Try fetch first (works when served via HTTP)
+      fetch('brain-map-graph.json')
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('Not found')); })
+        .then(function (graph) {
+          var data = toVisData(graph);
+          if (data && data.nodes.length > 0) {
+            render(data);
+          } else {
+            document.getElementById('status').textContent = 'No graph data. Load a JSON file.';
+            showDropzone();
+          }
+        })
+        .catch(function () {
+          document.getElementById('status').textContent = 'Load brain-map-graph.json (serve this dir) or choose file.';
+          showDropzone();
+        });
+
+      // File input
+      document.getElementById('fileinput').addEventListener('change', function () {
+        var f = this.files[0];
+        if (f) loadFromFile(f);
+      });
+
+      // Drag and drop
+      var dz = document.getElementById('dropzone');
+      dz.addEventListener('dragover', function (e) { e.preventDefault(); e.stopPropagation(); });
+      dz.addEventListener('drop', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var f = e.dataTransfer.files[0];
+        if (f && (f.name.endsWith('.json') || f.type === 'application/json')) loadFromFile(f);
+      });
+    })();
+  </script>
+</body>
+</html>

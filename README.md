@@ -48,6 +48,10 @@ Hooks run on `state/*.md` (sanitize) and `state/handoff_latest.md` (handoff SCP 
 
 When extending harness or adding components, use [docs/DELINEATION.md](docs/DELINEATION.md) to decide what belongs in core (harness) vs your project. Primary prompt: "Would any developer be able to use this without context from other projects?" Yes → core; No → your project.
 
+## Public vs private
+
+This repo is a **public** reference: use **synthetic** handoff examples ([docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md](docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md)), not real session state. Keep real handoffs and experimental work in a **private** workspace; see [docs/PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md).
+
 ## References
 
 - [HARNESS_ARCHITECTURE.md](docs/HARNESS_ARCHITECTURE.md)
@@ -56,6 +60,7 @@ When extending harness or adding components, use [docs/DELINEATION.md](docs/DELI
 - [CONTEXT_ENGINEERING.md](docs/CONTEXT_ENGINEERING.md)
 - [INTENT_ENGINEERING.md](docs/INTENT_ENGINEERING.md)
 - [HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md)
+- [PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md)
 - [AUTHORITY_MODEL.md](docs/AUTHORITY_MODEL.md)
 - [state/README.md](state/README.md)
 

@@ -29,3 +29,7 @@ Canonical source: `state/continue_prompt.txt`. Run copy script to paste.
 ## Human Gate
 
 When agent reaches a human gate: write handoff with "Awaiting approval"; next session asks human before proceeding. See [INTENT_ENGINEERING.md](INTENT_ENGINEERING.md).
+
+## Public repos
+
+Do not commit **real** handoffs to a public harness fork. Use a **private** `state/` (or private remote) for live handoffs. For teaching the format, see [examples/HANDOFF_EXAMPLE_SYNTHETIC.md](examples/HANDOFF_EXAMPLE_SYNTHETIC.md) and [PUBLIC_AND_PRIVATE_HARNESS.md](PUBLIC_AND_PRIVATE_HARNESS.md).

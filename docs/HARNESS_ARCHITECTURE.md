@@ -14,6 +14,14 @@ The AI harness—surrounding infrastructure, integrations, memory management—o
 
 ---
 
+## Known Failure Modes
+
+**Inverted U-shaped performance:** Agent performance is often worst at extremes (rare domains, clinical extremes, adversarial inputs). Adequate on common cases; failures at edges. Validate agent behavior at extremes before relying on it for high-stakes decisions.
+
+**Identify but advise wrong:** Models can correctly identify risk in their reasoning but still advise the wrong action (e.g., triage to "wait" instead of emergency). Human gates required for high-stakes outputs.
+
+---
+
 ## What the Harness Is
 
 | Component | Role |
@@ -41,3 +49,7 @@ The AI harness—surrounding infrastructure, integrations, memory management—o
 ## Lock-in
 
 This harness is **Cursor-centric**. Portable: state schema, handoff format, plan structure. Cursor-specific: .cursorrules, role-routing, MCP config.
+
+## Public vs private
+
+OpenHarness is intended as a **public reference**: patterns and **synthetic** examples, not real operator handoffs or internal state. Keep real `handoff_*`, `daily/`, and credential-backed workflows in **private** repos. See [PUBLIC_AND_PRIVATE_HARNESS.md](PUBLIC_AND_PRIVATE_HARNESS.md) and [examples/HANDOFF_EXAMPLE_SYNTHETIC.md](examples/HANDOFF_EXAMPLE_SYNTHETIC.md).
