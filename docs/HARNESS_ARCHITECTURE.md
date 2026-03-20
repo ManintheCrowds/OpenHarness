@@ -34,6 +34,22 @@ The AI harness—surrounding infrastructure, integrations, memory management—o
 
 ---
 
+## External benchmarks and sims (implementation-side)
+
+Multi-agent sims, prompt-eval harnesses, and benchmark runners **do not live in OpenHarness core**. They belong in **implementation repos** (research notes, optional automation, MCP wrappers) per [DELINEATION.md](DELINEATION.md). The harness still **points** to them so operators know where runbooks and provenance live.
+
+**Examples (sibling-repo layout; adjust paths if your clone differs):**
+
+| Topic | Canonical write-up |
+|-------|-------------------|
+| DECIDE-SIM stack placement (OpenAtlas vs research vs local-proto) | [portfolio-harness brainstorm](../../portfolio-harness/docs/brainstorms/2026-03-20-decide-sim-stack-integration-brainstorm.md) |
+| Paper note + meditation backlog | [software research note](../../software/docs/research/arxiv_2509.12190_DECIDE_SIM.md) |
+| Promptfoo vs DECIDE-SIM (gap analysis) | [promptfoo_vs_DECIDE_SIM_gap_analysis.md](../../software/docs/research/promptfoo_vs_DECIDE_SIM_gap_analysis.md) |
+
+**Convention:** Consume **summaries + hashes + SCP** on excerpts—not raw API dumps in core docs. Optional operator UI (e.g. OpenAtlas) reads **pre-computed JSON** only; execution stays outside the Next app—see [OPENATLAS_SYSTEMS_INVENTORY.md](../../portfolio-harness/OpenAtlas/docs/OPENATLAS_SYSTEMS_INVENTORY.md) in a sibling **portfolio-harness** checkout.
+
+---
+
 ## Memory
 
 **Load order (new session):**

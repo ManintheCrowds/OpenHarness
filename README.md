@@ -45,6 +45,10 @@ See [docs/CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md) and [docs/V
 
 - **SCP** (optional): Configure an **SCP MCP server** in `mcp.json` per [docs/MCP_PRIVATE_HOST.md](docs/MCP_PRIVATE_HOST.md). Public **contract**: [docs/contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md). A reference public package may exist (`scp-mcp`); **org-private** installs are supported. Run `validate_handoff_scp.py` and `sanitize_input.py` as pre-commit hooks when handoff/state files are staged.
 
+## Private wellbeing / survival corpora
+
+Do **not** commit purchased PDFs or full extracted text to this harness. Use a private path; run **SCP on extracted text** before any RAG or handoff. Canonical playbook: `local-proto` repo `docs/HUMAN_WELLBEING_CORPUS.md` and `docs/SURVIVAL_MEDICAL_RAG_DISCLAIMER.md` (sibling layout under the same workspace root). Decision: `.cursor/state/decision-log.md` (2026-03-20).
+
 ## Pre-commit
 
 ```bash

@@ -13,6 +13,8 @@ One-page harness compression.
 | MCP | Context7, browser, etc. | Platform-specific |
 | Nogic | Graph / optional MCP for dependencies and coupling; pair with refactor-reuse | Policy: [.cursor/docs/NOGIC_WORKFLOW.md](../.cursor/docs/NOGIC_WORKFLOW.md) |
 
+**Evals / external tools:** See [HARNESS_ARCHITECTURE.md](HARNESS_ARCHITECTURE.md#external-benchmarks-and-sims-implementation-side)—external sims and benchmark runners stay out of core; consume summaries + provenance in implementation repos.
+
 ## Memory load order
 
 intent_surface → session_brief → handoff → preferences → rejection_log
