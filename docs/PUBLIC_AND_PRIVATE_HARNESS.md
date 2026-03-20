@@ -1,13 +1,13 @@
 # Public harness (OpenHarness) vs private workspace
 
-How to split what ships in **OpenHarness** (public reference) from what stays in **private / experimental** repos (e.g. YourRepoNameHere).
+How to split what ships in **OpenHarness** (public reference) from what stays in **private / experimental** repos (e.g. portfolio-harness).
 
 ## Roles
 
 | Layer | Typical repo | What belongs here |
 |-------|----------------|-----------------|
 | **Public reference** | OpenHarness | Patterns, skills, `state/` **schema** description, **synthetic** examples, audit/E2E playbooks, architecture docs |
-| **Private / experimental** | INSERT_YOUR_PRIVATE_HARNESS, org-internal forks | Real `.cursor/state/`, `handoff_latest.md`, `handoff_archive/`, `daily/`, credentials, experiment code, OpenAtlas app data |
+| **Private / experimental** | portfolio-harness, org-internal forks | Real `.cursor/state/`, `handoff_latest.md`, `handoff_archive/`, `daily/`, credentials, experiment code, OpenAtlas app data |
 
 **Rule of thumb:** If it names real projects, people, internal URLs, or unreleased decisions, **do not** commit it to OpenHarness. Teach the pattern with **fabricated** content instead.
 
