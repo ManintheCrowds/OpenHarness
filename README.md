@@ -54,7 +54,7 @@ This repo is a **public** reference: use **synthetic** handoff examples ([docs/e
 
 ## OpenAtlas (related app, not in this repo)
 
-**OpenHarness** stays portable (docs, rules, skills, `state/`). **OpenAtlas** is a separate Next.js app under **portfolio-harness** (`OpenAtlas/`) that visualizes a **brain-map graph** built from `.cursor/state` session text (handoffs, daily notes, decision-log)—see `OpenAtlas/docs/OPENATLAS_SYSTEMS_INVENTORY.md` in that workspace. Paths are relative to wherever you clone **portfolio-harness**. It is **not** meant to live inside this repository. If the graph does not show files from your OpenHarness checkout, point `CURSOR_STATE_DIR` at the state directory you actually write to when running `build_brain_map.py`, or ensure handoffs reference those paths.
+**OpenHarness** stays portable (docs, rules, skills, `state/`). **OpenAtlas** is a separate Next.js app under **portfolio-harness** (`OpenAtlas/`) that visualizes a **brain-map graph** built from `.cursor/state` session text (handoffs, daily notes, decision-log)—see `OpenAtlas/docs/OPENATLAS_SYSTEMS_INVENTORY.md` in that workspace. Paths are relative to wherever you clone **portfolio-harness**. It is **not** meant to live inside this repository. If the graph does not show files from your OpenHarness checkout, either point `CURSOR_STATE_DIR` at `openharness/.cursor/state` when running `build_brain_map.py`, or use **`CURSOR_STATE_DIRS`** to merge `portfolio-harness` and `openharness` state in one JSON (see portfolio-harness `docs/BRAIN_MAP_HUB.md`). Handoffs must still reference `.md` paths for nodes to appear.
 
 ## References
 
