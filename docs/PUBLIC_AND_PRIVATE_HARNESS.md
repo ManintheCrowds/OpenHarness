@@ -32,3 +32,7 @@ Consumers should:
 
 1. Copy `state/` layout from docs, not from your private handoffs.
 2. Keep their own `handoff_*` and `daily/` out of public forks (or use a private remote for state).
+
+## Verify-not-trust and private MCP hosts
+
+Agent **skills and contracts** in OpenHarness are **public bytes** (hash-verified). **MCP server implementations** (e.g. SCP) may live in **private** repos; configure `mcp.json` per workspace. See [VERIFY_NOT_TRUST.md](VERIFY_NOT_TRUST.md), [MCP_TRANSPARENCY.md](MCP_TRANSPARENCY.md), and [contracts/scp_mcp_v1.md](contracts/scp_mcp_v1.md).

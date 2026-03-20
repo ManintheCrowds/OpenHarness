@@ -11,6 +11,7 @@ One-page harness compression.
 | state/ | handoff, decision-log, known-issues, preferences | Yes (schema) |
 | Handoff | Archive → write Done/Next → continue prompt | Yes |
 | MCP | Context7, browser, etc. | Platform-specific |
+| Nogic | Graph / optional MCP for dependencies and coupling; pair with refactor-reuse | Policy: [.cursor/docs/NOGIC_WORKFLOW.md](../.cursor/docs/NOGIC_WORKFLOW.md) |
 
 ## Memory load order
 

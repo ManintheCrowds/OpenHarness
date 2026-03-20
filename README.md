@@ -10,7 +10,9 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 - **state/** — State schema (handoff, decision-log, preferences, etc.)
 - **scripts/** — Reference scripts (copy prompt, validate handoff)
 - **.cursor/rules/** — Starter rules (role-routing, capability-summary, critic-loop-gate, model-selection)
-- **.cursor/skills/** — Domain-agnostic skills (planning, product-scope, docs, tech-lead, refactor-reuse, qa-verifier, secure-contain-protect)
+- **.cursor/skills/** — Domain-agnostic skills (planning, product-scope, docs, tech-lead, refactor-reuse, qa-verifier, secure-contain-protect, agent-native-architecture)
+- **.cursor/commands/** — Slash commands (`architect`, `agent-native-audit`)
+- **docs/contracts/** — Public MCP contracts (e.g. SCP v1) for verify-not-trust
 
 ## Key Concepts
 
@@ -29,9 +31,19 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 3. Use `scripts/` as templates; adapt paths for your layout (e.g. `.cursor/state/`).
 4. Run `pre-commit install` if using the included pre-commit config for handoff/state validation.
 
+## Canonical bundle (verify-not-trust)
+
+Pin this repo by **commit SHA** and run:
+
+```powershell
+.\scripts\verify_canonical_bundle.ps1
+```
+
+See [docs/CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md) and [docs/VERIFY_NOT_TRUST.md](docs/VERIFY_NOT_TRUST.md). After changing bundled files: `.\scripts\update_canonical_bundle_hashes.ps1`, then commit `docs/canonical-bundle.sha256`.
+
 ## Dependencies
 
-- **SCP** (optional): For handoff validation, use the [SCP](https://github.com/ManintheCrowds/scp) package (`pip install scp-mcp`). Run `validate_handoff_scp.py` and `sanitize_input.py` as pre-commit hooks when handoff/state files are staged.
+- **SCP** (optional): Configure an **SCP MCP server** in `mcp.json` per [docs/MCP_PRIVATE_HOST.md](docs/MCP_PRIVATE_HOST.md). Public **contract**: [docs/contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md). A reference public package may exist (`scp-mcp`); **org-private** installs are supported. Run `validate_handoff_scp.py` and `sanitize_input.py` as pre-commit hooks when handoff/state files are staged.
 
 ## Pre-commit
 
@@ -65,6 +77,8 @@ This repo is a **public** reference: use **synthetic** handoff examples ([docs/e
 - [INTENT_ENGINEERING.md](docs/INTENT_ENGINEERING.md)
 - [HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md)
 - [PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md)
+- [CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md), [VERIFY_NOT_TRUST.md](docs/VERIFY_NOT_TRUST.md), [MCP_TRANSPARENCY.md](docs/MCP_TRANSPARENCY.md)
+- [contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md)
 - [AUTHORITY_MODEL.md](docs/AUTHORITY_MODEL.md)
 - [state/README.md](state/README.md)
 

@@ -23,14 +23,16 @@ output_schema: "Structured proposal (path, layer, rationale) or options list."
 ## Inputs
 
 - What is being added or changed (feature, doc, module).
-- Repo layout and existing conventions (check for README, existing dirs, .cursorrules).
+- Repo layout and existing conventions (check for README, existing dirs, `.cursorrules`).
 
 ## Steps
 
-1. **Scan** the repo for existing structure: packages, modules, docs folders, naming (e.g. snake_case services, `tests/` location). Use codebase search and grep with limited scope.
-2. **Propose** placement and naming: path, layer (e.g. API vs service vs DB), and why it fits. Reference existing examples when possible.
-3. **Call out** inconsistencies or tech debt only if relevant to the decision; do not lecture. If the user's ask conflicts with existing patterns, state the conflict and suggest aligning with the repo or getting an explicit exception.
-4. **Optional:** If the change touches security or many modules, suggest loading critic after implementation. When the change adds UI actions or API endpoints: ensure placement allows for agent tool parity (MCP or run_terminal_cmd pattern).
+1. **Optional reference:** If the repo has `docs/cl4r1t4s_analysis/tech_lead_extracts.md` (or similar), skim for convention-first and outline-before-edit guidance.
+2. **Scan** the repo for existing structure: packages, modules, docs folders, naming (e.g. snake_case services, `tests/` location). Use codebase search and grep with limited scope.
+3. **Propose** placement and naming: path, layer (e.g. API vs service vs DB), and why it fits. Reference existing examples when possible.
+4. **Call out** inconsistencies or tech debt only if relevant to the decision; do not lecture. If the user's ask conflicts with existing patterns, state the conflict and suggest aligning with the repo or getting an explicit exception.
+5. **Optional:** If the change touches security or many modules, suggest loading critic or security-audit skills after implementation. When the change adds UI actions or API endpoints: reference [docs/AGENT_NATIVE_CHECKLIST.md](../../docs/AGENT_NATIVE_CHECKLIST.md) and [.cursor/skills/agent-native-architecture/SKILL.md](../agent-native-architecture/SKILL.md). Ensure placement allows for MCP tool parity or `run_terminal_cmd` patterns.
+6. **Data layer / persistence:** When introducing a **data layer** (DB, sync, persistence), note offline/multi-device implications if relevant; log stack choices in the project’s private scope notes if your harness uses them.
 
 ## Checks
 
@@ -51,9 +53,15 @@ output_schema: "Structured proposal (path, layer, rationale) or options list."
 
 - **Often precedes:** product-scope (requirements first), refactor-reuse (implement), critic (review after implementation).
 - **Typical chain:** product-scope → tech-lead → refactor-reuse → critic.
+- **For tool design or MCP placement:** agent-native-architecture (parity, capability maps, CRUD completeness).
 
 ## Guardrails
 
 - **Privacy:** Do not expose internal repo structure in shared recommendations.
 - **Scope:** Do not expose paths, hostnames, or org-specific identifiers in shared artifacts unless user explicitly requests.
 - **Human gate:** Escalate when uncertain; do not auto-resolve conflicts between roles.
+
+## References
+
+- Rule vs skill: conventions in rules, procedures in skills.
+- Refactor/reuse: see `refactor-reuse` skill and project `.cursorrules`.

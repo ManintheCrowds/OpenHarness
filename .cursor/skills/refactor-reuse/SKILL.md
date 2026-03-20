@@ -14,7 +14,7 @@ output_schema: "Report: search results, existing implementations, recommendation
 
 **Intent:** Reuse over new code; consolidate duplicates.
 
-Produce a structured report before implementation. Scan for existing implementations; recommend reuse, adapt, or new (with justification).
+Follow `.cursorrules` (or chassis rules) **Redundancy Scanner** and **Reuse vs. Creation Analysis** where present. Produce a structured report before implementation.
 
 ## When to use
 
@@ -29,10 +29,11 @@ Produce a structured report before implementation. Scan for existing implementat
 
 ## Steps
 
-1. **Scan** the codebase for similar functionality (codebase_search, grep). Use narrow scope and filters.
+1. **Scan** the codebase for similar functionality (codebase_search, grep, jCodeMunch where indexed). Use narrow scope and filters. *Optional:* If Nogic (graph/MCP) is available, use it for **coupling and call-site structure**; still run grep / codebase_search / jCodeMunch for duplicate or similar **implementations**.
 2. **List** overlapping code; compare implementations.
-3. **Recommend:** reuse existing, adapt existing, or new (with justification).
-4. **If new:** note why existing doesn't fit.
+3. **Disposable Software Check:** Before generating code, consider: Is this adding to a disposable or experimental area vs durable code? Prefer reversible steps; align with team policy. (Extended write-up: **portfolio-harness** `docs/DISPOSABLE_SOFTWARE_RISK.md` if you use that repo.)
+4. **Recommend:** reuse existing, adapt existing, or new (with justification).
+5. **If new:** note why existing doesn't fit.
 
 ## Checks
 
@@ -47,9 +48,18 @@ Produce a structured report before implementation. Scan for existing implementat
 
 ## Suggested sequence (compose with)
 
+For multi-phase tasks, consider loading skills in this order:
+
 - **Often follows:** product-scope (requirements), tech-lead (placement).
 - **Often precedes:** critic (review after implementation).
-- **Typical chain:** product-scope → tech-lead → refactor-reuse → critic.
+- **Typical chain:** product-scope → tech-lead → refactor-reuse → critic. See product-scope and tech-lead skills for upstream flow.
+- **For MCP tool additions:** agent-native-architecture (CRUD completeness, primitives, capability map) when using that plugin.
+
+## References
+
+- [NOGIC_WORKFLOW.md](../docs/NOGIC_WORKFLOW.md): optional Nogic graph/MCP alongside this scan
+- Redundancy Scanner / Reuse vs. Creation Analysis in project `.cursorrules` or chassis docs
+- See product-scope and tech-lead skills for upstream flow
 
 ## Guardrails
 

@@ -6,7 +6,16 @@ triggers_any: ["unknown content", "external input", "tool output", "before hando
 
 # Secure Contain Protect (SCP)
 
-**Dependency:** `pip install scp-mcp` or install from [SCP repo](https://github.com/ManintheCrowds/scp). Harness scripts (sanitize_input.py, validate_handoff_scp.py) delegate to the SCP package.
+## MCP server (org-hosted)
+
+**Execution** is provided by an **SCP MCP server** configured in your workspace `mcp.json` (stdio). The server may be **private** (internal package, private repo checkout, or local path)—do not assume a single public install URL.
+
+- **Public contract (verify-not-trust):** [docs/contracts/scp_mcp_v1.md](../../../docs/contracts/scp_mcp_v1.md) — tool names, parameters, JSON shapes, pipeline semantics.
+- **Workspace template:** [docs/MCP_PRIVATE_HOST.md](../../../docs/MCP_PRIVATE_HOST.md) — placeholder `command` / `args` / env (no secrets in git).
+
+Implementations that conform to **v1** should document **CONTRACT_HASH** (SHA-256 of `scp_mcp_v1.md`) per release; see [docs/SCP_SERVER_RELEASES.md](../../../docs/SCP_SERVER_RELEASES.md).
+
+**Optional local helpers:** If your repo ships `scripts/sanitize_input.py` or `validate_handoff_scp.py`, they may delegate to the same policy layer as the MCP server—paths vary by project.
 
 ## Quick Start
 
@@ -35,20 +44,9 @@ Apply SCP **before**:
 
 ## Tool Usage (SCP MCP)
 
-- **scp_inspect(content, context?)** — Classify without changing content
-- **scp_sanitize(content, mode?)** — Strip/neutralize known bad patterns
-- **scp_contain(content, wrapper?)** — Wrap content as data
-- **scp_quarantine(content, reason, source)** — Isolate suspect content
-- **scp_run_pipeline(content, sink, options?)** — One-shot for high-risk sinks
+Names MUST match [docs/contracts/scp_mcp_v1.md](../../../docs/contracts/scp_mcp_v1.md): `scp_inspect`, `scp_sanitize`, `scp_contain`, `scp_quarantine`, `scp_list_quarantine`, `scp_purge_quarantine`, `scp_validate_output`, `scp_mask_secrets`, `scp_run_pipeline`.
 
-Sink values: `handoff`, `state`, `llm_context`, `tool_output`. Handoff and state use stricter policy.
-
-## CLI (harness scripts)
-
-- `python scripts/sanitize_input.py <file>` — Scan file(s) for injection patterns
-- `python scripts/validate_handoff_scp.py` — Validate handoff_latest.md before commit
-
-Run these as pre-commit hooks when handoff/state files are staged. Adapt paths if you use `.cursor/scripts/` in your project.
+- **scp_run_pipeline** — `sink`: `handoff` | `state` | `llm_context` | `tool_output`. Handoff and state use stricter policy.
 
 ## Default
 

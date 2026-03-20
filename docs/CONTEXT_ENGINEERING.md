@@ -2,7 +2,7 @@
 
 Effective context management for agentic AI. LLM context windows are finite; complex tasks require economical use of context.
 
-**See also:** [INTENT_ENGINEERING.md](INTENT_ENGINEERING.md), [HANDOFF_FLOW.md](HANDOFF_FLOW.md), [state/README.md](../state/README.md).
+**See also:** [INTENT_ENGINEERING.md](INTENT_ENGINEERING.md), [HANDOFF_FLOW.md](HANDOFF_FLOW.md), [NOGIC_WORKFLOW.md](../.cursor/docs/NOGIC_WORKFLOW.md) (graph/MCP vs symbol search), [state/README.md](../state/README.md).
 
 ---
 
@@ -37,6 +37,7 @@ flowchart TD
     Need -->|Our code, large file| Read[read_file with offset, limit]
     Need -->|Vault or campaign content| RAG[RAG]
     Need -->|Symbol or function by name| jCodeMunch[search_symbols / get_symbol]
+    Need -->|Structural graph coupling import fan-in| Nogic[Nogic extension / MCP if enabled]
     Need -->|Small critical file| Mention["@-mention"]
 ```
 
@@ -44,7 +45,18 @@ flowchart TD
 - **Our code, large file (>10KB or >200 lines)?** → read_file(path, offset, limit)
 - **Vault/campaign content?** → RAG
 - **Symbol/function/class by name?** → jCodeMunch `search_symbols` → `get_symbol`
+- **Structural graph / coupling / import fan-in?** → Nogic (extension + MCP if configured); see [NOGIC_WORKFLOW.md](../.cursor/docs/NOGIC_WORKFLOW.md)
 - **Small critical file (<10KB)?** → @-mention
+
+### Nogic vs jCodeMunch vs codebase_search
+
+| Need | Prefer | Fallback |
+|------|--------|----------|
+| Structural graph, dependencies, what touches what | Nogic (graph / MCP when enabled) | jCodeMunch `get_repo_outline` → read_file |
+| Symbol/function/class by exact or partial name | jCodeMunch `search_symbols` → `get_symbol` | grep → read_file |
+| Broad “how does X work?” | codebase_search (narrow `target_directories`) | jCodeMunch outline → search_symbols |
+
+**Summary:** Nogic answers **graph-level structure and coupling** (local index; optional MCP). jCodeMunch answers **symbols and outlines** by name. codebase_search answers **semantic** exploration—combine as needed; none replace tests or git.
 
 ### 2. Long-Horizon Thinking
 
