@@ -52,6 +52,10 @@ When extending harness or adding components, use [docs/DELINEATION.md](docs/DELI
 
 This repo is a **public** reference: use **synthetic** handoff examples ([docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md](docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md)), not real session state. Keep real handoffs and experimental work in a **private** workspace; see [docs/PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md).
 
+## OpenAtlas (related app, not in this repo)
+
+**OpenHarness** stays portable (docs, rules, skills, `state/`). **OpenAtlas** is a separate Next.js app under **portfolio-harness** (`OpenAtlas/`) that visualizes a **brain-map graph** built from `.cursor/state` session text (handoffs, daily notes, decision-log)—see `OpenAtlas/docs/OPENATLAS_SYSTEMS_INVENTORY.md` in that workspace. Paths are relative to wherever you clone **portfolio-harness**. It is **not** meant to live inside this repository. If the graph does not show files from your OpenHarness checkout, point `CURSOR_STATE_DIR` at the state directory you actually write to when running `build_brain_map.py`, or ensure handoffs reference those paths.
+
 ## References
 
 - [HARNESS_ARCHITECTURE.md](docs/HARNESS_ARCHITECTURE.md)

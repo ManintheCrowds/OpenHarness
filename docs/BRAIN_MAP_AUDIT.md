@@ -136,3 +136,4 @@ Append a row after each successful scan:
 | Date (UTC) | URL scanned | Scan ID | Scan run ID | Summary |
 |------------|-------------|---------|-------------|---------|
 | _example_ | _https://…_ | _from MCP_ | _from MCP_ | _issue count / pass_ |
+| 2026-03-20 | _pending — run via BrowserStack Local or staging_ | — | — | **BM-A11Y:** OpenAtlas visualization header: vertical tablist supports **ArrowUp/ArrowDown** between Alluvial/Chord. Cloud scan still needs BrowserStack MCP + reachable URL. |

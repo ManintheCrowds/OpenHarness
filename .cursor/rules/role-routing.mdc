@@ -12,6 +12,9 @@ Apply in order. Load the first matching branch. If multiple could match, use the
 0. **Is the user asking to plan first or decompose?** (e.g. "plan first", "decompose", "multi-step", "complex task", "WBS", "break down")  
    → Load **planning** (`.cursor/skills/planning/SKILL.md`). Produce WBS; get approval; implement phase by phase.
 
+0a. **Is the task a structured frontend / browser UI review or smoke test?** (e.g. "review the frontend", "smoke UI", "browser review", "verify UI in browser", "frontend QA checklist")  
+   → Load **browser-review-protocol** (`.cursor/skills/browser-review-protocol/SKILL.md`). Use **qa-verifier** when summarizing pass/fail for the full review.
+
 1. **Is the user asking to validate behavior or run tests?** (e.g. "does it work?", "run tests", "verify", "validate")  
    → Load **qa-verifier** (`.cursor/skills/qa-verifier/SKILL.md`).
 
@@ -34,6 +37,7 @@ Apply in order. Load the first matching branch. If multiple could match, use the
 
 When more than one branch could apply, choose by this order (higher wins):  
 0. Plan first / decompose (planning)  
+0a. Structured frontend / browser UI review (browser-review-protocol)  
 1. Validate behavior (qa-verifier)  
 2. Placement / structure (tech-lead)  
 3. SCP pre-engagement (secure-contain-protect)  

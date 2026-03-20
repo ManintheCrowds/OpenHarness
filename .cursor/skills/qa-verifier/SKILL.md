@@ -45,6 +45,7 @@ output_schema: "Report: command(s) run; result PASS/FAIL; failing items; summary
 | rules / skills | static (syntax) | Validate syntax; consider manual review for security. |
 | config / schema | static | Validate schema or config format. |
 | migration / DB | static, diff, runtime | Diff for impact; runtime for migration script if applicable. |
+| **manual browser UI** | runtime (evidence) | Use [browser-review-protocol SKILL](../browser-review-protocol/SKILL.md): BrowserReviewSpec → viewport loop → snapshot + screenshot on critical screens → console + failed network → BrowserReviewReport. Example: [docs/BRAIN_MAP_E2E.md](../../../docs/BRAIN_MAP_E2E.md). |
 
 When in doubt, run at least **runtime** (tests) for code and **static** where the project has lint/schema. Add **dependency** when the change adds or updates dependencies.
 
