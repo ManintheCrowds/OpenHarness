@@ -4,6 +4,7 @@ Append entries below. Schema: Area | Decision | Rationale.
 
 ## 2026-03-20
 
+- **[Research / Unpaywall]** Area: Scholarly OA discovery. Decision: **Skill-only** `research-open-access` under `.cursor/skills/research-open-access/` (procedure + `reference.md`); no MCP in harness. Rationale: repeatable HTTP + email param + provenance; optional MCP belongs in product repos if two consumers need it.
 - **[Wellbeing / survival PDF corpus]** Area: Private copyrighted PDFs. Decision: Same as portfolio-harness — keep purchases **off-git**; SCP on extracted text only; canonical write-up in sibling `local-proto` docs `HUMAN_WELLBEING_CORPUS.md` and `SURVIVAL_MEDICAL_RAG_DISCLAIMER.md`. Rationale: harness parity; no PDFs in public harness repos.
 
 ## 2026-03-19

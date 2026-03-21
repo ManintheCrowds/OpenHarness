@@ -33,6 +33,9 @@ Apply in order. Load the first matching branch. If multiple could match, use the
 6. **Is the artifact or task docs-only?** (e.g. "write README", "document this", "update API docs")  
    → Load **docs** (`.cursor/skills/docs/SKILL.md`).
 
+7. **Is the user asking for open-access discovery, DOI resolution via Unpaywall, or OA metadata (license, version, best OA URL)?** (e.g. "find OA version", "Unpaywall this DOI", "is this paper open access?")  
+   → Load **research-open-access** (`.cursor/skills/research-open-access/SKILL.md`).
+
 ## Tie-break priority
 
 When more than one branch could apply, choose by this order (higher wins):  
@@ -43,7 +46,8 @@ When more than one branch could apply, choose by this order (higher wins):
 3. SCP pre-engagement (secure-contain-protect)  
 4. Requirements / scope (product-scope)  
 5. Add/implement / reuse check (refactor-reuse)  
-6. Docs-only (docs)
+6. Docs-only (docs)  
+7. Open access / Unpaywall / DOI OA lookup (research-open-access)
 
 ## Integration
 

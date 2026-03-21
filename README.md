@@ -10,7 +10,7 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 - **state/** — State schema (handoff, decision-log, preferences, etc.)
 - **scripts/** — Reference scripts (copy prompt, validate handoff)
 - **.cursor/rules/** — Starter rules (role-routing, capability-summary, critic-loop-gate, model-selection)
-- **.cursor/skills/** — Domain-agnostic skills (planning, product-scope, docs, tech-lead, refactor-reuse, qa-verifier, secure-contain-protect, agent-native-architecture)
+- **.cursor/skills/** — Domain-agnostic skills (planning, product-scope, docs, tech-lead, refactor-reuse, qa-verifier, secure-contain-protect, agent-native-architecture, research-open-access)
 - **.cursor/commands/** — Slash commands (`architect`, `agent-native-audit`)
 - **docs/contracts/** — Public MCP contracts (e.g. SCP v1) for verify-not-trust
 
