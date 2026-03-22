@@ -1,0 +1,61 @@
+---
+description: Optional inference-time check for drift from stated user intent and constraints (complements critic-loop-gate).
+alwaysApply: false
+---
+
+# Intent alignment gate
+
+**CONTEXT:** The [critic loop](critic-loop-gate.mdc) judges **artifact quality** (docs, code, workflow UI). It does **not** determine whether the work **matches the user’s stated intent**, **scope**, or **constraints**. Use this gate when that alignment matters (multi-file edits, delegation, handoffs, high-stakes tasks).
+
+**See:** [INTENT_ENGINEERING.md](../../docs/INTENT_ENGINEERING.md) (intent schema, goal-constraint conflict, escalation).
+
+## When to apply
+
+- After a substantive assistant output (same class of triggers as the critic gate), **and** the user or session has identifiable **intent**, **scope**, or **constraints** (message, `intent_surface`, handoff, or product-scope).
+- For **high-stakes** work: run **both** critic (quality) and intent-alignment (fit to mission).
+
+## Inputs
+
+1. **Stated intent** — Latest user goal, `intent` / `scope` / `constraints` / `human_gate` from handoff or session brief when present.  
+2. **Draft** — The assistant output to evaluate (reply, patch summary, or handoff body).
+
+## Required JSON (valid JSON only)
+
+```json
+{
+  "aligned": true,
+  "drift_score": 0.0,
+  "axes": {
+    "scope": "in_scope",
+    "constraints": "respected",
+    "human_gate": "n/a"
+  },
+  "drift_signals": [],
+  "escalate": false,
+  "rationale": "Short justification for aligned/drift."
+}
+```
+
+### Field notes
+
+- **`aligned`:** `true` if the draft is consistent with stated intent and constraints; `false` if meaningful drift.  
+- **`drift_score`:** `0.0` = no drift; `1.0` = maximal drift (subjective but consistent per session).  
+- **`axes.scope`:** One of `in_scope|expanded|unclear`.  
+- **`axes.constraints`:** One of `respected|violated|unknown`.  
+- **`axes.human_gate`:** One of `honored|skipped|n/a`.  
+- **`drift_signals`:** Array of `{ "type": "scope_creep|wrong_goal|missing_constraint|premature_ship|other", "detail": "..." }`.  
+- **`escalate`:** `true` if the draft should not proceed without human confirmation (e.g. goal-constraint conflict per INTENT_ENGINEERING).  
+- **`rationale`:** One short paragraph.
+
+## Rules
+
+- If **`aligned` is false** or **`escalate` is true**, **stop** and surface the conflict to the human; do not auto-resolve goal-constraint conflicts.  
+- **Bounded revision:** At most **two** revision rounds on the same draft for alignment; if still ambiguous, escalate.  
+- **Orthogonality:** A passing **critic** does not imply **aligned**; run both when appropriate.
+
+## Relationship to other rules
+
+| Gate | Question |
+|------|----------|
+| Critic | Is the artifact good enough (quality, completeness, imports)? |
+| Intent alignment | Does the artifact match what the user asked and allowed? |

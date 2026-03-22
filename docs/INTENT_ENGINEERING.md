@@ -120,3 +120,13 @@ Before delegating, ensure handoff includes:
 - Constraints (Must-nots, Escalation triggers)
 - Explicit behavior when goal and constraint conflict: escalate
 - Next is self-contained (task, paths, verification)
+
+---
+
+## Intent alignment check (inference-time)
+
+**Quality vs. fit:** The [critic loop](../.cursor/rules/critic-loop-gate.mdc) evaluates whether outputs (docs, code, UI) meet a quality bar. It does not, by itself, detect **drift from your stated intent** (scope creep, ignored constraints, or skipped human gates).
+
+For substantive work, use the optional **intent alignment gate**: after producing a draft, emit the JSON specified in [intent-alignment-gate.mdc](../.cursor/rules/intent-alignment-gate.mdc) comparing the draft to this document’s intent schema (intent, scope, constraints, human_gate). Use **both** critic and intent-alignment when stakes are high.
+
+**Research tie-in:** External surveys (e.g. code LLM safety) discuss *runtime oversight and intent grounding*; the alignment gate is our lightweight, inference-time counterpart—see [docs/research/2511.18538-harness-gap-analysis.md](research/2511.18538-harness-gap-analysis.md).

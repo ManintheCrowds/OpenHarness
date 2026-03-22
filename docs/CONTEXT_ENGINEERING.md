@@ -95,3 +95,15 @@ The harness (surrounding infrastructure) often matters more than the model. The 
 - [ ] **@-mention vs. selective read?** For large files: prefer read_file(path, offset, limit); reserve @-mention for small critical files.
 - [ ] **Tool output limits?** Cap terminal/grep output; read large files by range or tail.
 - [ ] **Every line earns its place:** In constraint docs, remove lines that would not change agent behavior.
+
+---
+
+## Repository-scale context (P2 — avoid unbounded @-files)
+
+Survey-scale “whole repo” tasks are not solved by pasting entire trees into context. Prefer:
+
+1. **Narrow `codebase_search`** with `target_directories` — not repo root by default.
+2. **jCodeMunch** `search_symbols` / `get_symbol` for known APIs; **Nogic** (when enabled) for graph/coupling questions — see [.cursor/docs/NOGIC_WORKFLOW.md](../.cursor/docs/NOGIC_WORKFLOW.md).
+3. **Handoff scope** — list allowed paths and must-not-touch paths; refresh intent when scope drifts.
+
+Do **not** rely on huge @-mentions of generated or vendor dirs; use `.gitignore` and retrieval routing above. See [research/2511.18538-harness-gap-analysis.md](research/2511.18538-harness-gap-analysis.md) (context row).

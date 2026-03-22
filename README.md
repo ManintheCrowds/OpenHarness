@@ -6,10 +6,10 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 
 ## Contents
 
-- **docs/** — Architecture, context, intent, handoff flow
+- **docs/** — Architecture, context, intent, handoff flow; **docs/research/** — paper digests and gap analyses (provenance; raw extractions gitignored)
 - **state/** — State schema (handoff, decision-log, preferences, etc.)
 - **scripts/** — Reference scripts (copy prompt, validate handoff)
-- **.cursor/rules/** — Starter rules (role-routing, capability-summary, critic-loop-gate, model-selection)
+- **.cursor/rules/** — Starter rules (role-routing, capability-summary, critic-loop-gate, intent-alignment-gate, model-selection)
 - **.cursor/skills/** — Domain-agnostic skills (planning, product-scope, docs, tech-lead, refactor-reuse, qa-verifier, secure-contain-protect, agent-native-architecture, research-open-access)
 - **.cursor/commands/** — Slash commands (`architect`, `agent-native-audit`)
 - **docs/contracts/** — Public MCP contracts (e.g. SCP v1) for verify-not-trust
@@ -79,7 +79,7 @@ This repo is a **public** reference: use **synthetic** handoff examples ([docs/e
 - [HANDOFF_CHAIN_PATTERNS.md](docs/HANDOFF_CHAIN_PATTERNS.md)
 - [CONTEXT_ENGINEERING.md](docs/CONTEXT_ENGINEERING.md)
 - [INTENT_ENGINEERING.md](docs/INTENT_ENGINEERING.md)
-- [HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md)
+- [HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md) (includes **Definition of done** for P1 verification + dual gates)
 - [PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md)
 - [CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md), [VERIFY_NOT_TRUST.md](docs/VERIFY_NOT_TRUST.md), [MCP_TRANSPARENCY.md](docs/MCP_TRANSPARENCY.md)
 - [contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md)

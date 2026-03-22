@@ -30,6 +30,16 @@ Canonical source: `state/continue_prompt.txt`. Run copy script to paste.
 
 When agent reaches a human gate: write handoff with "Awaiting approval"; next session asks human before proceeding. See [INTENT_ENGINEERING.md](INTENT_ENGINEERING.md).
 
+## Definition of done (P1 — verifiable rewards + dual gates)
+
+When the session produced **substantive code, config, or behavior-changing docs**, add a block (below Next or under Paths):
+
+- **Verification commands run** — e.g. `pytest`, `ruff check`, `mypy`, `npm test`, `npm run build` (project-appropriate). Record **pass / fail**.
+- **UI / E2E** — if the change touches UI, note browser or Playwright runs when applicable.
+- **Dual gates (multi-file / high-stakes)** — attach or summarize **critic JSON** ([critic-loop-gate.mdc](../.cursor/rules/critic-loop-gate.mdc)) and **intent-alignment JSON** ([intent-alignment-gate.mdc](../.cursor/rules/intent-alignment-gate.mdc)). If `aligned=false` or `escalate=true`, state that the next step requires **human review** before merge.
+
+This aligns “done” with **green CI** (tests/lint/build), not model confidence alone. See [2511.18538-harness-gap-analysis.md](research/2511.18538-harness-gap-analysis.md) § Value-add.
+
 ## Public repos
 
 Do not commit **real** handoffs to a public harness fork. Use a **private** `state/` (or private remote) for live handoffs. For teaching the format, see [examples/HANDOFF_EXAMPLE_SYNTHETIC.md](examples/HANDOFF_EXAMPLE_SYNTHETIC.md) and [PUBLIC_AND_PRIVATE_HARNESS.md](PUBLIC_AND_PRIVATE_HARNESS.md).

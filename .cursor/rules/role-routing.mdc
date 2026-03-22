@@ -52,3 +52,7 @@ When more than one branch could apply, choose by this order (higher wins):
 ## Integration
 
 Copy or symlink this rule into your project's `.cursor/rules/`. Ensure the skills listed above exist in `.cursor/skills/`. See harness README for full integration steps.
+
+### After substantive output (optional)
+
+When a task has explicit **intent, scope, or constraints** (see `docs/INTENT_ENGINEERING.md`) and the assistant has produced a **draft** (code, docs, or handoff): consider emitting the **intent alignment JSON** per `.cursor/rules/intent-alignment-gate.mdc`. This is orthogonal to the **critic** JSON in `critic-loop-gate.mdc` (quality vs. fit-to-intent). Use both for high-stakes or multi-file work.

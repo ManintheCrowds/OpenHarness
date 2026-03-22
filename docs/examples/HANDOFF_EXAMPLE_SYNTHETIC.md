@@ -19,6 +19,11 @@
 - **Where:** `apps/example-api/src/routes/widgets.ts`
 - **Verify:** `npm test` + manual curl per README.
 
+## Definition of done (example)
+
+- **Commands run:** `npm test` (pass), `npm run lint` (pass).
+- **Dual gates (if multi-file / high-stakes):** Critic JSON: `pass: true`; Intent-alignment JSON: `aligned: true`, `escalate: false`.
+
 ## Paths / artifacts
 
 - `apps/example-api/src/routes/widgets.ts`
