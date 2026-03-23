@@ -2,6 +2,10 @@
 
 Append entries below. Schema: Area | Decision | Rationale.
 
+## 2026-03-22
+
+- **[Org-intent / handoff]** Area: Pass D follow-on vs execution. Decision: **Section 6** (critic engagement, metrics, precedence, ethics, L402 commercial, sync, privacy, survey) captured in `D:/software/.cursor/plans/pass_d_+_resolved_qs_cf2648a4.plan.md`; **implementation deferred** until operator returns with completed context; next session uses `.cursor/state/handoff_latest.md` as SoT. Rationale: operator requested plan iteration without executing follow-on repo edits this round.
+
 ## 2026-03-20
 
 - **[Research / Unpaywall]** Area: Scholarly OA discovery. Decision: **Skill-only** `research-open-access` under `.cursor/skills/research-open-access/` (procedure + `reference.md`); no MCP in harness. Rationale: repeatable HTTP + email param + provenance; optional MCP belongs in product repos if two consumers need it.

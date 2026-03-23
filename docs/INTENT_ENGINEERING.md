@@ -35,6 +35,7 @@ Intent engineering treats **human intent** as the primary signal. Context and pr
 1. **Synchronous assumption** — Agents run asynchronously; handoff and spec must carry enough context for the next session to act without you.
 2. **Intent misalignment** — Surface the metric that matters before delegating.
 3. **Goal-constraint conflict** — When goal X conflicts with constraint Y, escalate.
+4. **Instruction blending** — Pasting governance or org-intent prose next to user content without **source tags** or delimiters lets models treat untrusted text as policy. When injecting static rules into system prompts, label `SOURCE` and keep org-intent JSON as the structured authority where possible. See [critic-log-org-intent.md](critic-log-org-intent.md) (embedding note).
 
 ---
 

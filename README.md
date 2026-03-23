@@ -31,6 +31,16 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 3. Use `scripts/` as templates; adapt paths for your layout (e.g. `.cursor/state/`).
 4. Run `pre-commit install` if using the included pre-commit config for handoff/state validation.
 
+## Documentation link check (sibling portfolio-harness)
+
+When **portfolio-harness** is cloned as a sibling of this repo (same parent directory), relative links such as `../../portfolio-harness/...` from `docs/**/*.md` should resolve. Run:
+
+```powershell
+python scripts/check_docs_portfolio_links.py
+```
+
+Exit code `0` means every markdown file link that references `portfolio-harness` points at an existing file. Schedule or run after edits that touch cross-repo doc links.
+
 ## Canonical bundle (verify-not-trust)
 
 Pin this repo by **commit SHA** and run:
