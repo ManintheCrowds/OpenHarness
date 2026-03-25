@@ -60,6 +60,12 @@ Multi-agent sims, prompt-eval harnesses, and benchmark runners **do not live in 
 4. preferences.md
 5. rejection_log.md (if proposing similar work)
 
+See [SESSION_BOOTSTRAP.md](SESSION_BOOTSTRAP.md) for the same sequence with links.
+
+## Agent-native maintenance
+
+After **large** changes to `.cursor/skills/` (new folders, major SKILL.md edits), run `python scripts/verify_skills_readme.py` and optionally an agent-native audit ([.cursor/commands/agent-native-audit.md](../.cursor/commands/agent-native-audit.md)) so discovery and parity docs stay aligned.
+
 ---
 
 ## Lock-in

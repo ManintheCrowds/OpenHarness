@@ -1,3 +1,5 @@
 # Harness optional dependencies
 # Install for pre-commit hooks (sanitize_input, validate_handoff_scp)
+# PyYAML: verify_script_index.py, verify_skills_readme.py
 scp-mcp
+PyYAML>=6.0.1

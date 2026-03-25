@@ -1,4 +1,5 @@
 # PURPOSE: Verify relative markdown links from openharness/docs to sibling portfolio-harness paths exist on disk.
+# Also ensures resolved paths stay under the workspace parent (repo root parent) to limit ../ escape.
 # DEPENDENCIES: stdlib only; run from repo root: python scripts/check_docs_portfolio_links.py
 
 from __future__ import annotations
@@ -10,6 +11,15 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     return Path(__file__).resolve().parent.parent
+
+
+def _is_under(child: Path, parent: Path) -> bool:
+    """True if child resolves under parent (Python 3.9+ compatible)."""
+    try:
+        child.resolve().relative_to(parent.resolve())
+        return True
+    except ValueError:
+        return False
 
 
 def _extract_md_links(text: str) -> list[str]:
@@ -43,6 +53,18 @@ def main() -> int:
                 continue
             target = (base / path_part).resolve()
             checked += 1
+            # Containment: resolved path must stay under the workspace parent (sibling repos),
+            # not escape to arbitrary filesystem locations via ../ chains.
+            workspace_parent = root.parent.resolve()
+            if not _is_under(target, workspace_parent):
+                failures.append(
+                    (
+                        str(md_path.relative_to(root)),
+                        url,
+                        f"{target} (resolves outside workspace {workspace_parent})",
+                    )
+                )
+                continue
             if not target.is_file():
                 failures.append((str(md_path.relative_to(root)), url, str(target)))
 

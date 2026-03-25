@@ -1,0 +1,72 @@
+# OpenHarness — structured capability manifest (YAML).
+#
+# Source of truth for the script *inventory table* (human prose + parity): docs/CHEATSHEET.md
+#   “Agent invocation index”. Drift guard: python scripts/verify_script_index.py
+#
+# harness_capability.scripts[] must match the set of scripts/*.py|ps1|sh|cmd on disk (enforced by
+#   verify_script_index.py). CHEATSHEET must mention each basename as markdown inline code (`name`).
+#
+# Required YAML shape for harness_capability.scripts (see also verify_script_index.py docstring):
+#   - Top-level harness_capability: ; under it, scripts: at exactly two spaces indent.
+#   - List items: four spaces, "- ", then basename only. No trailing comment on the scripts: line.
+#
+# This file adds structure: globs, checklist links, and a machine-readable scripts[] list.
+# When adding/removing scripts under scripts/, update CHEATSHEET first, then sync scripts[] here.
+# Optional later: generate a CHEATSHEET snippet from this file — not implemented; pick one source
+#   if you add generation (today: CHEATSHEET is canonical).
+
+harness_capability:
+  version: 1
+
+  canonical:
+    scripts_table_markdown: docs/CHEATSHEET.md
+    skills_table_markdown: .cursor/skills/README.md
+    verify_script_index: scripts/verify_script_index.py
+    verify_skills_readme: scripts/verify_skills_readme.py
+
+  scripts_globs:
+    - scripts/*.py
+    - scripts/*.ps1
+    - scripts/*.sh
+    - scripts/*.cmd
+
+  skills_globs:
+    - .cursor/skills/*/SKILL.md
+
+  # Basenames under scripts/ covered by verify_script_index (must appear in CHEATSHEET).
+  scripts:
+    - copy_continue_prompt.ps1
+    - copy_continue_prompt.sh
+    - copy_continue_prompt.cmd
+    - validate_handoff_scp.py
+    - sanitize_input.py
+    - build_brain_map.py
+    - verify_canonical_bundle.ps1
+    - update_canonical_bundle_hashes.ps1
+    - check_docs_portfolio_links.py
+    - verify_script_index.py
+    - verify_skills_readme.py
+
+  # Non-glob artifacts in scripts/ (documented in CHEATSHEET; not enforced by verify_script_index).
+  scripts_other:
+    - brain_map_viewer.html
+    - brain-map-graph.json
+
+  checklist:
+    path: docs/AGENT_NATIVE_CHECKLIST.md
+    sections:
+      - id: ui_or_mcp_tools
+        heading: When adding UI or MCP tools
+        anchor: "#when-adding-ui-or-mcp-tools"
+      - id: harness_scripts
+        heading: When adding harness scripts
+        anchor: "#when-adding-harness-scripts"
+      - id: skills_readme
+        heading: When adding or renaming skills
+        anchor: "#when-adding-or-renaming-skills"
+      - id: mcp_tools
+        heading: When adding MCP tools
+        anchor: "#when-adding-mcp-tools"
+
+  # OpenAtlas agent-native audit — Part B (bundle) maps to this repo; see docs/HARNESS_AUDIT_ALIGNMENT.md
+  external_audit_reference: "OpenAtlas docs/audit/ (e.g. agent_native_opengrimoire_*), Part B — OpenHarness"

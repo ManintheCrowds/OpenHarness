@@ -2,6 +2,8 @@
 
 "Document then continue" — write handoff, open new chat, paste continue prompt.
 
+**Operational superset (local workspace):** This file is the **portable** handoff narrative for OpenHarness and canonical bundle consumers. It does not duplicate archive scripts, pre-commit hooks, or integrity tooling. When your machine has the portfolio workspace checked out, follow the detailed procedure in the sibling **`MiscRepos`** repo: `MiscRepos/.cursor/HANDOFF_FLOW.md` (paths relative to your `GitHub` folder: e.g. `Documents/GitHub/MiscRepos/.cursor/HANDOFF_FLOW.md`).
+
 ## Flow
 
 1. **Trigger** — Say "handoff", "write handoff", or "context handoff".
@@ -17,9 +19,15 @@ Handoff is a **trust boundary**. Before pasting:
 - Run SCP validation on handoff when staged (pre-commit).
 - Optional: Run integrity check to verify handoff was not modified.
 
+Content that originated outside this workspace (web paste, tool output, unknown files) belongs in the same cautious posture: see [.cursor/skills/secure-contain-protect/SKILL.md](../.cursor/skills/secure-contain-protect/SKILL.md) for inspection and containment patterns; align with your SCP workflow before promoting text into durable `state/` or RAG.
+
 ## Continue Prompt
 
 Canonical source: `state/continue_prompt.txt`. Run copy script to paste.
+
+### Clipboard and headless agents
+
+`copy_continue_prompt.ps1` / `.sh` / `.cmd` targets the **system clipboard** and expects an interactive environment. **Headless sessions, CI, or agents without clipboard access** should read `state/continue_prompt.txt` directly (or `cat` / `type` it) instead of relying on clipboard copy.
 
 ## Scripts
 

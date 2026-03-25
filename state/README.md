@@ -4,8 +4,6 @@ Shared agent and project memory. Append-only or append-mostly. Use this schema s
 
 **Integration:** Copy into your project (e.g. `.cursor/state/`). Adapt paths in scripts and continue_prompt.txt.
 
----
-
 ## Layout
 
 | Artifact | Role |
@@ -21,8 +19,6 @@ Shared agent and project memory. Append-only or append-mostly. Use this schema s
 | session_brief.md | Optional "read first" for new sessions |
 | intent_surface.md | Optional canonical intent for multi-phase work |
 | continue_prompt.txt | Canonical continue-from-handoff prompt |
-
----
 
 ## Handoff Schema
 
@@ -63,14 +59,10 @@ sync | async_ok
 
 See [docs/HANDOFF_FLOW.md](../docs/HANDOFF_FLOW.md) and [docs/INTENT_ENGINEERING.md](../docs/INTENT_ENGINEERING.md).
 
----
-
 ## decision-log.md
 
 - **Section per date:** `## YYYY-MM-DD`
 - **Each entry:** `- **[Area]** Decision: <one-line>. Rationale: <optional short>.` Optional: `(plan: <name or path>)`
-
----
 
 ## known-issues.md
 
@@ -78,14 +70,10 @@ See [docs/HANDOFF_FLOW.md](../docs/HANDOFF_FLOW.md) and [docs/INTENT_ENGINEERING
 - **Each entry:** `- **Location:** <path>. **Issue:** <one-line>. **Note:** <optional>.`
 - **Optional:** `**Symptom:** <exact error>` so agents can search by message.
 
----
-
 ## preferences / rejection_log
 
 - **preferences:** Human-stated preferences agents follow. Load at session start.
 - **rejection_log:** When human rejects a proposal, ask "Log this for future sessions?" If yes, append with reason and constraint (what AI should do next time).
-
----
 
 ## daily/YYYY-MM-DD.md
 

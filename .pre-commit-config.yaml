@@ -22,3 +22,19 @@ repos:
         files: ^state/handoff_latest\.md$
         pass_filenames: false
         stages: [pre-commit]
+
+      - id: verify-script-index
+        name: Script index CHEATSHEET + capabilities manifest parity
+        entry: python scripts/verify_script_index.py
+        language: system
+        files: ^(docs/CHEATSHEET\.md|capabilities\.harness\.yaml|scripts/.*)$
+        pass_filenames: false
+        stages: [pre-commit]
+
+      - id: verify-skills-readme
+        name: Skills README vs SKILL.md descriptions
+        entry: python scripts/verify_skills_readme.py
+        language: system
+        files: ^(\.cursor/skills/README\.md|\.cursor/skills/.*/SKILL\.md)$
+        pass_filenames: false
+        stages: [pre-commit]

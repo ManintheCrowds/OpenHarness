@@ -26,6 +26,8 @@ Adapt these to your stack. For harness:
 - **Core** = portable, reusable, minimal setup.
 - **Implementation** = your project, preferences, domain-specific integrations.
 
+**Script inventory:** Do not maintain a second long script table in the root README. The canonical list is [CHEATSHEET.md](CHEATSHEET.md) (Agent invocation index) plus [capabilities.harness.yaml](../capabilities.harness.yaml); [README.md](../README.md) points there by design.
+
 ## Checklist for New Components
 
 1. Run primary prompt.
