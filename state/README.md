@@ -21,6 +21,7 @@ Shared agent and project memory. Append-only or append-mostly. Use this schema s
 | session_brief.md | Optional "read first" for new sessions |
 | intent_surface.md | Optional canonical intent for multi-phase work |
 | continue_prompt.txt | Canonical continue-from-handoff prompt |
+| async_tasks.yaml | Machine-readable task ledger (ids, status, owner); validated in CI; see [docs/ASYNC_HITL_SCOPE.md](../docs/ASYNC_HITL_SCOPE.md) |
 
 ## Handoff Schema
 
@@ -58,6 +59,8 @@ Updated: <ISO8601>
 ## latency_tolerance (optional)
 sync | async_ok
 ```
+
+When `latency_tolerance: async_ok` (or whenever multiple sessions may overlap), read **[docs/ASYNC_HITL_SCOPE.md](../docs/ASYNC_HITL_SCOPE.md)** and **`async_tasks.yaml`** after handoff so task ownership matches the machine-readable ledger.
 
 See [docs/HANDOFF_FLOW.md](../docs/HANDOFF_FLOW.md) and [docs/INTENT_ENGINEERING.md](../docs/INTENT_ENGINEERING.md).
 

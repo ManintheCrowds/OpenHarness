@@ -1,4 +1,5 @@
 # Lightweight checks for docs/scripts parity (no SCP package required for contract hash step).
+# gitleaks job: secret scan on full history (see docs/ASYNC_HITL_SCOPE.md § Security scanning posture).
 name: CI
 
 on:
@@ -7,6 +8,16 @@ on:
   pull_request:
 
 jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   verify:
     runs-on: ubuntu-latest
     steps:
@@ -28,3 +39,6 @@ jobs:
 
       - name: SCP contract fingerprint
         run: python scripts/verify_contract_hash.py
+
+      - name: Async task ledger schema
+        run: python scripts/verify_async_tasks.py

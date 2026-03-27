@@ -43,6 +43,7 @@ Use this table for **action parity** with humans (same script, agent via `run_te
 | `update_canonical_bundle_hashes.ps1` | Regenerate `docs/canonical-bundle.sha256` after bundle edits | `.\scripts\update_canonical_bundle_hashes.ps1` |
 | `check_docs_portfolio_links.py` | Verify `docs/**/*.md` links to sibling `portfolio-harness` | `python scripts/check_docs_portfolio_links.py` |
 | `list_capabilities.py` | Emit harness manifest (`capabilities.harness.yaml`) as JSON for scripts/checklist discovery | `python scripts/list_capabilities.py` |
+| `verify_async_tasks.py` | Validate `state/async_tasks.yaml` task ledger schema | `python scripts/verify_async_tasks.py` |
 | `verify_contract_hash.py` | Verify `docs/contracts/scp_mcp_v1.md` SHA-256 matches `docs/contracts/scp_mcp_v1.sha256` | `python scripts/verify_contract_hash.py` |
 | `verify_script_index.py` | Parity: `capabilities.harness.yaml` `scripts[]` == on-disk scripts; each basename in this table | `python scripts/verify_script_index.py` |
 | `verify_skills_readme.py` | `.cursor/skills/README.md` table vs each `SKILL.md` `description:` | `python scripts/verify_skills_readme.py` |
@@ -54,7 +55,7 @@ Use this table for **action parity** with humans (same script, agent via `run_te
 
 ## Memory load order
 
-intent_surface → session_brief → handoff → preferences → rejection_log → decision-log → known-issues → daily (optional)
+intent_surface → session_brief → handoff → preferences → rejection_log → decision-log → known-issues → daily (optional) → async scope + `async_tasks.yaml` when `latency_tolerance: async_ok`
 
 See [SESSION_BOOTSTRAP.md](SESSION_BOOTSTRAP.md) for the same sequence with file pointers. See [OPENHARNESS_CONTEXT_MAP.md](OPENHARNESS_CONTEXT_MAP.md) for checklist → path mapping.
 

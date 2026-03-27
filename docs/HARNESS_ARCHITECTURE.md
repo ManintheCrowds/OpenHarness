@@ -62,6 +62,7 @@ Multi-agent sims, prompt-eval harnesses, and benchmark runners **do not live in 
 6. decision-log.md (if exists)
 7. known-issues.md (if exists)
 8. daily/YYYY-MM-DD.md (optional)
+9. For async / multi-session work: [ASYNC_HITL_SCOPE.md](ASYNC_HITL_SCOPE.md) and `state/async_tasks.yaml` after handoff when `latency_tolerance: async_ok` or parallel sessions are possible.
 
 See [SESSION_BOOTSTRAP.md](SESSION_BOOTSTRAP.md) for the same sequence with links. See [OPENHARNESS_CONTEXT_MAP.md](OPENHARNESS_CONTEXT_MAP.md) for checklist → path mapping.
 

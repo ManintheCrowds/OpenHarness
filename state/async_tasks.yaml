@@ -1,0 +1,10 @@
+# Machine-readable task ledger for async / multi-session work.
+# Schema: docs/ASYNC_HITL_SCOPE.md — validated by: python scripts/verify_async_tasks.py
+version: 1
+tasks:
+  - id: task-20260326-example
+    status: backlog
+    owner: human:harness-placeholder
+    updated_at: "2026-03-26T12:00:00Z"
+    paths: []
+    notes: Synthetic placeholder for CI; replace or add real tasks as needed.

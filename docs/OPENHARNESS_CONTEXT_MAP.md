@@ -9,6 +9,7 @@ Maps the **context injection checklist** (see [`dynamic-context-injection.md`](.
 | Preferences, rejections | [`state/preferences.md`](../state/preferences.md) or `preferences.json`; `state/rejection_log*.md` / `.json` (if present) |
 | Decisions and known issues | [`state/decision-log.md`](../state/decision-log.md), [`state/known-issues.md`](../state/known-issues.md) |
 | Daily session notes | [`state/daily/`](../state/daily/) — `YYYY-MM-DD.md` |
+| Async / multi-session task ledger | [`docs/ASYNC_HITL_SCOPE.md`](ASYNC_HITL_SCOPE.md); [`state/async_tasks.yaml`](../state/async_tasks.yaml); `python scripts/verify_async_tasks.py` |
 | Continue prompt | [`state/continue_prompt.txt`](../state/continue_prompt.txt) |
 | Capabilities in user vocabulary | [`docs/CHEATSHEET.md`](CHEATSHEET.md) Agent invocation index; [`.cursor/skills/README.md`](../.cursor/skills/README.md) |
 | MCP contract (verify-not-trust) | [`docs/contracts/scp_mcp_v1.md`](contracts/scp_mcp_v1.md); fingerprint [`docs/contracts/scp_mcp_v1.sha256`](contracts/scp_mcp_v1.sha256); verify with `python scripts/verify_contract_hash.py` |

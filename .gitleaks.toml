@@ -1,0 +1,7 @@
+# Gitleaks — secret scanning in CI (.github/workflows/ci.yml job: gitleaks).
+# Docs: https://github.com/gitleaks/gitleaks — extend with [[allowlist]] if needed for false positives.
+
+title = "openharness"
+
+[extend]
+useDefault = true
