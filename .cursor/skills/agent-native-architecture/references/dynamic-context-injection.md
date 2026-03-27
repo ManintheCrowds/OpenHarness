@@ -336,3 +336,7 @@ When adding new features:
 - [ ] New capabilities are documented in system prompt
 - [ ] User vocabulary for the feature is mapped
 </checklist>
+
+## OpenHarness (portable bundle)
+
+The checklist above targets product apps with a live runtime. For the **OpenHarness** repo (markdown + `state/` + manifest), map checklist bullets to concrete files and scripts: see [`docs/OPENHARNESS_CONTEXT_MAP.md`](../../../../docs/OPENHARNESS_CONTEXT_MAP.md).

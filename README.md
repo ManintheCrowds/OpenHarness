@@ -63,7 +63,7 @@ See [docs/CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md) and [docs/V
 
 ## Private wellbeing / survival corpora
 
-Do **not** commit purchased PDFs or full extracted text to this harness. Use a private path; run **SCP on extracted text** before any RAG or handoff. Canonical playbook: `local-proto` repo `docs/HUMAN_WELLBEING_CORPUS.md` and `docs/SURVIVAL_MEDICAL_RAG_DISCLAIMER.md` (sibling layout under the same workspace root). Decision: `.cursor/state/decision-log.md` (2026-03-20).
+Do **not** commit purchased PDFs or full extracted text to this harness. Use a private path; run **SCP on extracted text** before any RAG or handoff. Canonical playbook: `local-proto` repo `docs/HUMAN_WELLBEING_CORPUS.md` and `docs/SURVIVAL_MEDICAL_RAG_DISCLAIMER.md` (sibling layout under the same workspace root). For decision history in this repo, prefer root [`state/decision-log.md`](state/decision-log.md); use a private `.cursor/state/` checkout for material that must not ship publicly.
 
 ## Pre-commit
 
@@ -91,7 +91,9 @@ When extending harness or adding components, use [docs/DELINEATION.md](docs/DELI
 
 ## Public vs private
 
-This repo is a **public** reference: use **synthetic** handoff examples ([docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md](docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md)), not real session state. Keep real handoffs and experimental work in a **private** workspace; see [docs/PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md).
+This repo is a **public** reference: use **synthetic** handoff examples ([docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md](docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md)), not real session state. Root [`state/`](state/) holds **schema + synthetic placeholders** suitable for cloning; keep real handoffs, `daily/`, archives, and decision logs with identifying detail in a **private** workspace or fork. **`.cursor/state/`** is gitignored here so local session files are not committed by mistake; see [docs/PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md).
+
+**Secrets:** `.gitignore` excludes `.env*`, common key filenames, and `.cursor/mcp.json`. Do not commit credentials; use env vars or a private config path per [docs/MCP_PRIVATE_HOST.md](docs/MCP_PRIVATE_HOST.md).
 
 ## OpenAtlas (related app, not in this repo)
 
@@ -108,7 +110,7 @@ This repo is a **public** reference: use **synthetic** handoff examples ([docs/e
 - [INTENT_ENGINEERING.md](docs/INTENT_ENGINEERING.md)
 - [HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md) (includes **Definition of done** for P1 verification + dual gates)
 - [PUBLIC_AND_PRIVATE_HARNESS.md](docs/PUBLIC_AND_PRIVATE_HARNESS.md)
-- [CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md), [VERIFY_NOT_TRUST.md](docs/VERIFY_NOT_TRUST.md), [MCP_TRANSPARENCY.md](docs/MCP_TRANSPARENCY.md)
+- [CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md), [VERIFY_NOT_TRUST.md](docs/VERIFY_NOT_TRUST.md), [MCP_TRANSPARENCY.md](docs/MCP_TRANSPARENCY.md), [GOVERNANCE.md](docs/GOVERNANCE.md)
 - [contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md), [SCP_ENV_AND_TRUST.md](docs/SCP_ENV_AND_TRUST.md)
 - [AUTHORITY_MODEL.md](docs/AUTHORITY_MODEL.md)
 - [state/README.md](state/README.md)

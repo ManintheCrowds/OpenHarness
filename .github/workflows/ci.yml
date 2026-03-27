@@ -1,0 +1,30 @@
+# Lightweight checks for docs/scripts parity (no SCP package required for contract hash step).
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install PyYAML
+
+      - name: Script index parity (CHEATSHEET + YAML + disk)
+        run: python scripts/verify_script_index.py
+
+      - name: Skills README vs SKILL.md descriptions
+        run: python scripts/verify_skills_readme.py
+
+      - name: SCP contract fingerprint
+        run: python scripts/verify_contract_hash.py

@@ -38,3 +38,11 @@ repos:
         files: ^(\.cursor/skills/README\.md|\.cursor/skills/.*/SKILL\.md)$
         pass_filenames: false
         stages: [pre-commit]
+
+      - id: verify-contract-hash
+        name: SCP contract SHA-256 fingerprint
+        entry: python scripts/verify_contract_hash.py
+        language: system
+        files: ^docs/contracts/scp_mcp_v1\.(md|sha256)$
+        pass_filenames: false
+        stages: [pre-commit]

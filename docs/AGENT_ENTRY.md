@@ -18,7 +18,14 @@
 
 ## 2b. Session bootstrap
 
-**[`SESSION_BOOTSTRAP.md`](SESSION_BOOTSTRAP.md)** — What to load first in a new session (intent → handoff → preferences → rejection_log), aligned with CHEATSHEET **Memory load order**.
+**[`SESSION_BOOTSTRAP.md`](SESSION_BOOTSTRAP.md)** — What to load first in a new session (intent → handoff → preferences → rejection_log → decision-log → known-issues → daily), aligned with CHEATSHEET **Memory load order**. Checklist → paths: **[`OPENHARNESS_CONTEXT_MAP.md`](OPENHARNESS_CONTEXT_MAP.md)**.
+
+---
+
+## 2c. Slash commands (Cursor) and agent parity
+
+- **Human:** Runs `/architect` or `/agent-native-audit` in the Cursor command palette.
+- **Agent:** Reads the same workflow from **[`.cursor/commands/`](../.cursor/commands/)** (e.g. `architect.md`, `agent-native-audit.md`) and executes the documented steps. Treat **open command file + follow** as equivalent to invoking the slash command.
 
 ---
 

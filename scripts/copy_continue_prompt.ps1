@@ -5,10 +5,13 @@
 param([switch]$Generate)
 
 if ($Generate) {
-    if (Test-Path (Join-Path $PSScriptRoot 'generate_next_prompt.ps1')) {
-        & (Join-Path $PSScriptRoot 'generate_next_prompt.ps1')
-        exit 0
+    $genScript = Join-Path $PSScriptRoot 'generate_next_prompt.ps1'
+    if (-not (Test-Path $genScript)) {
+        Write-Error "generate_next_prompt.ps1 not found in scripts/. Remove -Generate or add that script."
+        exit 1
     }
+    & $genScript
+    exit 0
 }
 
 $promptPath = Join-Path (Join-Path $PSScriptRoot '..') (Join-Path 'state' 'continue_prompt.txt')

@@ -14,6 +14,10 @@ Operating rules for OpenHarness and consumers.
 2. Each release records **CONTRACT_HASH** = SHA-256 of the contract file (UTF-8).
 3. Optional: publish a one-line row in [SCP_SERVER_RELEASES.md](SCP_SERVER_RELEASES.md) mapping server version to contract hash—**no** server source required.
 
+## OpenHarness contract file (local check)
+
+From repo root, `python scripts/verify_contract_hash.py` must exit `0`. It compares the SHA-256 of `docs/contracts/scp_mcp_v1.md` to the committed fingerprint in `docs/contracts/scp_mcp_v1.sha256`. After editing the contract, update both the `.sha256` file and [SCP_SERVER_RELEASES.md](SCP_SERVER_RELEASES.md).
+
 ## What not to do
 
 - Do not treat skill prose alone as a security guarantee—**tool behavior** must match the **contract** for the **pinned** server version.
@@ -24,3 +28,4 @@ Operating rules for OpenHarness and consumers.
 - [CANONICAL_AGENT_BUNDLE.md](CANONICAL_AGENT_BUNDLE.md)
 - [MCP_TRANSPARENCY.md](MCP_TRANSPARENCY.md)
 - [MCP_PRIVATE_HOST.md](MCP_PRIVATE_HOST.md)
+- [GOVERNANCE.md](GOVERNANCE.md)

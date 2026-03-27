@@ -12,4 +12,6 @@ Public log of **SCP MCP server** releases vs **OpenHarness contract** revision. 
 (Get-FileHash -Algorithm SHA256 -Path docs/contracts/scp_mcp_v1.md).Hash.ToLowerInvariant()
 ```
 
+After updating `docs/contracts/scp_mcp_v1.sha256`, run `python scripts/verify_contract_hash.py` (must exit `0`).
+
 When you bump the contract file, increment its version section and regenerate hashes; server releases should target an explicit contract revision.

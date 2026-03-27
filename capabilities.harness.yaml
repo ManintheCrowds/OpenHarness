@@ -44,6 +44,8 @@ harness_capability:
     - verify_canonical_bundle.ps1
     - update_canonical_bundle_hashes.ps1
     - check_docs_portfolio_links.py
+    - list_capabilities.py
+    - verify_contract_hash.py
     - verify_script_index.py
     - verify_skills_readme.py
 

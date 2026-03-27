@@ -4,6 +4,8 @@ Shared agent and project memory. Append-only or append-mostly. Use this schema s
 
 **Integration:** Copy into your project (e.g. `.cursor/state/`). Adapt paths in scripts and continue_prompt.txt.
 
+**Public OpenHarness checkout:** Root `state/` holds the schema and **synthetic** placeholders safe to commit. **`/.cursor/state/`** is gitignored here so local session files are not pushed; use it in your workspace the same way, or keep real handoffs in a private fork ([`docs/PUBLIC_AND_PRIVATE_HARNESS.md`](../docs/PUBLIC_AND_PRIVATE_HARNESS.md)).
+
 ## Layout
 
 | Artifact | Role |

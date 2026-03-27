@@ -1,2 +1,21 @@
 # Local PDF extraction working copies (large; not for version control)
 docs/research/_extract*.txt
+
+# Secrets and environment (do not commit)
+.env
+.env.*
+!.env.example
+
+# Keys and certificates (common filenames)
+*.pem
+*.key
+*.p12
+id_rsa
+id_rsa.pub
+*.pfx
+
+# Local MCP config (secrets); do not commit. See docs/MCP_TRANSPARENCY.md, docs/MCP_PRIVATE_HOST.md
+.cursor/mcp.json
+
+# Private session state at repo root (use root state/ for public schema + synthetic examples)
+.cursor/state/
