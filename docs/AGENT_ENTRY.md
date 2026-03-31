@@ -35,6 +35,10 @@
 
 ---
 
+## 3b. OpenGrimoire clarification queue (optional)
+
+If you use **OpenGrimoire** (OpenAtlas) for async agent→human questions, stable UUIDs and handoff conventions live in **[`OPENGRIMOIRE_CLARIFICATION_BRIDGE.md`](./OPENGRIMOIRE_CLARIFICATION_BRIDGE.md)**. OpenHarness does not host this API; it is the join key between harness runs and Grimoire.
+
 ## 4. State on disk
 
 **[`state/`](../state/)** — Schema and files agents and humans share: `handoff_latest.md`, `decision-log.md`, `continue_prompt.txt`, `daily/`, etc. Read **[`state/README.md`](../state/README.md)** for layout. After a handoff, load **handoff** → **preferences** → **rejection_log** as in CHEATSHEET **Memory load order**.

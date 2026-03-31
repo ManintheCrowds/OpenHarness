@@ -38,7 +38,7 @@ Use this table for **action parity** with humans (same script, agent via `run_te
 | `copy_continue_prompt.ps1` / `copy_continue_prompt.sh` / `copy_continue_prompt.cmd` | Copy continue prompt to clipboard | `.\scripts\copy_continue_prompt.ps1` (Windows), `./scripts/copy_continue_prompt.sh`, or `scripts\copy_continue_prompt.cmd` |
 | `validate_handoff_scp.py` | Validate `handoff_latest` against SCP rules | `python scripts/validate_handoff_scp.py` |
 | `sanitize_input.py` | Sanitize handoff/state before commit | Usually via pre-commit; `python scripts/sanitize_input.py` |
-| `build_brain_map.py` | Build brain-map JSON from cursor state | `python scripts/build_brain_map.py` (set `CURSOR_STATE_DIR` / `CURSOR_STATE_DIRS` as in README) |
+| `build_brain_map.py` | Build brain-map JSON from cursor state (minimal harness copy) | `python scripts/build_brain_map.py` (set `CURSOR_STATE_DIR` / `CURSOR_STATE_DIRS` as in README). **OpenGrimoire / multi-root / vaults:** use sibling **MiscRepos** [`../../MiscRepos/.cursor/scripts/build_brain_map.py`](../../MiscRepos/.cursor/scripts/build_brain_map.py) instead. |
 | `verify_canonical_bundle.ps1` | Verify pinned bundle hashes | `.\scripts\verify_canonical_bundle.ps1` |
 | `update_canonical_bundle_hashes.ps1` | Regenerate `docs/canonical-bundle.sha256` after bundle edits | `.\scripts\update_canonical_bundle_hashes.ps1` |
 | `check_docs_portfolio_links.py` | Verify `docs/**/*.md` links to sibling `portfolio-harness` | `python scripts/check_docs_portfolio_links.py` |
