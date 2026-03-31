@@ -48,4 +48,4 @@ python scripts/verify_script_index.py
 python scripts/verify_skills_readme.py
 ```
 
-See also: [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md), [HARNESS_AUDIT_ALIGNMENT.md](HARNESS_AUDIT_ALIGNMENT.md).
+See also: [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md), [HARNESS_AUDIT_ALIGNMENT.md](HARNESS_AUDIT_ALIGNMENT.md). **Portfolio GUI surfaces** (browser apps / generated HTML): onboarding checklist in sibling MiscRepos [docs/audit/NEW_GUI_SURFACE_CHECKLIST.md](../../MiscRepos/docs/audit/NEW_GUI_SURFACE_CHECKLIST.md) (path from repo root: `../MiscRepos/docs/audit/NEW_GUI_SURFACE_CHECKLIST.md` when OpenHarness and MiscRepos are siblings).
