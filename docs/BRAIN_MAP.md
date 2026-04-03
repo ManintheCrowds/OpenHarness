@@ -62,9 +62,9 @@ Output: `brain-map-graph.json` in the state directory (or `BRAIN_MAP_OUTPUT`).
 
 Alternatively, use the file input in the viewer to load a JSON file directly (works without a server).
 
-### Next.js / OpenAtlas (folder `OpenAtlas`)
+### Next.js / OpenGrimoire (folder `OpenGrimoire`)
 
-In **portfolio-harness**, the **OpenAtlas** app (folder `OpenAtlas`) serves the graph via `GET /api/brain-map/graph` and the D3 viewer at **`/context-atlas`** (canonical) or **`/brain-map`** (legacy alias). Set `BRAIN_MAP_OUTPUT` to `OpenAtlas/public/brain-map-graph.json` and run the parser before viewing. JSON schema (optional fields, API notes): see portfolio-harness `OpenAtlas/docs/BRAIN_MAP_SCHEMA.md` when that repo is checked out beside OpenHarness. The GitHub remote may still be named `Med-Vis` until the repo is renamed.
+In **portfolio-harness**, the **OpenGrimoire** app (folder `OpenGrimoire`) serves the graph via `GET /api/brain-map/graph` and the D3 viewer at **`/context-atlas`** (canonical) or **`/brain-map`** (legacy alias). Set `BRAIN_MAP_OUTPUT` to `OpenGrimoire/public/brain-map-graph.json` and run the parser before viewing. JSON schema (optional fields, API notes): see portfolio-harness `OpenGrimoire/docs/BRAIN_MAP_SCHEMA.md` when that repo is checked out beside OpenHarness. The GitHub remote may still be named `Med-Vis` until the repo is renamed.
 
 ## One-Command Audit Flow (Standalone)
 

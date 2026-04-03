@@ -42,11 +42,11 @@ Multi-agent sims, prompt-eval harnesses, and benchmark runners **do not live in 
 
 | Topic | Canonical write-up |
 |-------|-------------------|
-| DECIDE-SIM stack placement (OpenAtlas vs research vs local-proto) | [portfolio-harness brainstorm](../../portfolio-harness/docs/brainstorms/2026-03-20-decide-sim-stack-integration-brainstorm.md) |
+| DECIDE-SIM stack placement (OpenGrimoire vs research vs local-proto) | [portfolio-harness brainstorm](../../portfolio-harness/docs/brainstorms/2026-03-20-decide-sim-stack-integration-brainstorm.md) |
 | Paper note + meditation backlog | [software research note](../../software/docs/research/arxiv_2509.12190_DECIDE_SIM.md) |
 | Promptfoo vs DECIDE-SIM (gap analysis) | [promptfoo_vs_DECIDE_SIM_gap_analysis.md](../../software/docs/research/promptfoo_vs_DECIDE_SIM_gap_analysis.md) |
 
-**Convention:** Consume **summaries + hashes + SCP** on excerpts—not raw API dumps in core docs. Optional operator UI (e.g. OpenAtlas) reads **pre-computed JSON** only; execution stays outside the Next app—see [OPENATLAS_SYSTEMS_INVENTORY.md](../../portfolio-harness/OpenAtlas/docs/OPENATLAS_SYSTEMS_INVENTORY.md) in a sibling **portfolio-harness** checkout.
+**Convention:** Consume **summaries + hashes + SCP** on excerpts—not raw API dumps in core docs. Optional operator UI (e.g. OpenGrimoire) reads **pre-computed JSON** only; execution stays outside the Next app—see [OPENGRIMOIRE_SYSTEMS_INVENTORY.md](../../portfolio-harness/OpenGrimoire/docs/OPENGRIMOIRE_SYSTEMS_INVENTORY.md) in a sibling **portfolio-harness** checkout.
 
 ---
 

@@ -65,18 +65,18 @@ Design references: [CASHU_L402_REFERENCE.md](../../portfolio-harness/docs/CASHU_
 | Layer | Canonical role |
 |-------|------------------|
 | **Git (org-intent JSON)** | **Audit** truth: versioned, taggable; material changes may use signed tags. |
-| **OpenAtlas `alignment_context_items`** | **Runtime** labor context: what agents load **this week** (Pass C). |
+| **OpenGrimoire `alignment_context_items`** | **Runtime** labor context: what agents load **this week** (Pass C). |
 | **`.cursor/state`** | **Session / ephemeral**: handoffs, preferences—not long-term mission truth. |
 | **Bridge** | **Export** (alignment → markdown/JSON in repo) on schedule or milestone for audit; **import** into mission-bearing files only with **`human_gate`**. |
 
-**OpenAtlas approach B (dedicated table):** Operational source for live alignment is the DB/API; git holds **audit snapshots** when you export. Treat drift as expected unless you automate export.
+**OpenGrimoire approach B (dedicated table):** Operational source for live alignment is the DB/API; git holds **audit snapshots** when you export. Treat drift as expected unless you automate export.
 
 ```mermaid
 flowchart LR
   subgraph audit [Git_org_intent]
     OJ[org-intent_JSON]
   end
-  subgraph runtime [OpenAtlas]
+  subgraph runtime [OpenGrimoire]
     AC[alignment_context_items]
   end
   subgraph session [Ephemeral]
@@ -103,7 +103,7 @@ Pair detailed employer, NDA, and jurisdiction rules with **private** docs—not 
 
 ## 6.8 Survey mapping (strategic vs pedagogical)
 
-OpenAtlas [survey types](../../portfolio-harness/OpenAtlas/src/types/survey.ts) (learning style, peak performance, etc.) serve **intake / UX**; **strategic intent** seeds org-intent and alignment context with different semantics.
+OpenGrimoire [survey types](../../portfolio-harness/OpenGrimoire/src/types/survey.ts) (learning style, peak performance, etc.) serve **intake / UX**; **strategic intent** seeds org-intent and alignment context with different semantics.
 
 | Option | Detail |
 |--------|--------|

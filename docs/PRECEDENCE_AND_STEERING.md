@@ -7,7 +7,7 @@ Short spec aligned with [north-star brainstorm Pass A/B](brainstorms/2026-03-22-
 ## Macro: weekly steering (overrides)
 
 - **Source:** End-of-week or start-of-week answer to: *Given last week’s outcomes, which domain gets emphasis this week?*
-- **Effect:** This one-line **weekly steering constraint** overrides generic habits for that period. Feed it into task decomposition prompts and OpenAtlas alignment tags (e.g. `weekly_steering: wealth`).
+- **Effect:** This one-line **weekly steering constraint** overrides generic habits for that period. Feed it into task decomposition prompts and OpenGrimoire alignment tags (e.g. `weekly_steering: wealth`).
 - **Authority:** Humans; not inferred by agents from lagging metrics alone.
 
 ## Micro: soft rank (when steering is silent)

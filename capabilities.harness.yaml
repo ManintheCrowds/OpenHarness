@@ -71,5 +71,5 @@ harness_capability:
         heading: When adding MCP tools
         anchor: "#when-adding-mcp-tools"
 
-  # OpenAtlas agent-native audit — Part B (bundle) maps to this repo; see docs/HARNESS_AUDIT_ALIGNMENT.md
-  external_audit_reference: "OpenAtlas docs/audit/ (e.g. agent_native_opengrimoire_*), Part B — OpenHarness"
+  # OpenGrimoire agent-native audit — Part B (bundle) maps to this repo; see docs/HARNESS_AUDIT_ALIGNMENT.md
+  external_audit_reference: "OpenGrimoire docs/audit/ (e.g. agent_native_opengrimoire_*), Part B — OpenHarness"

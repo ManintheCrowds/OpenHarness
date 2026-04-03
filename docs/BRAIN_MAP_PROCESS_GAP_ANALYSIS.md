@@ -12,7 +12,7 @@
 
 - **Process:** Brain Map full visual audit and E2E analysis
 - **Artifacts:** Plan (brain_map_visual_audit_e2e_db0918a7.plan.md), BRAIN_MAP_AUDIT.md, BRAIN_MAP_E2E.md, context-atlas.spec.ts
-- **Components:** Parser (OpenHarness + portfolio-harness), standalone viewer (vis-network), OpenAtlas context-atlas (D3)
+- **Components:** Parser (OpenHarness + portfolio-harness), standalone viewer (vis-network), OpenGrimoire context-atlas (D3)
 - **Success criteria:** Parser valid, viewers load, screenshots captured, critic JSON produced, docs updated
 
 ### 1.2 Requirements (Explicit)
@@ -21,7 +21,7 @@
 |----|-------------|--------|
 | R1 | Parser exits 0; JSON has nodes, edges, generated, sessionCount | Plan, Audit |
 | R2 | Standalone viewer loads; nodes or dropzone visible | Plan, Audit |
-| R3 | OpenAtlas context-atlas loads; graph or empty state visible | Plan, Audit |
+| R3 | OpenGrimoire context-atlas loads; graph or empty state visible | Plan, Audit |
 | R4 | Screenshot captured for audit evidence | Plan, Audit |
 | R5 | Critic JSON produced (domain: workflow_ui) | Plan, critic-loop-gate |
 | R6 | BRAIN_MAP_AUDIT.md and BRAIN_MAP_E2E.md updated with findings | Plan |
@@ -38,7 +38,7 @@
 |--------|-----|--------|--------|
 | G1 | **BrowserStack scan unreachable** | `startAccessibilityScan` requires public URL. localhost is not reachable from BrowserStack cloud without tunnel. | Documented in Audit; no automated scan possible without tunnel |
 | G2 | **accessibilityExpert 401** | BrowserStack MCP returns 401 (Invalid credentials). WCAG guidance must be applied manually. | Documented; credential/config fix required to use expert |
-| G3 | **Port collision** | Plan assumes 8080 and 3000. Execution found 8080 (ERR_EMPTY_RESPONSE), 3000/3001 in use → OpenAtlas dev server used 3002. | Partially documented (port fallback in E2E); plan still hardcodes 8080/3000 |
+| G3 | **Port collision** | Plan assumes 8080 and 3000. Execution found 8080 (ERR_EMPTY_RESPONSE), 3000/3001 in use → OpenGrimoire dev server used 3002. | Partially documented (port fallback in E2E); plan still hardcodes 8080/3000 |
 
 ### 2.2 Process Gaps
 
@@ -72,7 +72,7 @@
 
 | Gap ID | Gap | Detail | Status |
 |--------|-----|--------|--------|
-| G16 | **Docs in OpenHarness, OpenAtlas in portfolio-harness** | BRAIN_MAP_AUDIT.md, BRAIN_MAP_E2E.md live in openharness; context-atlas and OpenAtlas app in portfolio-harness. Cross-repo references. | Architectural; may be intentional |
+| G16 | **Docs in OpenHarness, OpenGrimoire in portfolio-harness** | BRAIN_MAP_AUDIT.md, BRAIN_MAP_E2E.md live in openharness; context-atlas and OpenGrimoire app in portfolio-harness. Cross-repo references. | Architectural; may be intentional |
 | G17 | **Standalone viewer path** | Plan says OpenHarness scripts/; E2E says D:\openharness\scripts. Absolute path in docs. | Environment-specific |
 
 ---
@@ -86,7 +86,7 @@
 | G3 | **Closed (accept):** Plan is reference-only; E2E has port fallback (8888, 3001/3002/3003). |
 | G4 | Add standalone-viewer.spec.ts (or equivalent) or document as out-of-scope |
 | G5 | Add parser schema check to CI or document as manual |
-| G6 | **Closed:** Step 10 (10a Stop HTTP server, 10b Stop OpenAtlas dev server) added to BRAIN_MAP_E2E.md |
+| G6 | **Closed:** Step 10 (10a Stop HTTP server, 10b Stop OpenGrimoire dev server) added to BRAIN_MAP_E2E.md |
 | G7 | **Closed:** Screenshot convention added to BRAIN_MAP_AUDIT.md Verification Checklist |
 | G8 | **Closed:** Critic score threshold ≥ 0.8 documented in BRAIN_MAP_AUDIT.md |
 | G9 | Add axe-core/pa11y to Playwright or document as future |

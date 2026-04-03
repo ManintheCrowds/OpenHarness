@@ -9,7 +9,7 @@ topic: org-intent-north-star-and-task-decomposition-prompts
 
 - A **personal/org org-intent**: public example in-repo (schema-aligned, non-sensitive) plus **private** documentation (numbers, medical detail, keys, home-buying specifics).
 - A **prompting pattern** so agents decompose work into tasks that respect **mission**, **quarterly outcomes**, **anti-goals**, and **trade-off rules**—not generic todo lists.
-- **Pass C (OpenAtlas):** current projects, knowledge-base boundaries, and **linked_node_id** ties to the brain map so AI labor context stays structured and visualizable.
+- **Pass C :** current projects, knowledge-base boundaries, and **linked_node_id** ties to the brain map so AI labor context stays structured and visualizable.
 - **Pass D (Operational harness):** which skills/MCP are in scope, L402 / metering design questions (backlog), and **definition of done** by project type (verification + dual gates).
 
 ## Pass A — North star (draft for your revision)
@@ -156,11 +156,11 @@ Employer, contract, and jurisdiction specifics stay in **private** documentation
 - Weekly steering absent and domain tie-break is insufficient for the decision.
 - Reputational, legal, or safety impact is unclear.
 
-## Pass C — Context for AI labor (OpenAtlas + brain map)
+## Pass C — Context for AI labor (OpenGrimoire + brain map)
 
-Pass C is **operational context** for AI labor: what you are working on, where knowledge lives, and what must never be automated. It maps to **OpenAtlas** `alignment_context_items` (HTTP API: [ALIGNMENT_CONTEXT_API.md](../../../portfolio-harness/OpenAtlas/docs/agent/ALIGNMENT_CONTEXT_API.md)). Canonical fields for this pass: **`title`**, **`body`**, **`tags`**, optional **`linked_node_id`**, plus `status`, `priority` per the API.
+Pass C is **operational context** for AI labor: what you are working on, where knowledge lives, and what must never be automated. It maps to **OpenGrimoire** `alignment_context_items` (HTTP API: [ALIGNMENT_CONTEXT_API.md](../../../portfolio-harness/OpenGrimoire/docs/agent/ALIGNMENT_CONTEXT_API.md)). Canonical fields for this pass: **`title`**, **`body`**, **`tags`**, optional **`linked_node_id`**, plus `status`, `priority` per the API.
 
-OpenAtlas runs in **portfolio-harness** (see [openharness README](../../README.md) “OpenAtlas”); OpenHarness holds this brainstorm. Flow: Pass A/B set mission and gates; Pass C keeps **current labor** and **KB boundaries** in sync with visualization.
+OpenGrimoire runs in **portfolio-harness** (see [openharness README](../../README.md) “OpenGrimoire”); OpenHarness holds this brainstorm. Flow: Pass A/B set mission and gates; Pass C keeps **current labor** and **KB boundaries** in sync with visualization.
 
 ```mermaid
 flowchart TB
@@ -169,7 +169,7 @@ flowchart TB
     PassA[Pass A mission domains]
     PassB[Pass B gates]
   end
-  subgraph atlas [OpenAtlas]
+  subgraph atlas [OpenGrimoire]
     ACI[alignment_context_items]
     BM[brain map nodes]
   end
@@ -186,12 +186,12 @@ flowchart TB
 | Name | Role | Repo path or URL | Owner | Notes |
 |------|------|------------------|-------|-------|
 | *(example)* OpenHarness | Intent + docs | `D:/openharness` | self | North star brainstorm |
-| *(example)* portfolio-harness | Harness + OpenAtlas | `D:/portfolio-harness` | self | Alignment API + UI |
+| *(example)* portfolio-harness | Harness + OpenGrimoire | `D:/portfolio-harness` | self | Alignment API + UI |
 | *TBD* | | | | |
 
 **Knowledge bases by domain:**
 
-| Domain | Location (vault / repo / OpenAtlas-only) | Refresh cadence | Agent may read | Human-only |
+| Domain | Location (vault / repo / OpenGrimoire-only) | Refresh cadence | Agent may read | Human-only |
 |--------|-------------------------------------------|-----------------|----------------|------------|
 | Alignment / agent tooling | e.g. `openharness/docs`, org-intent examples | weekly | yes | key material, prod secrets |
 | Fedimint / mesh / collectives | e.g. research notes, specs | monthly | yes | binding commitments |
@@ -203,27 +203,27 @@ flowchart TB
 
 Aligned with Pass B: agents **do not** autonomously handle **medical diagnosis or treatment planning**, **binding legal or financial decisions**, **relationship-sensitive** content, or **unreleased IP** you mark human-only. Those stay **escalate** / `sync` gates. When in doubt, treat as human-only and patch alignment items to say so.
 
-### C.3 Mapping to OpenAtlas: `body`, `tags`, `linked_node_id`
+### C.3 Mapping to OpenGrimoire: `body`, `tags`, `linked_node_id`
 
 | Concept | How to encode |
 |---------|----------------|
 | Domain / labor lane | `tags`: e.g. `domain:health`, `domain:wealth`, `domain:influence`, `repo:openharness`, `tool:mcp` — keep a stable prefix convention |
 | Rich context | `body`: short markdown (active projects, blockers, pointers to handoff files or paths) |
-| Graph / visualization | `linked_node_id`: string ID of the **brain-map** node for this item (same ID space the viewer uses); mint IDs in one place (e.g. export from brain map or OpenAtlas admin) |
+| Graph / visualization | `linked_node_id`: string ID of the **brain-map** node for this item (same ID space the viewer uses); mint IDs in one place (e.g. export from brain map or OpenGrimoire admin) |
 | Lifecycle | `status`: `draft` \| `active` \| `archived`; `priority` optional integer |
 
 Prefer **one alignment item per project or domain slice** so `tags` and `linked_node_id` stay meaningful; avoid a single megabyte `body` mixing unrelated labor.
 
 ### C.4 Brain map and intent
 
-**Why `linked_node_id`:** Intent and labor context stay **anchored** in the graph: when `body` or `tags` change, the visualization node does not drift. Agents should **PATCH** alignment items ([ALIGNMENT_CONTEXT_API.md](../../../portfolio-harness/OpenAtlas/docs/agent/ALIGNMENT_CONTEXT_API.md)) instead of pasting duplicate graph state into every prompt.
+**Why `linked_node_id`:** Intent and labor context stay **anchored** in the graph: when `body` or `tags` change, the visualization node does not drift. Agents should **PATCH** alignment items ([ALIGNMENT_CONTEXT_API.md](../../../portfolio-harness/OpenGrimoire/docs/agent/ALIGNMENT_CONTEXT_API.md)) instead of pasting duplicate graph state into every prompt.
 
-Brain-map JSON shape used in tests (reference only): [context-atlas.spec.ts](../../../portfolio-harness/OpenAtlas/e2e/context-atlas.spec.ts).
+Brain-map JSON shape used in tests (reference only): [context-atlas.spec.ts](../../../portfolio-harness/OpenGrimoire/e2e/context-atlas.spec.ts).
 
 ### Agent-native discipline (Pass C)
 
 - **Context injection:** Session briefs or handoffs should reflect **active** alignment context (e.g. `GET /api/alignment-context?status=active` with `x-alignment-context-key` when configured) so labor and domains are visible without guessing.
-- **Parity:** Same contract for operators (admin UI) and agents — [alignment-context-cli.mjs](../../../portfolio-harness/OpenAtlas/scripts/alignment-context-cli.mjs); see [MCP_CAPABILITY_MAP.md](../../../portfolio-harness/.cursor/docs/MCP_CAPABILITY_MAP.md) (OpenAtlas / Brain Map).
+- **Parity:** Same contract for operators (admin UI) and agents — [alignment-context-cli.mjs](../../../portfolio-harness/OpenGrimoire/scripts/alignment-context-cli.mjs); see [MCP_CAPABILITY_MAP.md](../../../portfolio-harness/.cursor/docs/MCP_CAPABILITY_MAP.md) (OpenGrimoire / Brain Map).
 - **Granularity:** Atomic items + clear tags preserve composability (update one lane without rewriting everything).
 
 ## Pass D — Operational harness (OpenHarness + L402 + tools)
@@ -241,7 +241,7 @@ Curate a minimal default set per repo; mark the rest TBD until needed.
 
 | Capability | In scope | Notes |
 |------------|----------|--------|
-| OpenAtlas alignment context + brain map | Y (when using OpenAtlas) | [MCP_CAPABILITY_MAP.md](../../../portfolio-harness/.cursor/docs/MCP_CAPABILITY_MAP.md); [alignment-context-cli.mjs](../../../portfolio-harness/OpenAtlas/scripts/alignment-context-cli.mjs) |
+| OpenGrimoire alignment context + brain map | Y (when using OpenGrimoire) | [MCP_CAPABILITY_MAP.md](../../../portfolio-harness/.cursor/docs/MCP_CAPABILITY_MAP.md); [alignment-context-cli.mjs](../../../portfolio-harness/OpenGrimoire/scripts/alignment-context-cli.mjs) |
 | SCP / provenance (Bitcoin-sourced or untrusted content) | Y (when applicable) | Per portfolio [BITCOIN_AGENT_CAPABILITIES.md](../../../portfolio-harness/docs/BITCOIN_AGENT_CAPABILITIES.md) and SCP gate before feeding chain data to LLM state |
 | Browser automation (smoke / review) | TBD | Enable when UI or E2E workflows are in scope |
 | Git (status, diff, commit) | TBD | Often via agent or IDE; align with human-gated pushes |
@@ -256,7 +256,7 @@ Canonical protocol comparison and flows: [CASHU_L402_REFERENCE.md](../../../port
 **Open design questions (backlog):**
 
 - **Who pays:** Human operator vs org budget vs per-project wallet; prepaid balance vs strict pay-per-request.
-- **Which endpoints:** Which HTTP surfaces (OpenAtlas API, future agent proxy, third-party tools) are payment-gated vs free tier.
+- **Which endpoints:** Which HTTP surfaces (OpenGrimoire API, future agent proxy, third-party tools) are payment-gated vs free tier.
 - **Preimage / retry flow:** How the client obtains the invoice, pays Lightning, and retries with `Authorization: L402 <macaroon>:<preimage>`; macaroon caveats and rotation policy.
 - **Metering unit:** Per request, per token, per session—align with observability and budgets later.
 
@@ -326,7 +326,7 @@ Task decomposition fails when the model optimizes for “productivity” without
 - Examples: `portfolio-harness/org-intent-spec/examples/org-intent.example.json`, `org-intent.consulting-feedback.example.json` (Pass B–style gates; sanitized)
 - Schema: `portfolio-harness/org-intent-spec/schema/org-intent.v1.json`
 - Authority framing: [AUTHORITY_MODEL.md](../AUTHORITY_MODEL.md) (cryptographic vs social authority; pseudoanonymous audit)
-- **Pass C / OpenAtlas:** [ALIGNMENT_CONTEXT_API.md](../../../portfolio-harness/OpenAtlas/docs/agent/ALIGNMENT_CONTEXT_API.md) (`body`, `tags`, `linked_node_id`, CRUD); operator map: [MCP_CAPABILITY_MAP.md](../../../portfolio-harness/.cursor/docs/MCP_CAPABILITY_MAP.md) (OpenAtlas / Brain Map); CLI: [alignment-context-cli.mjs](../../../portfolio-harness/OpenAtlas/scripts/alignment-context-cli.mjs)
+- **Pass C / OpenGrimoire:** [ALIGNMENT_CONTEXT_API.md](../../../portfolio-harness/OpenGrimoire/docs/agent/ALIGNMENT_CONTEXT_API.md) (`body`, `tags`, `linked_node_id`, CRUD); operator map: [MCP_CAPABILITY_MAP.md](../../../portfolio-harness/.cursor/docs/MCP_CAPABILITY_MAP.md) (OpenGrimoire / Brain Map); CLI: [alignment-context-cli.mjs](../../../portfolio-harness/OpenGrimoire/scripts/alignment-context-cli.mjs)
 - **Pass D / L402 + verification:** [CASHU_L402_REFERENCE.md](../../../portfolio-harness/docs/CASHU_L402_REFERENCE.md); [VERIFICATION_CI_ALIGNMENT.md](../../../portfolio-harness/docs/VERIFICATION_CI_ALIGNMENT.md); dual gates: [intent-alignment-gate.mdc](../../.cursor/rules/intent-alignment-gate.mdc), [critic-loop-gate.mdc](../../.cursor/rules/critic-loop-gate.mdc); handoffs: [HANDOFF_FLOW.md](../HANDOFF_FLOW.md)
 
 Public examples omit PII and exact financial figures; private doc holds personal health, income, and key material.

@@ -31,7 +31,7 @@ output_schema: "Graph JSON path; viewer instructions (standalone HTML or Next.js
 2. **Locate output:** `brain-map-graph.json` in state dir (or `BRAIN_MAP_OUTPUT`).
 3. **Viewer options:**
    - **Standalone:** Copy JSON to same dir as `scripts/brain_map_viewer.html`; run `python -m http.server 8080` in that dir; open `http://localhost:8080/brain_map_viewer.html`. Or use file input in viewer to load JSON directly.
-   - **Next.js / OpenAtlas:** If portfolio-harness includes the `OpenAtlas` app, set `BRAIN_MAP_OUTPUT` to `OpenAtlas/public/brain-map-graph.json` and open **`/context-atlas`** (or `/brain-map`). Schema: `OpenAtlas/docs/BRAIN_MAP_SCHEMA.md`.
+   - **Next.js / OpenGrimoire:** If portfolio-harness includes the `OpenGrimoire` app, set `BRAIN_MAP_OUTPUT` to `OpenGrimoire/public/brain-map-graph.json` and open **`/context-atlas`** (or `/brain-map`). Schema: `OpenGrimoire/docs/BRAIN_MAP_SCHEMA.md`.
 
 ## Checks
 

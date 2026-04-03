@@ -64,17 +64,17 @@ If port 8080 fails (ERR_EMPTY_RESPONSE), use 8888 or another free port.
 
 **Manual checklist:** See [BRAIN_MAP_AUDIT.md](BRAIN_MAP_AUDIT.md) — **WCAG 2.1 AA — graph visualizations** when expert/scan is unavailable.
 
-## Step 9: Optional — OpenAtlas (portfolio-harness)
+## Step 9: Optional — OpenGrimoire (portfolio-harness)
 
-**Action:** With portfolio-harness dev server running (`npm run dev` in `OpenAtlas`), open `http://localhost:3001/context-atlas` (or `/brain-map`). Next.js may use 3002/3003 if 3000/3001 are in use. Ensure `public/brain-map-graph.json` exists (run `python .cursor/scripts/build_brain_map.py` from portfolio-harness root).
+**Action:** With portfolio-harness dev server running (`npm run dev` in `OpenGrimoire`), open `http://localhost:3001/context-atlas` (or `/brain-map`). Next.js may use 3002/3003 if 3000/3001 are in use. Ensure `public/brain-map-graph.json` exists (run `python .cursor/scripts/build_brain_map.py` from portfolio-harness root).
 
-**Verification:** Context graph loads or shows empty-state fallback. Schema reference: `OpenAtlas/docs/BRAIN_MAP_SCHEMA.md` in portfolio-harness. Automated E2E: `OpenAtlas/e2e/context-atlas.spec.ts`.
+**Verification:** Context graph loads or shows empty-state fallback. Schema reference: `OpenGrimoire/docs/BRAIN_MAP_SCHEMA.md` in portfolio-harness. Automated E2E: `OpenGrimoire/e2e/context-atlas.spec.ts`.
 
 ## Step 10: Stop Servers (after audit)
 
 **Step 10a — Stop HTTP server:** If you started `python -m http.server` in Step 2, stop it (Ctrl+C in that terminal).
 
-**Step 10b — Stop OpenAtlas dev server:** If you started `npm run dev` in OpenAtlas for Step 9, stop it (Ctrl+C in that terminal).
+**Step 10b — Stop OpenGrimoire dev server:** If you started `npm run dev` in OpenGrimoire for Step 9, stop it (Ctrl+C in that terminal).
 
 **Verification:** Servers stopped; ports released.
 

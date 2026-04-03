@@ -2,7 +2,7 @@
 
 When adding UI features or MCP tools, verify **action parity**: whatever a human can do in the product surface, an agent can achieve via tools (or composed primitives).
 
-Use this in PR descriptions or run manually. Link your repo’s **capability map** (e.g. `MCP_CAPABILITY_MAP.md`) and **GUI action map** if you maintain them. **Harness:** [capabilities.harness.yaml](../capabilities.harness.yaml) lists checklist sections (anchors) and script globs; [HARNESS_AUDIT_ALIGNMENT.md](HARNESS_AUDIT_ALIGNMENT.md) maps OpenAtlas audit Part B dimensions to paths in this repo.
+Use this in PR descriptions or run manually. Link your repo’s **capability map** (e.g. `MCP_CAPABILITY_MAP.md`) and **GUI action map** if you maintain them. **Harness:** [capabilities.harness.yaml](../capabilities.harness.yaml) lists checklist sections (anchors) and script globs; [HARNESS_AUDIT_ALIGNMENT.md](HARNESS_AUDIT_ALIGNMENT.md) maps OpenGrimoire audit Part B dimensions to paths in this repo.
 
 ## When adding UI or MCP tools
 

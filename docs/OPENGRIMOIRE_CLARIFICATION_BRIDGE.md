@@ -1,6 +1,6 @@
 # OpenGrimoire clarification queue ↔ OpenHarness
 
-**Purpose:** Correlate **async human answers** to **agent runs** using stable UUIDs from OpenGrimoire (OpenAtlas app).
+**Purpose:** Correlate **async human answers** to **agent runs** using stable UUIDs from OpenGrimoire (OpenGrimoire app).
 
 ## Stable identifier
 
@@ -28,11 +28,11 @@ If the OpenGrimoire repo is checked out, use:
 
 `node scripts/poll-clarification.mjs <uuid>`
 
-(from the OpenAtlas/OpenGrimoire repo root; set **`CLARIFICATION_QUEUE_API_SECRET`** in the environment for the script to send **`x-clarification-queue-key`**, else **`ALIGNMENT_CONTEXT_API_SECRET`** for **`x-alignment-context-key`** — see script header).
+(from the OpenGrimoire/OpenGrimoire repo root; set **`CLARIFICATION_QUEUE_API_SECRET`** in the environment for the script to send **`x-clarification-queue-key`**, else **`ALIGNMENT_CONTEXT_API_SECRET`** for **`x-alignment-context-key`** — see script header).
 
 ## Normative API doc
 
-In your OpenGrimoire (OpenAtlas) clone: `docs/agent/CLARIFICATION_QUEUE_API.md`.
+In your OpenGrimoire clone: `docs/agent/CLARIFICATION_QUEUE_API.md`.
 
 ## Distinction
 

@@ -1,7 +1,7 @@
 # Agent-native architecture review: portfolio (OpenGrimoire + harness + SCP + MiscRepos)
 
 **Date:** 2026-03-26  
-**Scope (local repos):** `OpenAtlas` (OpenGrimoire), `OpenHarness`, `SCP`, `MiscRepos` — treated as one **operator stack**, not a single deployable app. **Out of scope** for this pass: other multi-root workspace folders (e.g. `software`, `VibeLedger`, `Arc_Forge` plan-only trees) unless added explicitly.  
+**Scope (local repos):** `OpenGrimoire` (OpenGrimoire), `OpenHarness`, `SCP`, `MiscRepos` — treated as one **operator stack**, not a single deployable app. **Out of scope** for this pass: other multi-root workspace folders (e.g. `software`, `VibeLedger`, `Arc_Forge` plan-only trees) unless added explicitly.  
 **Method:** Eight parallel codebase explorations (one per principle), merged here. Denominators differ by principle; **do not** treat a single “overall %” as precision without reading caveats.
 
 **References:** [OpenHarness `.cursor/skills/agent-native-architecture/SKILL.md`](../../.cursor/skills/agent-native-architecture/SKILL.md), `references/action-parity-discipline.md` (same skill folder).
@@ -17,11 +17,11 @@
 | 3. Context injection | 5 / 7 channel types “present & usable if loaded” | 71% | Partial |
 | 4. Shared workspace | 4 / 5 surfaces (conservative handoff fork) | 80% | Strong |
 | 5. CRUD completeness | 2 / 4 entities strict full CRUD; 4 / 4 contract-honest | 50% / 100% | See §5 |
-| 6. UI integration | 2 / 6 OpenAtlas HTTP write paths (strict auto-refresh) | 33% | Needs work |
+| 6. UI integration | 2 / 6 OpenGrimoire HTTP write paths (strict auto-refresh) | 33% | Needs work |
 | 7. Capability discovery | 4 / 7 mechanisms (quality ≥ 2) | 57% | Partial |
 | 8. Prompt-native features | 12 / 16 sampled behaviors | 75% | Partial |
 
-**Heuristic blend (not a benchmark):** Principles use **incompatible denominators** (e.g. MCP servers + scripts counted together for §2). **No single portfolio percentage** is computed here — use the **per-row** scores only. For any informal mental model: use **CRUD strict (50%)** when discussing entity APIs; **contract-honest CRUD (100%)** is a separate compliance reading and is **not** blended into a pseudo-mean. **UI** row uses the **strict** auto-refresh definition; §6 notes an **inclusive** alternate (~63% for OpenAtlas HTTP surfaces).
+**Heuristic blend (not a benchmark):** Principles use **incompatible denominators** (e.g. MCP servers + scripts counted together for §2). **No single portfolio percentage** is computed here — use the **per-row** scores only. For any informal mental model: use **CRUD strict (50%)** when discussing entity APIs; **contract-honest CRUD (100%)** is a separate compliance reading and is **not** blended into a pseudo-mean. **UI** row uses the **strict** auto-refresh definition; §6 notes an **inclusive** alternate (~63% for OpenGrimoire HTTP surfaces).
 
 **Status legend:** Excellent 80%+; Partial 50–79%; Needs work &lt;50%.
 
@@ -33,19 +33,19 @@
 
 **Gaps:** HITL intent survey backlog (no shipped surface); optional in-repo MCP for OpenGrimoire not default; presentational `/` without REST entity; some viz/demo routes not mirrored in `GET /api/capabilities`; cross-client alignment UX relies on polling/focus, not live sync.
 
-**Evidence:** OpenAtlas `docs/AGENT_INTEGRATION.md`, `docs/ARCHITECTURE_REST_CONTRACT.md`, `src/app/api/capabilities/route.ts`; OpenHarness `docs/HARNESS_ARCHITECTURE.md`, `docs/SESSION_BOOTSTRAP.md`, `docs/CHEATSHEET.md`; SCP `README.md`; MiscRepos `.cursor/docs/MCP_CAPABILITY_MAP.md`, `COMMANDS_README.md`.
+**Evidence:** OpenGrimoire `docs/AGENT_INTEGRATION.md`, `docs/ARCHITECTURE_REST_CONTRACT.md`, `src/app/api/capabilities/route.ts`; OpenHarness `docs/HARNESS_ARCHITECTURE.md`, `docs/SESSION_BOOTSTRAP.md`, `docs/CHEATSHEET.md`; SCP `README.md`; MiscRepos `.cursor/docs/MCP_CAPABILITY_MAP.md`, `COMMANDS_README.md`.
 
 ---
 
 ## 2. Tools as primitives (37/63, ~59%)
 
-**Denominator Y:** SCP MCP tools (9) + MiscRepos stub (2) + `mcp.json` server entries (18) + MiscRepos `scripts/*.py` (31) + OpenAtlas `scripts/*.mjs` (3) = 63.
+**Denominator Y:** SCP MCP tools (9) + MiscRepos stub (2) + `mcp.json` server entries (18) + MiscRepos `scripts/*.py` (31) + OpenGrimoire `scripts/*.mjs` (3) = 63.
 
 **Workflow-heavy:** `scp_run_pipeline`, Playwright/Docker/Daggr/OpenRAG MCP servers, orchestrator, eval pilots, `write_handoff.py`, `build_brain_map.py`, etc.
 
 **Caveat:** Many MiscRepos scripts are **harness CLIs**, not MCP — high workflow count is expected there.
 
-**Evidence:** `SCP/src/scp/scp_mcp.py`, `MiscRepos/.cursor/mcp.json`, `MiscRepos/.cursor/scripts/`, `OpenAtlas/scripts/alignment-context-cli.mjs`.
+**Evidence:** `SCP/src/scp/scp_mcp.py`, `MiscRepos/.cursor/mcp.json`, `MiscRepos/.cursor/scripts/`, `OpenGrimoire/scripts/alignment-context-cli.mjs`.
 
 ---
 
@@ -53,23 +53,23 @@
 
 **Seven channel types:** (1) always rules (2) session bootstrap (3) capabilities manifest (4) handoff/state (5) MCP maps (6) daily/recent (7) workspace file graph.
 
-**Auto-injected without @files:** Only a **subset** of rules (`alwaysApply` in MiscRepos, `CLAUDE.md` when OpenAtlas root is active). Bootstrap, manifests, and handoff are **documented**, not automatically injected — agents must follow `SESSION_BOOTSTRAP.md` / CHEATSHEET.
+**Auto-injected without @files:** Only a **subset** of rules (`alwaysApply` in MiscRepos, `CLAUDE.md` when OpenGrimoire root is active). Bootstrap, manifests, and handoff are **documented**, not automatically injected — agents must follow `SESSION_BOOTSTRAP.md` / CHEATSHEET.
 
 **Gap:** No committed workspace-wide file graph packet; daily notes uneven outside OpenHarness-shaped `state/daily/`.
 
-**Evidence:** `OpenHarness/docs/SESSION_BOOTSTRAP.md`, `MiscRepos/.cursor/rules/agent-intent.mdc`, `OpenAtlas/src/app/api/capabilities/route.ts`, `MiscRepos/.cursor/docs/MCP_CAPABILITY_MAP.md`.
+**Evidence:** `OpenHarness/docs/SESSION_BOOTSTRAP.md`, `MiscRepos/.cursor/rules/agent-intent.mdc`, `OpenGrimoire/src/app/api/capabilities/route.ts`, `MiscRepos/.cursor/docs/MCP_CAPABILITY_MAP.md`.
 
 ---
 
 ## 4. Shared workspace (4/5 conservative, 80%)
 
-**Surfaces:** OpenAtlas SQLite + brain-map JSON via `GET /api/brain-map/graph`; OpenHarness `async_tasks.yaml` + markdown state; MiscRepos `.cursor/state`.
+**Surfaces:** OpenGrimoire SQLite + brain-map JSON via `GET /api/brain-map/graph`; OpenHarness `async_tasks.yaml` + markdown state; MiscRepos `.cursor/state`.
 
 **Fork risk:** OpenHarness allows `state/handoff_latest.md` **or** gitignored `.cursor/state/handoff_latest.md` — same role, two physical files if both used.
 
 **Cross-repo:** OpenHarness vs MiscRepos paths are **not** one inode unless mirrored.
 
-**Evidence:** `OpenAtlas/src/db/client.ts`, `src/app/api/brain-map/graph/route.ts`, `OpenHarness/state/README.md`, `OpenHarness/.gitignore`.
+**Evidence:** `OpenGrimoire/src/db/client.ts`, `src/app/api/brain-map/graph/route.ts`, `OpenHarness/state/README.md`, `OpenHarness/.gitignore`.
 
 ---
 
@@ -84,17 +84,17 @@
 
 **OpenHarness `async_tasks.yaml`:** File edit + `verify_async_tasks.py` only; **mini score 0/1** for programmatic task CRUD API.
 
-**Evidence:** `OpenAtlas/docs/ARCHITECTURE_REST_CONTRACT.md`, `src/db/schema.ts`, `src/app/api/**/route.ts`, `OpenHarness/scripts/verify_async_tasks.py`.
+**Evidence:** `OpenGrimoire/docs/ARCHITECTURE_REST_CONTRACT.md`, `src/db/schema.ts`, `src/app/api/**/route.ts`, `OpenHarness/scripts/verify_async_tasks.py`.
 
 ---
 
 ## 6. UI integration (strict 2/6 ~33%; inclusive ~63%)
 
-OpenAtlas uses **fetch + local state**, not SWR/React Query/`revalidatePath`. **Stale until refresh:** survey POST vs open visualization/quotes views; agent alignment mutations vs idle admin tab; brain map after offline JSON merge (documented manual reload; no SSE).
+OpenGrimoire uses **fetch + local state**, not SWR/React Query/`revalidatePath`. **Stale until refresh:** survey POST vs open visualization/quotes views; agent alignment mutations vs idle admin tab; brain map after offline JSON merge (documented manual reload; no SSE).
 
 Harness/MiscRepos: file-based “UI” = IDE; no live channel.
 
-**Evidence:** `OpenAtlas/src/lib/hooks/useSurveyForm.ts`, `useVisualizationData.ts`, `admin/alignment/page.tsx`, `src/app/api/capabilities/route.ts`, `OpenHarness/docs/SESSION_BOOTSTRAP.md`.
+**Evidence:** `OpenGrimoire/src/lib/hooks/useSurveyForm.ts`, `useVisualizationData.ts`, `admin/alignment/page.tsx`, `src/app/api/capabilities/route.ts`, `OpenHarness/docs/SESSION_BOOTSTRAP.md`.
 
 ---
 
@@ -104,7 +104,7 @@ Harness/MiscRepos: file-based “UI” = IDE; no live channel.
 |---|-----------|-------------------------|
 | 1 | Onboarding for agent capabilities | Weak |
 | 2 | Help documentation | Yes |
-| 3 | UI hints (`/capabilities`) | Yes (OpenAtlas) |
+| 3 | UI hints (`/capabilities`) | Yes  |
 | 4 | Self-describe (`/api/capabilities`, harness YAML) | Yes |
 | 5 | Suggested prompts | Partial (harness scripts, not in-app chips) |
 | 6 | Empty state guidance | Partial |

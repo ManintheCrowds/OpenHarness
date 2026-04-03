@@ -1,8 +1,8 @@
-# Harness ↔ OpenAtlas audit alignment (Part B)
+# Harness ↔ OpenGrimoire audit alignment (Part B)
 
-**Purpose:** One row per **Part B** agent-native dimension from the OpenAtlas audit (OpenHarness bundle), mapping **what we improve or maintain here** to concrete paths—without an API. Keeps backlog and audit language aligned when you work in this repo.
+**Purpose:** One row per **Part B** agent-native dimension from the OpenGrimoire audit (OpenHarness bundle), mapping **what we improve or maintain here** to concrete paths—without an API. Keeps backlog and audit language aligned when you work in this repo.
 
-**Normative external audit (example):** OpenAtlas `docs/audit/` (e.g. `agent_native_opengrimoire_2026-03-24.md`), section **Part B — OpenHarness**.
+**Normative external audit (example):** OpenGrimoire `docs/audit/` (e.g. `agent_native_opengrimoire_2026-03-24.md`), section **Part B — OpenHarness**.
 
 | # | Part B principle | What we improve / maintain in OpenHarness | Primary paths |
 |---|------------------|---------------------------------------------|---------------|

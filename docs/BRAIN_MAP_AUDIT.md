@@ -10,7 +10,7 @@ Verify the Brain Map parser, standalone viewer, and visualization pipeline end-t
 
 - Python 3.9+
 - State directory with `daily/`, `handoff_latest.md`, `handoff_archive/`, or `decision-log.md` (optional; empty state is valid)
-- HTTP server (Python `http.server`) or **OpenAtlas** in portfolio-harness
+- HTTP server (Python `http.server`) or **OpenGrimoire** in portfolio-harness
 
 ## Steps
 
@@ -40,7 +40,7 @@ Verify the Brain Map parser, standalone viewer, and visualization pipeline end-t
 
 1. Install and start [BrowserStack Local](https://www.browserstack.com/docs/local-testing) per your OS (Binary, npm, or Desktop app).
 2. Sign in with a BrowserStack account that has Accessibility Testing enabled.
-3. Keep Local running while your app is up (e.g. `python -m http.server 8080` in `scripts/`, or OpenAtlas dev server on 3000/3001 — often 3002/3003 if lower ports are taken).
+3. Keep Local running while your app is up (e.g. `python -m http.server 8080` in `scripts/`, or OpenGrimoire dev server on 3000/3001 — often 3002/3003 if lower ports are taken).
 4. Use the **exact URL / hostname** BrowserStack shows for *your* product and flow (Accessibility, Automate, etc.). **URL patterns vary by product and change over time**—there is no single “magic” Local URL to hardcode. Rely on [BrowserStack Local docs](https://www.browserstack.com/docs/local-testing) and the Local app output when the tunnel is up.
 5. Call `startAccessibilityScan` with that reachable URL (not raw `localhost` unless your Local setup explicitly maps it).
 
@@ -60,7 +60,7 @@ Deploy the viewer (or a static export) to HTTPS staging and pass that URL to `st
 
 ## WCAG 2.1 AA — graph visualizations (Brain Map)
 
-Apply when auditing [brain_map_viewer.html](../scripts/brain_map_viewer.html) (vis-network) or OpenAtlas D3 SVG graphs.
+Apply when auditing [brain_map_viewer.html](../scripts/brain_map_viewer.html) (vis-network) or OpenGrimoire D3 SVG graphs.
 
 | Criterion | Focus for force-directed graphs |
 |-----------|----------------------------------|
@@ -70,7 +70,7 @@ Apply when auditing [brain_map_viewer.html](../scripts/brain_map_viewer.html) (v
 | **2.4.7 Focus Visible** | Focusable controls (`button`, `link`, `input`, `label`) show a visible focus ring. |
 | **4.1.2 Name, Role, Value** | Interactive elements have **accessible names** (`aria-label` / visible text). Complex SVG nodes often need `role="img"` + `aria-label` or an off-screen summary. |
 
-**OpenAtlas / D3:** Circles and lines are often not announced meaningfully; treat **keyboard + screen reader** as a product gap unless you add ARIA on graph elements or a parallel accessible data view.
+**OpenGrimoire / D3:** Circles and lines are often not announced meaningfully; treat **keyboard + screen reader** as a product gap unless you add ARIA on graph elements or a parallel accessible data view.
 
 ## Tools
 
@@ -104,9 +104,9 @@ Apply when auditing [brain_map_viewer.html](../scripts/brain_map_viewer.html) (v
 | Component | Status | Notes |
 |-----------|--------|-------|
 | Parser (OpenHarness) | PASS | Exits 0; schema valid |
-| Parser (portfolio-harness) | PASS | Output to OpenAtlas/public |
+| Parser (portfolio-harness) | PASS | Output to OpenGrimoire/public |
 | Standalone viewer | PASS | Dropzone for empty state; file input fallback; use port 8888 if 8080 fails |
-| OpenAtlas `/context-atlas` (was `/brain-map`) | PASS | Graph loads; nodes visible; dev server may use 3001/3002/3003 |
+| OpenGrimoire `/context-atlas` (was `/brain-map`) | PASS | Graph loads; nodes visible; dev server may use 3001/3002/3003 |
 | Accessibility scan | SKIP | BrowserStack requires public URL or Local tunnel |
 | accessibilityExpert | SKIP | 401 (credentials); document WCAG guidance manually |
 
@@ -136,4 +136,4 @@ Append a row after each successful scan:
 | Date (UTC) | URL scanned | Scan ID | Scan run ID | Summary |
 |------------|-------------|---------|-------------|---------|
 | _example_ | _https://…_ | _from MCP_ | _from MCP_ | _issue count / pass_ |
-| 2026-03-20 | _pending — run via BrowserStack Local or staging_ | — | — | **BM-A11Y:** OpenAtlas visualization header: vertical tablist supports **ArrowUp/ArrowDown** between Alluvial/Chord. Cloud scan still needs BrowserStack MCP + reachable URL. |
+| 2026-03-20 | _pending — run via BrowserStack Local or staging_ | — | — | **BM-A11Y:** OpenGrimoire visualization header: vertical tablist supports **ArrowUp/ArrowDown** between Alluvial/Chord. Cloud scan still needs BrowserStack MCP + reachable URL. |

@@ -17,7 +17,7 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 - **docs/contracts/** — Public MCP contracts (e.g. SCP v1) for verify-not-trust
 - **docs/CHEATSHEET.md** — One-page harness compression; includes **Agent invocation index (scripts)** for agent–human action parity (see [AGENT_NATIVE_CHECKLIST.md](docs/AGENT_NATIVE_CHECKLIST.md))
 - **[capabilities.harness.yaml](capabilities.harness.yaml)** — Structured manifest: `scripts[]`, `scripts_globs`, `skills_globs`, checklist section links; CHEATSHEET remains the canonical script *table* (see file header)
-- **docs/HARNESS_AUDIT_ALIGNMENT.md** — Part B (OpenHarness bundle) dimensions ↔ paths; aligns with OpenAtlas audit backlog without an API
+- **docs/HARNESS_AUDIT_ALIGNMENT.md** — Part B (OpenHarness bundle) dimensions ↔ paths; aligns with OpenGrimoire audit backlog without an API
 
 ## Key Concepts
 
@@ -95,9 +95,9 @@ This repo is a **public** reference: use **synthetic** handoff examples ([docs/e
 
 **Secrets:** `.gitignore` excludes `.env*`, common key filenames, and `.cursor/mcp.json`. Do not commit credentials; use env vars or a private config path per [docs/MCP_PRIVATE_HOST.md](docs/MCP_PRIVATE_HOST.md).
 
-## OpenAtlas (related app, not in this repo)
+## OpenGrimoire (related app, not in this repo)
 
-**OpenHarness** stays portable (docs, rules, skills, `state/`). **OpenAtlas** is a separate Next.js app under **portfolio-harness** (`OpenAtlas/`) that visualizes a **brain-map graph** built from `.cursor/state` session text (handoffs, daily notes, decision-log)—see `OpenAtlas/docs/OPENATLAS_SYSTEMS_INVENTORY.md` in that workspace. Paths are relative to wherever you clone **portfolio-harness**. It is **not** meant to live inside this repository. If the graph does not show files from your OpenHarness checkout, either point `CURSOR_STATE_DIR` at `openharness/.cursor/state` when running `build_brain_map.py`, or use **`CURSOR_STATE_DIRS`** to merge `portfolio-harness` and `openharness` state in one JSON (see portfolio-harness `docs/BRAIN_MAP_HUB.md`). Handoffs must still reference `.md` paths for nodes to appear.
+**OpenHarness** stays portable (docs, rules, skills, `state/`). **OpenGrimoire** is a separate Next.js app under **portfolio-harness** (`OpenGrimoire/`) that visualizes a **brain-map graph** built from `.cursor/state` session text (handoffs, daily notes, decision-log)—see `OpenGrimoire/docs/OPENGRIMOIRE_SYSTEMS_INVENTORY.md` in that workspace. Paths are relative to wherever you clone **portfolio-harness**. It is **not** meant to live inside this repository. If the graph does not show files from your OpenHarness checkout, either point `CURSOR_STATE_DIR` at `openharness/.cursor/state` when running `build_brain_map.py`, or use **`CURSOR_STATE_DIRS`** to merge `portfolio-harness` and `openharness` state in one JSON (see portfolio-harness `docs/BRAIN_MAP_HUB.md`). Handoffs must still reference `.md` paths for nodes to appear.
 
 ## References
 

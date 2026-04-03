@@ -8,7 +8,7 @@ Build brain-map-graph.json from Harness state sources.
 
 **Portfolio / OpenGrimoire:** A richer sibling script lives at
 ``MiscRepos/.cursor/scripts/build_brain_map.py`` (multi-root ``CURSOR_STATE_DIRS``,
-vault roots, SCP, default output to ``OpenAtlas/public/brain-map-graph.local.json``).
+vault roots, SCP, default output to ``OpenGrimoire/public/brain-map-graph.local.json``).
 Use this file only for minimal OpenHarness-only trees.
 
 Sources:
