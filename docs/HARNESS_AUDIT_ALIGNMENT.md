@@ -15,6 +15,8 @@
 | 7 | Capability discovery | Entry points: README, skills index, checklist, YAML manifest | [README.md](../README.md), [.cursor/skills/README.md](../.cursor/skills/README.md), [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md), [capabilities.harness.yaml](../capabilities.harness.yaml) |
 | 8 | Prompt-native | Continue prompt + handoff as prompt-forward workflows | [HANDOFF_FLOW.md](HANDOFF_FLOW.md), `state/continue_prompt.txt`, `scripts/copy_continue_prompt.*` |
 
+**Portfolio (MiscRepos):** [`.cursor/docs/AGENT_NATIVE_CHECKLIST.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md) is an entry **stub** only (links to this repo’s normative [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md) + [`AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md)). Do not treat the stub as the full checklist body.
+
 **Related:** Structured manifest [capabilities.harness.yaml](../capabilities.harness.yaml); `python scripts/verify_script_index.py` (YAML ↔ disk ↔ CHEATSHEET backticks); `python scripts/verify_skills_readme.py` (README vs `SKILL.md` descriptions).
 
 ## Backlog (agent-native audit follow-up)

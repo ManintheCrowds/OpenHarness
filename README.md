@@ -19,6 +19,10 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 - **[capabilities.harness.yaml](capabilities.harness.yaml)** — Structured manifest: `scripts[]`, `scripts_globs`, `skills_globs`, checklist section links; CHEATSHEET remains the canonical script *table* (see file header)
 - **docs/HARNESS_AUDIT_ALIGNMENT.md** — Part B (OpenHarness bundle) dimensions ↔ paths; aligns with OpenGrimoire audit backlog without an API
 
+## Agent-native audit (minimum bundle)
+
+Meaningful **script/YAML parity** audits need this repo’s **checklist** ([docs/AGENT_NATIVE_CHECKLIST.md](docs/AGENT_NATIVE_CHECKLIST.md)), **CHEATSHEET** agent index, **capabilities.harness.yaml**, and `python scripts/verify_script_index.py` on disk—markdown-only copies are **inventory-only**. Slash command: `.cursor/commands/agent-native-audit.md` (load OpenHarness as a **Cursor workspace root** so the command resolves). **Portfolio:** sibling **MiscRepos** [`.cursor/docs/AGENT_NATIVE_CHECKLIST.md`](../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md) is an entry **stub** (links here + MISCOPS); addendum [`.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md). Do not duplicate normative checklist text outside OpenHarness.
+
 ## Key Concepts
 
 | Concept | Description |

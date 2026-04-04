@@ -8,6 +8,8 @@
 
 **[`capabilities.harness.yaml`](../capabilities.harness.yaml)** — Machine-readable inventory: `harness_capability.scripts` (must match on-disk scripts), globs, pointers to the checklist, and links into docs. Run `python scripts/verify_script_index.py` after changing scripts or the manifest.
 
+**Minimum bundle:** See [README.md § Agent-native audit (minimum bundle)](../README.md#agent-native-audit-minimum-bundle). Without YAML + verifiers on disk, treat audits as doc-only.
+
 ---
 
 ## 2. Scripts and parity
@@ -52,4 +54,4 @@ python scripts/verify_script_index.py
 python scripts/verify_skills_readme.py
 ```
 
-See also: [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md), [HARNESS_AUDIT_ALIGNMENT.md](HARNESS_AUDIT_ALIGNMENT.md). **Portfolio GUI surfaces** (browser apps / generated HTML): onboarding checklist in sibling MiscRepos [docs/audit/NEW_GUI_SURFACE_CHECKLIST.md](../../MiscRepos/docs/audit/NEW_GUI_SURFACE_CHECKLIST.md) (path from repo root: `../MiscRepos/docs/audit/NEW_GUI_SURFACE_CHECKLIST.md` when OpenHarness and MiscRepos are siblings).
+See also: [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md) (canonical SSOT), [HARNESS_AUDIT_ALIGNMENT.md](HARNESS_AUDIT_ALIGNMENT.md). **MiscRepos portfolio addendum:** [`.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md) (stub entry: [AGENT_NATIVE_CHECKLIST.md](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md)). **Portfolio GUI surfaces** (browser apps / generated HTML): onboarding checklist in sibling MiscRepos [docs/audit/NEW_GUI_SURFACE_CHECKLIST.md](../../MiscRepos/docs/audit/NEW_GUI_SURFACE_CHECKLIST.md) (path from repo root: `../MiscRepos/docs/audit/NEW_GUI_SURFACE_CHECKLIST.md` when OpenHarness and MiscRepos are siblings).

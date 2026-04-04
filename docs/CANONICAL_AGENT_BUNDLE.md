@@ -14,7 +14,7 @@
 | `.cursor/skills/agent-native-architecture/` | Vendored skill (MIT) — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) |
 | `.cursor/docs/NOGIC_WORKFLOW.md` | Nogic policy |
 | `docs/contracts/scp_mcp_v1.md` | **SCP MCP public contract v1** |
-| `docs/AGENT_NATIVE_CHECKLIST.md` | Portable agent-native checklist |
+| `docs/AGENT_NATIVE_CHECKLIST.md` | Portable **normative** agent-native checklist (SSOT). Sibling **MiscRepos** keeps [`.cursor/docs/AGENT_NATIVE_CHECKLIST.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md) as entry **stub** + [`AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md) addendum—do not treat the stub as the full checklist body. |
 | `docs/CANONICAL_AGENT_BUNDLE.md`, `docs/VERIFY_NOT_TRUST.md`, `docs/MCP_TRANSPARENCY.md`, `docs/MCP_PRIVATE_HOST.md`, `docs/SCP_SERVER_RELEASES.md`, `docs/THIRD_PARTY_NOTICES.md` | Transparency / verify docs |
 | `scripts/update_canonical_bundle_hashes.ps1`, `scripts/verify_canonical_bundle.ps1` | Manifest generators and verifier |
 | `docs/canonical-bundle.sha256` | Expected SHA-256 per bundled path (regenerate after edits) |

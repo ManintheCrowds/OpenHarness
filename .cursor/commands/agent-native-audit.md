@@ -14,4 +14,4 @@ Run an **agent-native parity** pass: UI/MCP/harness actions vs agent tools.
 4. **Output**: Markdown table or bullet list of **OK / Gap / Risk**; cite file paths only from the **current repo** (no invented paths).
 5. **Optional follow-up**: suggest updating the project’s MCP/GUI capability docs if gaps exist; do not edit files unless the user asks.
 
-**Related doc:** [AGENT_NATIVE_CHECKLIST.md](../../docs/AGENT_NATIVE_CHECKLIST.md).
+**Related doc:** [AGENT_NATIVE_CHECKLIST.md](../../docs/AGENT_NATIVE_CHECKLIST.md) (canonical in this repo). **MiscRepos portfolio:** [`.cursor/docs/AGENT_NATIVE_CHECKLIST.md`](../../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md) is an entry **stub** (points here + MISCOPS); also read [`.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md) when auditing the portfolio workspace—do not duplicate normative checklist sections in MiscRepos.

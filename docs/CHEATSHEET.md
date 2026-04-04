@@ -31,7 +31,7 @@ One-page harness compression.
 
 ## Agent invocation index (scripts)
 
-Use this table for **action parity** with humans (same script, agent via `run_terminal_cmd` or equivalent). See [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md).
+Use this table for **action parity** with humans (same script, agent via `run_terminal_cmd` or equivalent). See [AGENT_NATIVE_CHECKLIST.md](AGENT_NATIVE_CHECKLIST.md) (canonical **in this repo**). **Portfolio MiscRepos:** [`.cursor/docs/AGENT_NATIVE_CHECKLIST.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md) is an entry **stub** only; full portfolio ritual adds [`AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md).
 
 | Script | Purpose | Typical invocation |
 | ------ | ------- | ------------------- |
