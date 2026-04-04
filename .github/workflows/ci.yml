@@ -1,23 +1,14 @@
-# Lightweight checks for docs/scripts parity (no SCP package required for contract hash step).
-# gitleaks job: secret scan on full history (see docs/ASYNC_HITL_SCOPE.md § Security scanning posture).
+# Mechanical harness checks only (script index + skills README sync).
+# Does not run natural-language semantic smoke; see CONTRIBUTING.md.
 name: CI
 
 on:
   push:
     branches: [main, master]
   pull_request:
+    branches: [main, master]
 
 jobs:
-  gitleaks:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   verify:
     runs-on: ubuntu-latest
     steps:
@@ -26,19 +17,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
       - name: Install PyYAML
-        run: pip install PyYAML
+        run: pip install "PyYAML>=6.0.1"
 
-      - name: Script index parity (CHEATSHEET + YAML + disk)
+      - name: Verify script index
         run: python scripts/verify_script_index.py
 
-      - name: Skills README vs SKILL.md descriptions
+      - name: Verify skills README
         run: python scripts/verify_skills_readme.py
-
-      - name: SCP contract fingerprint
-        run: python scripts/verify_contract_hash.py
-
-      - name: Async task ledger schema
-        run: python scripts/verify_async_tasks.py

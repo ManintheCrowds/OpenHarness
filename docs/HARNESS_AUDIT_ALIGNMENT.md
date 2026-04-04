@@ -21,4 +21,4 @@
 
 ## Backlog (agent-native audit follow-up)
 
-**Thin MCP over harness scripts (parity, no new business logic):** Optional future work — an MCP server that **lists** and **runs** only allowlisted scripts from `capabilities.harness.yaml` / [CHEATSHEET](CHEATSHEET.md), subprocess from repo root, no arbitrary shell. Would complement terminal parity for agents that only expose MCP. **Not implemented** here; track as a dedicated task if you need it. Security and allowlisting would be documented alongside [MCP_PRIVATE_HOST.md](MCP_PRIVATE_HOST.md).
+**Thin MCP over harness scripts (parity, no new business logic):** Optional future work — an MCP server that **lists** and **runs** only allowlisted scripts from `capabilities.harness.yaml` / [CHEATSHEET](CHEATSHEET.md), subprocess from repo root, no arbitrary shell. Would complement terminal parity for agents that only expose MCP. **Not implemented** here; tracked in [BACKLOG.md](BACKLOG.md). Security and allowlisting would be documented alongside [MCP_PRIVATE_HOST.md](MCP_PRIVATE_HOST.md).

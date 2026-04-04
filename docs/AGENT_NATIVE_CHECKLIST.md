@@ -29,7 +29,7 @@ If you only copied markdown without the YAML and verifiers, treat agent-native r
 - [ ] Agent can invoke via documented path (MCP, `run_terminal_cmd`, etc.)
 - [ ] **Order of operations:** Update [CHEATSHEET](CHEATSHEET.md) **Agent invocation index** first, then [capabilities.harness.yaml](../capabilities.harness.yaml) `harness_capability.scripts`, then run `python scripts/verify_script_index.py` in the same PR
 - [ ] **Harness verification:** Basename in [CHEATSHEET](CHEATSHEET.md) **Agent invocation index** (inline code / backticks) and in [capabilities.harness.yaml](../capabilities.harness.yaml) `harness_capability.scripts` (must match disk); run `python scripts/verify_script_index.py` locally; add or adjust the pre-commit hook in `.pre-commit-config.yaml` if your fork uses it
-- [ ] **Note:** Passing `verify_script_index.py` is **necessary, not sufficient** for semantic parity—combine with NL smoke above.
+- [ ] **Note:** Passing `verify_script_index.py` is **necessary, not sufficient** for semantic parity—combine with NL smoke above. Example prompts and CI scope: [CONTRIBUTING.md](../CONTRIBUTING.md) (**Semantic smoke**).
 
 ## When adding or renaming skills
 

@@ -4,6 +4,8 @@ Portable AI harness: context engineering, intent engineering, handoff flow, and 
 
 Use with Cursor, Codex, or any agent platform that supports structured state and handoff.
 
+**Contributors:** [CONTRIBUTING.md](CONTRIBUTING.md) — verifiers, semantic smoke (NL parity), CI.
+
 ## Contents
 
 - **[docs/AGENT_ENTRY.md](docs/AGENT_ENTRY.md)** — One-screen chain for agents: manifest → CHEATSHEET → HANDOFF_FLOW → `state/`
@@ -22,6 +24,9 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 ## Agent-native audit (minimum bundle)
 
 Meaningful **script/YAML parity** audits need this repo’s **checklist** ([docs/AGENT_NATIVE_CHECKLIST.md](docs/AGENT_NATIVE_CHECKLIST.md)), **CHEATSHEET** agent index, **capabilities.harness.yaml**, and `python scripts/verify_script_index.py` on disk—markdown-only copies are **inventory-only**. Slash command: `.cursor/commands/agent-native-audit.md` (load OpenHarness as a **Cursor workspace root** so the command resolves). **Portfolio:** sibling **MiscRepos** [`.cursor/docs/AGENT_NATIVE_CHECKLIST.md`](../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST.md) is an entry **stub** (links here + MISCOPS); addendum [`.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md`](../MiscRepos/.cursor/docs/AGENT_NATIVE_CHECKLIST_MISCOPS.md). Do not duplicate normative checklist text outside OpenHarness.
+
+- **GUI / product UI:** **N/A** for this repo (headless harness—docs, rules, skills, scripts only). Rationale and audit mapping: [docs/HARNESS_AUDIT_ALIGNMENT.md](docs/HARNESS_AUDIT_ALIGNMENT.md) Part B row 6; for PRs, use the checklist’s **GUI waiver** wording when you need an explicit statement.
+- **Semantic parity:** Passing `verify_script_index.py` (and related verifiers) is **necessary, not sufficient** for agent-native readiness. See [CONTRIBUTING.md](CONTRIBUTING.md) for **semantic smoke** (natural-language checks) and how CI runs mechanical checks only.
 
 ## Key Concepts
 
