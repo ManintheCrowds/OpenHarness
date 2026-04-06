@@ -2,7 +2,7 @@
 
 This document defines **policy and machine-readable shape** for multi-session and async-tolerant work. It complements narrative handoff (`handoff_latest.md`): handoff remains the story; **[state/async_tasks.yaml](../state/async_tasks.yaml)** is the single source of truth for **task identity, status, and ownership** when using async flows.
 
-**See also:** [HANDOFF_FLOW.md](HANDOFF_FLOW.md), [PUBLIC_AND_PRIVATE_HARNESS.md](PUBLIC_AND_PRIVATE_HARNESS.md), [state/README.md](../state/README.md). **Cross-repo HITL wiring (Signal, orchestrator, OpenClaw, matrix):** [local-proto `HITL_CONNECTIVITY.md`](../../MiscRepos/local-proto/docs/HITL_CONNECTIVITY.md) when both repos sit under the same parent directory (e.g. `GitHub/OpenHarness` and `GitHub/MiscRepos/local-proto`).
+**See also:** [HANDOFF_FLOW.md](HANDOFF_FLOW.md), [PUBLIC_AND_PRIVATE_HARNESS.md](PUBLIC_AND_PRIVATE_HARNESS.md), [state/README.md](../state/README.md). **Cross-repo HITL wiring (SimpleX, orchestrator, optional Signal, OpenClaw, matrix):** [local-proto `HITL_CONNECTIVITY.md`](../../MiscRepos/local-proto/docs/HITL_CONNECTIVITY.md) when both repos sit under the same parent directory (e.g. `GitHub/OpenHarness` and `GitHub/MiscRepos/local-proto`).
 
 ---
 

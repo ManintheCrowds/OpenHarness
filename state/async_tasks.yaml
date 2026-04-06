@@ -8,3 +8,9 @@ tasks:
     updated_at: "2026-03-26T12:00:00Z"
     paths: []
     notes: Synthetic placeholder for CI; replace or add real tasks as needed.
+  - id: task-20260404-openclaw-tinyllama
+    status: backlog
+    owner: human:harness-placeholder
+    updated_at: "2026-04-04T12:00:00Z"
+    paths: []
+    notes: "openclaw:tinyllama — Registry may declare raised contextWindow to satisfy OpenClaw minimum-context; treat effective context as ~2k. OpenClaw is not wired to this ledger by default; reconcile HITL outcomes here after operator actions. Merge-quality verification stays in harness (tests/lint/build), not OpenClaw."

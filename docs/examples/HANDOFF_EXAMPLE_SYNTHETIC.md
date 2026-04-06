@@ -34,6 +34,7 @@
 
 - Use zod for request body; reject unknown keys.
 - Rate limit deferred to milestone 2.
+- **Fictional external shim:** ExampleBot’s `micro-llm` entry in the vendor config registry declares an inflated `contextWindow` so the host agent runtime passes its minimum-context check; the **real** model window is ~2k tokens—long threads and merge-quality reasoning are still a harness concern, not a chat-bot concern.
 
 ## Context (optional)
 

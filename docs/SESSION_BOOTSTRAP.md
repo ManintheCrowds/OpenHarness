@@ -14,7 +14,7 @@
 7. **known-issues** — `state/known-issues.md` (if present)
 8. **daily** — optional: `state/daily/YYYY-MM-DD.md` for today or recent days (session summaries)
 
-9. **Async / multi-session** — if handoff sets `latency_tolerance: async_ok` or work may overlap across sessions: [ASYNC_HITL_SCOPE.md](ASYNC_HITL_SCOPE.md), then `state/async_tasks.yaml` (SSOT for task id, status, owner).
+9. **Async / multi-session** — if handoff sets `latency_tolerance: async_ok` or work may overlap across sessions: [ASYNC_HITL_SCOPE.md](ASYNC_HITL_SCOPE.md), then `state/async_tasks.yaml` (SSOT for task id, status, owner). If the session involves **OpenClaw**, **SimpleX** (default phone HITL), or phone/async continuation off the IDE, read sibling [MiscRepos `local-proto/docs/OPENCLAW_READINESS.md`](../../MiscRepos/local-proto/docs/OPENCLAW_READINESS.md) (gateway listen, token handling, VRAM / tool-capable model table) before changing `openclaw.json` or debugging channels; for ledger ↔ **SimpleX** / optional Signal / orchestrator, see [MiscRepos `local-proto/docs/HITL_CONNECTIVITY.md`](../../MiscRepos/local-proto/docs/HITL_CONNECTIVITY.md).
 
 Then use project-specific docs, rules, and skills as routed (e.g. [.cursor/rules/](../.cursor/rules/), [.cursor/skills/](../.cursor/skills/)).
 
@@ -24,6 +24,8 @@ Then use project-specific docs, rules, and skills as routed (e.g. [.cursor/rules
 
 - [HANDOFF_FLOW.md](HANDOFF_FLOW.md) — archive, write handoff, continue prompt
 - [ASYNC_HITL_SCOPE.md](ASYNC_HITL_SCOPE.md) — async task ids, ownership, conflict rules; `state/async_tasks.yaml`
+- [OPENCLAW_READINESS.md](../../MiscRepos/local-proto/docs/OPENCLAW_READINESS.md) — OpenClaw gateway, token, Ollama tool-capable model checks (sibling clone layout)
+- [HITL_CONNECTIVITY.md](../../MiscRepos/local-proto/docs/HITL_CONNECTIVITY.md) — harness ledger ↔ SimpleX / OpenClaw / optional Signal (sibling clone layout)
 - [CHEATSHEET.md](CHEATSHEET.md) — one-page map and script index
 - [AGENT_ENTRY.md](AGENT_ENTRY.md) — agent entry chain
 - [OPENHARNESS_CONTEXT_MAP.md](OPENHARNESS_CONTEXT_MAP.md) — checklist → file paths

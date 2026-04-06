@@ -49,6 +49,7 @@ Updated: <ISO8601>
 
 ## Decisions / gotchas (optional)
 - <decision or caveat>
+- Document **external tool config shims** when the declared registry limits differ from the true model or API limits (e.g. OpenClaw model registry vs. actual context or tool support).
 
 ## scope (optional)
 <session boundary>
