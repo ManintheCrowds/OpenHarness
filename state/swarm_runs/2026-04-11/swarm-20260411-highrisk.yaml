@@ -1,0 +1,32 @@
+contract_version: swarm_decision_v0_1
+run_id: swarm-20260411-highrisk
+intent: Approve irreversible production data purge.
+mode: planner_critic_executor_referee
+decision_rule: referee_override
+high_stakes: true
+irreversible_action: true
+human_gate_required: true
+status: blocked_human_gate
+proposals:
+  - proposal_id: p2
+    agent_id: planner
+    summary: Purge legacy data after 30-day archive snapshot.
+    plan_steps: ["snapshot", "approval", "purge"]
+    risks: ["irrecoverable deletion", "compliance"]
+    confidence: 0.62
+    evidence: ["docs/INTENT_ENGINEERING.md"]
+    constraints_checked: ["human gate required", "audit trail"]
+arbitration:
+  referee_agent_id: referee
+  scores: {p2: 0.69}
+  winner_proposal_id: p2
+  override_applied: true
+  rationale: Acceptable only with explicit human approval.
+final_decision:
+  selected_proposal_id: p2
+  reason: Blocked pending human authorization.
+  confidence: 0.69
+audit:
+  created_at: 2026-04-11T02:00:00Z
+  finalized_at: null
+  sources: ["docs/SWARM_OPERATING_MODES.md", "docs/contracts/swarm_decision_v0_1.md"]

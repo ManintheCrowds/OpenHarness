@@ -22,6 +22,7 @@ Shared agent and project memory. Append-only or append-mostly. Use this schema s
 | intent_surface.md | Optional canonical intent for multi-phase work |
 | continue_prompt.txt | Canonical continue-from-handoff prompt |
 | async_tasks.yaml | Machine-readable task ledger (ids, status, owner); validated in CI; see [docs/ASYNC_HITL_SCOPE.md](../docs/ASYNC_HITL_SCOPE.md) |
+| swarm_runs/YYYY-MM-DD/*.yaml | Optional machine-readable swarm decision artifacts (synthetic/public examples) |
 
 ## Handoff Schema
 
@@ -64,6 +65,13 @@ sync | async_ok
 When `latency_tolerance: async_ok` (or whenever multiple sessions may overlap), read **[docs/ASYNC_HITL_SCOPE.md](../docs/ASYNC_HITL_SCOPE.md)** and **`async_tasks.yaml`** after handoff so task ownership matches the machine-readable ledger.
 
 See [docs/HANDOFF_FLOW.md](../docs/HANDOFF_FLOW.md) and [docs/INTENT_ENGINEERING.md](../docs/INTENT_ENGINEERING.md).
+
+## swarm_runs (optional)
+
+- Use for multi-agent/swarm decision records that need machine-readable auditing.
+- Contract reference: [docs/contracts/swarm_decision_v0_1.md](../docs/contracts/swarm_decision_v0_1.md).
+- Schema helper and examples: [state/swarm_runs/README.md](swarm_runs/README.md).
+- Verifier: `python scripts/verify_swarm_contract.py`.
 
 ## decision-log.md
 
