@@ -1,0 +1,32 @@
+contract_version: swarm_decision_v0_1
+run_id: swarm-20260411-lowrisk
+intent: Pick a release-note wording style.
+mode: planner_critic_executor_referee
+decision_rule: referee_override
+high_stakes: false
+irreversible_action: false
+human_gate_required: false
+status: finalized
+proposals:
+  - proposal_id: p1
+    agent_id: planner
+    summary: Keep short release notes in bullets.
+    plan_steps: ["draft", "review", "publish"]
+    risks: ["less detail"]
+    confidence: 0.78
+    evidence: ["docs/CHEATSHEET.md"]
+    constraints_checked: ["public-safe"]
+arbitration:
+  referee_agent_id: referee
+  scores: {p1: 0.85}
+  winner_proposal_id: p1
+  override_applied: false
+  rationale: Most readable with low risk.
+final_decision:
+  selected_proposal_id: p1
+  reason: Highest score and simplest rollout.
+  confidence: 0.85
+audit:
+  created_at: 2026-04-11T01:00:00Z
+  finalized_at: 2026-04-11T01:08:00Z
+  sources: ["docs/SWARM_OPERATING_MODES.md"]

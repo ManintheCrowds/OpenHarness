@@ -11,3 +11,10 @@ Optional and future work that is **not** required for the core portable harness.
 **Status:** Not implemented. Security, allowlisting, and host configuration should be documented alongside [MCP_PRIVATE_HOST.md](MCP_PRIVATE_HOST.md) when this is built.
 
 **Scope guardrails (from alignment doc):** No new business logic in the server—thin wrapper over existing scripts only.
+
+## Swarm-readiness milestones (solo-builder-first)
+
+- **M1 — Swarm decision contract:** establish `swarm_decision_v0_1` fields and policy defaults.
+- **M2 — Operating modes + examples:** publish default topology and synthetic low/high risk examples.
+- **M3 — Verification:** enforce contract and policy constraints via script checks.
+- **M4 — Minimal orchestrator reference:** provide a small runnable reference flow that implements referee override and mandatory high-stakes human gate.

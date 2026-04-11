@@ -45,6 +45,7 @@ Use this table for **action parity** with humans (same script, agent via `run_te
 | `list_capabilities.py` | Emit harness manifest (`capabilities.harness.yaml`) as JSON for scripts/checklist discovery | `python scripts/list_capabilities.py` |
 | `verify_async_tasks.py` | Validate `state/async_tasks.yaml` task ledger schema | `python scripts/verify_async_tasks.py` |
 | `verify_contract_hash.py` | Verify `docs/contracts/scp_mcp_v1.md` SHA-256 matches `docs/contracts/scp_mcp_v1.sha256` | `python scripts/verify_contract_hash.py` |
+| `verify_swarm_contract.py` | Validate `state/swarm_runs/**/*.yaml` against swarm contract v0.1 policy fields | `python scripts/verify_swarm_contract.py` |
 | `verify_script_index.py` | Parity: `capabilities.harness.yaml` `scripts[]` == on-disk scripts; each basename in this table | `python scripts/verify_script_index.py` |
 | `verify_skills_readme.py` | `.cursor/skills/README.md` table vs each `SKILL.md` `description:` | `python scripts/verify_skills_readme.py` |
 | `brain_map_viewer.html` | Local HTML viewer for graph JSON (vis-network; drag-drop or co-located `brain-map-graph.json`) | Open in browser; optional dev aid. **Operator-facing map (canonical UI in OpenGrimoire):** [OpenGrimoire `docs/GUI_ACTION_MAP_BRAIN_MAP.md`](../../OpenGrimoire/docs/GUI_ACTION_MAP_BRAIN_MAP.md) |
