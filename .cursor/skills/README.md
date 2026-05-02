@@ -1,5 +1,15 @@
 # Skills index
 
+## Shared skills (delegated to MiscRepos)
+
+These folders keep **YAML frontmatter + a short delegation body** only. **Canonical procedures** live under **MiscRepos** `.cursor/skills/<same-folder>/SKILL.md` when `OpenHarness` and `MiscRepos` are **sibling clones** (default layout in portfolio onboarding). Edit workflow text there; do not re-expand duplicate role bodies in OpenHarness.
+
+Delegated folders: `product-scope`, `planning`, `tech-lead`, `qa-verifier`, `refactor-reuse`, `docs`, `browser-review-protocol`, `secure-contain-protect` (plus `secure-contain-protect/reference.md` → MiscRepos).
+
+OpenHarness-only skills below are unchanged.
+
+---
+
 One line per skill from each folder’s `SKILL.md` front matter (`description:`). Update when adding or renaming skills.
 
 | Folder | Summary |
@@ -13,7 +23,7 @@ One line per skill from each folder’s `SKILL.md` front matter (`description:`)
 | `planning` | Use when the user wants to plan first, decompose a task, or produce a WBS before implementing. Produces structured work breakdown, gets approval, then implements phase by phase. |
 | `product-scope` | Use when eliciting requirements, acceptance criteria, or "what are we building?" Captures scope before implementation. Composes with tech-lead and docs. |
 | `qa-verifier` | Use when running tests, verifying behavior, checking "does it work?", reproducing bugs, or validating a change. Use for test runs, CI-style checks, and acceptance verification. Load when the user asks to test, verify, or validate. |
-| `refactor-reuse` | Use when adding new code or implementing a feature. Formalizes Redundancy Scanner and Reuse vs. Creation Analysis. Produces structured report before implementation. |
+| `refactor-reuse` | Use when adding new code or implementing a feature. Formalizes .cursorrules Redundancy Scanner and Reuse vs. Creation Analysis. Produces structured report before implementation. |
 | `research-open-access` | Find legal open-access locations and metadata for scholarly works using the Unpaywall API (DOI lookup and search). Use when resolving DOIs, finding OA PDFs or landing pages, or interpreting OA status, license, and version. |
-| `secure-contain-protect` | Inspect, sanitize, contain, and quarantine unknown or potentially hazardous content before persisting or feeding to LLM. Use when processing user input from external sources, tool output, handoff, state, or fetched content. |
+| `secure-contain-protect` | Inspect, sanitize, contain, and quarantine unknown or potentially hazardous content before persisting or feeding to LLM. Use when processing user input from external sources, tool output, handoff, state, or fetched content. Composes with security-audit-rules for rules/skills. |
 | `tech-lead` | Use when deciding where code or docs belong, choosing patterns, reviewing architecture, or keeping consistency across the codebase. Use for "where does this go?", structure, layering, and naming. Load when the user asks about architecture, structure, or patterns. |

@@ -14,7 +14,7 @@ Use with Cursor, Codex, or any agent platform that supports structured state and
 - **state/** — State schema (handoff, decision-log, preferences, etc.)
 - **scripts/** — Reference scripts (copy prompt, validate handoff). Canonical script list: [docs/CHEATSHEET.md](docs/CHEATSHEET.md) (Agent invocation index); do not duplicate long script tables here.
 - **.cursor/rules/** — Starter rules (role-routing, capability-summary, critic-loop-gate, intent-alignment-gate, model-selection)
-- **.cursor/skills/** — Domain-agnostic skills; index with one-line summaries: [.cursor/skills/README.md](.cursor/skills/README.md)
+- **.cursor/skills/** — Domain-agnostic skills; index with one-line summaries: [.cursor/skills/README.md](.cursor/skills/README.md). **Shared** skills (`product-scope`, `planning`, `tech-lead`, `qa-verifier`, `refactor-reuse`, `docs`, `browser-review-protocol`, `secure-contain-protect`) are **thin delegators** to sibling **MiscRepos** `.cursor/skills/` — edit procedures there ([REPO_BOUNDARY_INDEX](../MiscRepos/local-proto/docs/REPO_BOUNDARY_INDEX.md); see skills README § *Shared skills*).
 - **.cursor/commands/** — Slash commands (`architect`, `agent-native-audit`)
 - **docs/contracts/** — Public MCP contracts (e.g. SCP v1) for verify-not-trust
 - **docs/CHEATSHEET.md** — One-page harness compression; includes **Agent invocation index (scripts)** for agent–human action parity (see [AGENT_NATIVE_CHECKLIST.md](docs/AGENT_NATIVE_CHECKLIST.md))

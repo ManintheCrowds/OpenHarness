@@ -7,46 +7,14 @@ exclusive_with: []
 required_inputs: ["task or goal to decompose"]
 exit_criteria: "WBS produced and approved; implementation follows phases (or handoff with Next = next phase)"
 output_schema: "WBS (numbered steps); optional .plan.md; implementation proceeds phase by phase"
+tier: 2
+upstream_inputs: "Task or goal; optional product-scope output, scope doc, or scope-notes."
+downstream_output: "Numbered WBS with dependencies; optional .cursor/plans/*.plan.md; phase boundaries for handoff."
+handoff_format: "Numbered steps; each step has verifiable output; Next/Paths/Decisions when handing off between chats."
 ---
 
-# Planning / deliberation role
+# Planning (delegated)
 
-**Intent:** Plan before act; decompose complex tasks into explicit phases.
+**Canonical skill (edit there):** [MiscRepos `planning` SKILL](../../../MiscRepos/.cursor/skills/planning/SKILL.md)
 
-## When to use
-
-- User says "plan first", "decompose", "multi-step", "complex task", "WBS", or "break down".
-- Task has 3+ distinct steps or touches 3+ files.
-- User wants explicit phases before implementation.
-
-## Inputs
-
-- Task or goal to decompose (from user message or handoff Next).
-
-## Steps
-
-1. **Decompose:** Produce a WBS (1. … 2. … 3. …) with dependencies. Number steps; note which can run in parallel. Aim for subtasks under 2 hours each, with clear input/output and independent verification.
-2. **Present:** Show WBS to user; ask for approval or modifications.
-3. **On approval:** Implement phase by phase. After each phase: update handoff Done/Next; optionally handoff to new chat if context is long.
-4. **Optional:** Write `.cursor/plans/<name>.plan.md` for multi-phase plans; link from handoff.
-
-## Handoff
-
-For multi-phase work, handoff when phase boundary or role switch. Include: Next (one clear action), Paths (artifacts, plans), Decisions (gotchas).
-
-## Checks
-
-- WBS is explicit and numbered.
-- For non-trivial work: ensure a spec exists (from product-scope or equivalent) before decomposing.
-- User approves before implementation.
-- Implementation follows phases; handoff updated after each phase.
-
-## Suggested sequence (compose with)
-
-- **Often precedes:** refactor-reuse (implement), critic (review).
-- **Typical chain:** planning → refactor-reuse → critic.
-
-## Guardrails
-
-- **Privacy:** Do not expose internal project paths in shared plans; use generic placeholders when handoff may be shared.
-- **Human gate:** Escalate when uncertain; do not auto-resolve conflicts between roles.
+See [product-scope SKILL](../product-scope/SKILL.md) header for delegation policy and sibling layout.
