@@ -1,10 +1,48 @@
-# Harness — Context and Intent Engineering
+# OpenHarness — Context and Intent Engineering
 
 Portable AI harness: context engineering, intent engineering, handoff flow, and state schema. **Guide** in the Guard–Guide–Build taxonomy.
 
 Use with Cursor, Codex, or any agent platform that supports structured state and handoff.
 
+[![CI](https://github.com/ManintheCrowds/OpenHarness/actions/workflows/ci.yml/badge.svg)](https://github.com/ManintheCrowds/OpenHarness/actions/workflows/ci.yml)
+
 **Contributors:** [CONTRIBUTING.md](CONTRIBUTING.md) — verifiers, semantic smoke (NL parity), CI.
+
+## Problem → Solution → Impact
+
+- **Problem:** Long agent sessions lose intent, scope, and verifiable state; ad-hoc prompts do not compose across tools.
+- **Solution:** Document-then-continue handoffs, structured `state/` schema, critic + intent-alignment gates, and script/YAML parity checks.
+- **Impact:** Reusable harness bundle pin-able by commit SHA; pairs with [SCP](https://github.com/ManintheCrowds/SCP) (guard) and [OpenGrimoire](https://github.com/ManintheCrowds/OpenGrimoire) (context graph UI).
+
+## Tech stack
+
+Python 3.10+, YAML manifests, pre-commit, optional SCP MCP; Markdown docs and `.cursor/rules` / skills (no application database in this repo).
+
+## Architecture
+
+```mermaid
+flowchart TB
+  Human[Operator intent] --> Handoff[handoff_latest.md]
+  Handoff --> State[state schema]
+  State --> Agent[Cursor / agent host]
+  Agent --> SCP[SCP MCP guard]
+  SCP --> Tools[MCP tools]
+  Agent --> Verify[verify_script_index / bundle hash]
+```
+
+Entry: [docs/AGENT_ENTRY.md](docs/AGENT_ENTRY.md) · [docs/HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md)
+
+## Quick start
+
+```bash
+git clone https://github.com/ManintheCrowds/OpenHarness.git
+cd OpenHarness
+pip install -r requirements.txt
+pre-commit install
+python scripts/verify_script_index.py
+```
+
+See [Roadmap](ROADMAP.md) · Full integration steps below.
 
 ## Contents
 
@@ -126,4 +164,4 @@ This repo is a **public** reference: use **synthetic** handoff examples ([docs/e
 
 ## License
 
-MIT
+GNU GPL v3.0 — see [LICENSE](LICENSE).
