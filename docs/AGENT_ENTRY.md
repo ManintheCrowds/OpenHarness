@@ -2,6 +2,8 @@
 
 **Start here** if you are an agent (or human wiring an agent) using this repo as a **bundle**: markdown, scripts, `state/`, `.cursor/skills/` — not a web app. Follow this chain in order.
 
+**Stance:** [PATIENT_THREAT_CONTENT_DELINEATION.md](PATIENT_THREAT_CONTENT_DELINEATION.md) — Patient ≠ Threat ≠ Content (orthogonal axes; do not mash into one “alignment” label). Distinct from [DELINEATION.md](DELINEATION.md) (core vs implementation).
+
 ---
 
 ## 1. Capability manifest
