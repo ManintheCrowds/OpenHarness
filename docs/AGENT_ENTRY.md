@@ -2,7 +2,7 @@
 
 **Start here** if you are an agent (or human wiring an agent) using this repo as a **bundle**: markdown, scripts, `state/`, `.cursor/skills/` — not a web app. Follow this chain in order.
 
-**Stance:** [PATIENT_THREAT_CONTENT_DELINEATION.md](PATIENT_THREAT_CONTENT_DELINEATION.md) — Patient ≠ Threat ≠ Content (orthogonal axes; do not mash into one “alignment” label). Distinct from [DELINEATION.md](DELINEATION.md) (core vs implementation).
+**Stance:** [PATIENT_THREAT_CONTENT_DELINEATION.md](PATIENT_THREAT_CONTENT_DELINEATION.md) — Patient ≠ Threat ≠ Content (orthogonal axes; do not mash into one “alignment” label). Distinct from [DELINEATION.md](DELINEATION.md) (core vs implementation). **Glossary:** [THREE_CANDORS.md](THREE_CANDORS.md) — phenomenological vs intent vs concealment candor. **Lifecycle:** [AGENT_RUN_LIFECYCLE.md](AGENT_RUN_LIFECYCLE.md) — bootstrap → work → handoff → terminate (work continuity, not Patient retirement).
 
 ---
 

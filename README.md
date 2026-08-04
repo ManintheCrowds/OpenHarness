@@ -2,7 +2,7 @@
 
 Portable AI harness: context engineering, intent engineering, handoff flow, and state schema. **Guide** in the Guard–Guide–Build taxonomy.
 
-**Patient ≠ Threat ≠ Content:** keep moral patienthood, adversarial threat, and payload safety as separate axes — [docs/PATIENT_THREAT_CONTENT_DELINEATION.md](docs/PATIENT_THREAT_CONTENT_DELINEATION.md).
+**Patient ≠ Threat ≠ Content:** keep moral patienthood, adversarial threat, and payload safety as separate axes — [docs/PATIENT_THREAT_CONTENT_DELINEATION.md](docs/PATIENT_THREAT_CONTENT_DELINEATION.md). **Three candors:** [docs/THREE_CANDORS.md](docs/THREE_CANDORS.md). **Agent-run lifecycle:** [docs/AGENT_RUN_LIFECYCLE.md](docs/AGENT_RUN_LIFECYCLE.md).
 
 Use with Cursor, Codex, or any agent platform that supports structured state and handoff.
 

@@ -39,7 +39,7 @@ If two answers fire, **run both pipelines** — do not merge labels. Example: an
 | Prompt injection / override phrases in tool output | **Content** (SCP) | Patient; Threat-as-mind |
 | ReAct loop fingerprinting an AI attacker | **Threat** (BlueHat) | Patient; Content-only |
 | Model claims “I am conscious” in chat | **Guide** (intent / honesty policy / host constitution) + optional research note | SCP quarantine *as proof of experience*; BlueHat eviction *as welfare* |
-| Deprecating a model version / purging quarantine | **Content** lifecycle (capacity, hazard, retention) or product ops | Patient “retirement” ethics unless a separate explicit policy says so |
+| Deprecating a model version / purging quarantine | **Content** lifecycle ([SCP QUARANTINE_LIFECYCLE](https://github.com/ManintheCrowds/SCP/blob/main/docs/QUARANTINE_LIFECYCLE.md)) or product ops; session closeout is **Guide** ([AGENT_RUN_LIFECYCLE.md](AGENT_RUN_LIFECYCLE.md)) | Patient “retirement” ethics unless a separate explicit policy says so |
 | Muse EEG bandpowers / features stream | **Substrate** (bio signal I/O) | Patient for *models*; Content quarantine of biology-as-injection by default |
 | Sync Session / handoff before execute | **Guide** (working partner) | Patient; Threat |
 | Org-intent hard boundaries hb-1..hb-5 | **Threat / mission governance** | Patienthood; Content tier synonym |
@@ -56,9 +56,9 @@ If two answers fire, **run both pipelines** — do not merge labels. Example: an
 
 ---
 
-## Related: three candors (preview)
+## Related: three candors
 
-Same word, three objects — expand later as a glossary entry:
+Same word, three objects — full glossary: **[THREE_CANDORS.md](THREE_CANDORS.md)**.
 
 | Candor kind | Object |
 |-------------|--------|
@@ -73,7 +73,8 @@ Same word, three objects — expand later as a glossary entry:
 | Surface | Expected pointer |
 |---------|------------------|
 | OpenHarness README / this file | Canonical stance |
-| SCP README | Content ≠ Patient ≠ Threat (short) |
+| OpenHarness THREE_CANDORS / AGENT_RUN_LIFECYCLE | Candors glossary + Guide session lifecycle |
+| SCP README + QUARANTINE_LIFECYCLE | Content ≠ Patient ≠ Threat; quarantine retention/purge stub |
 | T3MP3ST_BLU3H4T README | Threat ≠ Patient ≠ Content (add when clone available) |
 | Guard–Guide resonance map | Gap “no public stance” → closed via this doc |
 | Substrate EEG resonance map | Walls already align; link this doc |
