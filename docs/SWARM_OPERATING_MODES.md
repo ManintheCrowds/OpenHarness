@@ -5,6 +5,12 @@ This document defines portable operating modes for OpenHarness. For v0.1, the de
 - `planner_critic_executor_referee`
 - default decision rule: `referee_override`
 
+## Coordination class (v0.1)
+
+All catalog modes below are **scripted role-envelope** coordination: fixed roles, sequential proposals/critique/arbitration (or single-agent end-to-end), plus handoff/run artifacts. They are **not** **collaborative swarm** (dynamic role assignment, local custody handoff, self-orchestration without a fixed referee script).
+
+v0.1 does not implement collaborative self-orchestration. Mutualistic threat-intel / mycelium-style registries are orthogonal to this catalog—not an operating mode here.
+
 ## Mode catalog
 
 ## 1) `single_agent`
@@ -36,6 +42,18 @@ If an action is both high-stakes and irreversible:
 1. set `human_gate_required: true`
 2. block finalization until approval is recorded
 3. persist approval reference in run artifacts and handoff
+
+## Future class: collaborative swarm (not implemented)
+
+**collaborative swarm** is a non-implemented coordination class. Do not claim v0.1 modes satisfy it.
+
+Directional entry criteria before labeling a run collaborative (do not invent runtime in this doc):
+
+1. Runnable orchestration beyond synthetic `state/swarm_runs/` schema theater
+2. Dynamic role or custody handoff without a fixed referee script as the only arbiter
+3. Honest operator-on-the-loop policy (process/host HITL—not assumed machine-enforced)
+
+Until those hold, keep using scripted role-envelope labels for the modes above.
 
 ## Minimal run lifecycle
 
