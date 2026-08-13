@@ -77,6 +77,7 @@ See [docs/HANDOFF_FLOW.md](../docs/HANDOFF_FLOW.md) and [docs/INTENT_ENGINEERING
 
 - **Section per date:** `## YYYY-MM-DD`
 - **Each entry:** `- **[Area]** Decision: <one-line>. Rationale: <optional short>.` Optional: `(plan: <name or path>)`
+- **Decision graph projection (optional):** Typed nodes/edges for MCP + OpenGrimoire live in a local SQLite projection (`decision-graph.sqlite`), not in this markdown file. Humans still append here only. Optional causal edges that prose cannot express: `decision-graph-edges.jsonl` beside the log (see OpenGrimoire `docs/DECISION_GRAPH_SCHEMA.md`). Rebuild: `python MiscRepos/.cursor/scripts/project_decision_graph.py` with `DECISION_LOG_PATH` / `DECISION_GRAPH_DB`.
 
 ## known-issues.md
 
