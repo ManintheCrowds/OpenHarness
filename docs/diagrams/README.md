@@ -1,18 +1,16 @@
 # Operator diagrams (OpenHarness)
 
-Self-contained **HTML** slides (open in a browser) plus **SVG** exports for GitHub / markdown embeds. No build step; HTML is static (no JavaScript).
+Self-contained **HTML** slides (open locally in a browser) plus **SVG** for GitHub / markdown embeds. Static HTML+SVG; no Mermaid deliverable; no secrets.
 
-**Mode A — harness-linked:** Craft rules and export tooling live in sibling **MiscRepos** [diagram-design](../../MiscRepos/.cursor/skills/diagram-design/SKILL.md) ([VENDOR.md](../../MiscRepos/.cursor/skills/diagram-design/VENDOR.md) pin). This folder holds OpenHarness-scoped plates only — do not vendor the full skill tree here.
-
-**GitHub note:** clicking an `.html` file in the repo UI shows source, not a rendered page. Use the `.svg` next to featured plates (or open HTML locally). Export with:
+**Mode C (standalone):** plates live here. Craft/export uses a **vendor bridge** to MiscRepos’s pinned [diagram-design](https://github.com/cathrynlavery/diagram-design) skill (SHA in that repo’s `.cursor/skills/diagram-design/VENDOR.md`) — this tree does not vendor the full skill. Export:
 
 ```text
-python ../MiscRepos/.cursor/skills/diagram-design/scripts/export_svg.py docs/diagrams/<name>.html docs/diagrams/<name>.svg
+python <MiscRepos>/.cursor/skills/diagram-design/scripts/export_svg.py docs/diagrams/<name>.html docs/diagrams/<name>.svg
 ```
 
 (from the OpenHarness repo root; adjust the MiscRepos path if your sibling layout differs)
 
-Style: **dark** paper (`#2d3142`), ink `#f5f5f5`, accent `#f08a59`; density ~4/10; accent on 1–2 focal nodes; **static**. Deliverable is **HTML + SVG**, not Mermaid.
+Tokens: **mic-ghost** dark paper `#0e1114`, ink `#e6e8eb`, accent `#c4a574`. Density ~4/10; accent on 1–2 focal nodes; **static**. Deliverable is **HTML + SVG**, not Mermaid. Profile marker: repo-root `.diagram-design` → `profile: mic-ghost`.
 
 Roll-out modes (A/B/C): [MiscRepos `docs/diagrams/ROLL_OUT.md`](../../MiscRepos/docs/diagrams/ROLL_OUT.md).
 
