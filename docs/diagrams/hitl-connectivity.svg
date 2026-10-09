@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hitl-connectivity-title hitl-connectivity-desc" id="hitl-connectivity-root">
+        <title id="hitl-connectivity-title">HITL connectivity</title>
+        <desc id="hitl-connectivity-desc">OpenHarness async_tasks and narrative handoff do not wake automation; bump sibling harness handoff so orchestrator can notify; HITL tokens and OpenClaw reach the human.</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #hitl-connectivity-root { --color-paper: #0e1114;
+      --color-ink: #e6e8eb;
+      --color-muted: #9aa3ad;
+      --color-accent: #c4a574;
+      --font-sans: 'Geist', system-ui, sans-serif;
+      --font-serif: 'Instrument Serif', serif;
+      --font-mono: 'Geist Mono', ui-monospace, monospace; }
+      #hitl-connectivity-root { font-family: var(--font-sans); color: var(--color-ink); }
+      #hitl-connectivity-root .diagram-container { width: 100%; overflow-x: auto; }
+      #hitl-connectivity-root .diagram-container { overflow-x: visible; }</style>
+          <marker id="hitl-connectivity-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#9aa3ad"/></marker>
+          <marker id="hitl-connectivity-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c4a574"/></marker>
+        </defs>
+        <rect width="1280" height="720" fill="#0e1114"/>
+
+        <!-- Zones -->
+        <rect x="40" y="80" width="360" height="280" rx="8" fill="#e6e8eb" fill-opacity="0.04" stroke="#2a323a" stroke-width="0.8"/>
+        <text x="56" y="102" fill="#7a8490" font-size="9" font-family="'Geist Mono', monospace" letter-spacing="0.14em">OPENHARNESS</text>
+
+        <rect x="440" y="80" width="400" height="280" rx="8" fill="#e6e8eb" fill-opacity="0.04" stroke="#2a323a" stroke-width="0.8"/>
+        <text x="456" y="102" fill="#7a8490" font-size="9" font-family="'Geist Mono', monospace" letter-spacing="0.14em">SIBLING AUTOMATION</text>
+
+        <rect x="880" y="80" width="360" height="280" rx="8" fill="#e6e8eb" fill-opacity="0.04" stroke="#2a323a" stroke-width="0.8"/>
+        <text x="896" y="102" fill="#7a8490" font-size="9" font-family="'Geist Mono', monospace" letter-spacing="0.14em">POLICY / CHANNEL</text>
+
+        <!-- OpenHarness nodes -->
+        <rect x="80" y="140" width="140" height="64" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="150" y="172" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">async_tasks</text>
+        <text x="150" y="192" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">YAML SSOT</text>
+
+        <rect x="240" y="140" width="140" height="64" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="310" y="172" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">OH handoff</text>
+        <text x="310" y="192" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">narrative</text>
+
+        <!-- Sibling automation -->
+        <rect x="480" y="130" width="160" height="64" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="560" y="162" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">sibling handoff</text>
+        <text x="560" y="182" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">## Next watched</text>
+
+        <rect x="680" y="124" width="140" height="72" rx="6" fill="#c4a574" fill-opacity="0.10" stroke="#c4a574" stroke-width="1.4"/>
+        <text x="692" y="142" fill="#7a8490" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.12em">WAKE</text>
+        <text x="750" y="164" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">orchestrator</text>
+        <text x="750" y="184" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">not OH YAML</text>
+
+        <rect x="480" y="240" width="140" height="56" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="550" y="272" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Signal</text>
+        <text x="550" y="292" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">optional</text>
+
+        <rect x="660" y="240" width="140" height="56" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="730" y="272" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Webhook</text>
+        <text x="730" y="292" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">cloud agents</text>
+
+        <!-- Policy / channel -->
+        <rect x="920" y="140" width="200" height="64" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="1020" y="172" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">HITL tokens</text>
+        <text x="1020" y="192" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">APPROVAL_NEEDED</text>
+
+        <rect x="960" y="240" width="200" height="64" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="1060" y="272" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">OpenClaw</text>
+        <text x="1060" y="292" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">channel</text>
+
+        <!-- Bottom -->
+        <rect x="80" y="480" width="280" height="64" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="220" y="512" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Poll / notify gap</text>
+        <text x="220" y="532" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">no YAML watcher</text>
+
+        <rect x="480" y="480" width="200" height="72" rx="6" fill="#161b20" stroke="#e6e8eb" stroke-width="1"/>
+        <text x="492" y="498" fill="#7a8490" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.12em">HUMAN</text>
+        <text x="580" y="520" fill="#e6e8eb" font-size="14" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Human</text>
+        <text x="580" y="540" fill="#9aa3ad" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle">final arbiter</text>
+
+        <!-- Edges -->
+        <!-- OH surfaces do not auto-wake: dashed to gap -->
+        <line x1="150" y1="204" x2="150" y2="480" stroke="#9aa3ad" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#hitl-connectivity-arrow)"/>
+        <line x1="310" y1="204" x2="240" y2="480" stroke="#9aa3ad" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#hitl-connectivity-arrow)"/>
+
+        <!-- Bump sibling handoff to enable wake -->
+        <line x1="380" y1="172" x2="480" y2="162" stroke="#c4a574" stroke-width="1.4" marker-end="url(#hitl-connectivity-arrow-accent)"/>
+        <rect x="400" y="138" width="40" height="14" rx="2" fill="#0e1114"/>
+        <text x="404" y="148" fill="#c4a574" font-size="9" font-family="'Geist Mono', monospace" letter-spacing="0.06em">BUMP</text>
+
+        <!-- Sibling handoff → orchestrator -->
+        <line x1="640" y1="162" x2="680" y2="162" stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#hitl-connectivity-arrow)"/>
+
+        <!-- Orchestrator fan-out -->
+        <line x1="720" y1="196" x2="550" y2="240" stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#hitl-connectivity-arrow)"/>
+        <line x1="750" y1="196" x2="730" y2="240" stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#hitl-connectivity-arrow)"/>
+
+        <!-- Policy → channel → human -->
+        <line x1="1020" y1="204" x2="1060" y2="240" stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#hitl-connectivity-arrow)"/>
+        <line x1="1060" y1="304" x2="680" y2="480" stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#hitl-connectivity-arrow)"/>
+
+        <!-- Human arbiter upward toward automation -->
+        <line x1="580" y1="480" x2="580" y2="360" stroke="#9aa3ad" stroke-width="1.2" marker-end="url(#hitl-connectivity-arrow)"/>
+      </svg>

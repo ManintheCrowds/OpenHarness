@@ -33,7 +33,7 @@
 
 ## 3. Handoff and continue
 
-**[`HANDOFF_FLOW.md`](HANDOFF_FLOW.md)** — How to archive, write `handoff_latest`, use the continue prompt, and respect trust boundaries (SCP / pre-commit). For a fuller local procedure when the portfolio workspace is checked out, see the path note in HANDOFF_FLOW to sibling **`MiscRepos`** `HANDOFF_FLOW.md`.
+**[`HANDOFF_FLOW.md`](HANDOFF_FLOW.md)** — How to archive, write `handoff_latest`, use the continue prompt, and respect trust boundaries (SCP / pre-commit). For a fuller local procedure when the portfolio workspace is checked out, see the path note in HANDOFF_FLOW to sibling **`MiscRepos`** `HANDOFF_FLOW.md`. Async ledger vs sibling wake path: [diagrams/hitl-connectivity.svg](diagrams/hitl-connectivity.svg) ([ASYNC_HITL_SCOPE.md](ASYNC_HITL_SCOPE.md)).
 
 ---
 
