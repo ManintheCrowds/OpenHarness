@@ -30,6 +30,14 @@ flowchart TB
   Agent --> Verify[verify_script_index / bundle hash]
 ```
 
+### HITL connectivity (async ledger vs wake path)
+
+YAML ledger and OpenHarness narrative handoff do **not** wake sibling automation by themselves — bump the watched sibling `## Next`, then orchestrator / channel can reach the human.
+
+![HITL connectivity: OpenHarness ledger vs sibling orchestrator wake](docs/diagrams/hitl-connectivity.svg)
+
+[HTML slide (open locally)](docs/diagrams/hitl-connectivity.html) · Catalog: [docs/diagrams/README.md](docs/diagrams/README.md) · Policy: [docs/ASYNC_HITL_SCOPE.md](docs/ASYNC_HITL_SCOPE.md)
+
 Entry: [docs/AGENT_ENTRY.md](docs/AGENT_ENTRY.md) · [docs/HANDOFF_FLOW.md](docs/HANDOFF_FLOW.md)
 
 ## Quick start
