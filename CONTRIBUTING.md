@@ -27,7 +27,7 @@ That script is **not** run in default CI (it fails without the sibling checkout)
 
 ## CI (GitHub Actions)
 
-If [.github/workflows/ci.yml](.github/workflows/ci.yml) is enabled, it runs **`verify_script_index.py`** and **`verify_skills_readme.py`** only. That covers **inventory and README sync**, not natural-language semantic parity. Treat green CI as necessary, not sufficient, for agent-native readiness.
+If [.github/workflows/ci.yml](.github/workflows/ci.yml) is enabled, it runs **`verify_script_index.py`**, **`verify_skills_readme.py`**, the privacy hook tests (`python -m unittest tests.test_mask_check_hook`), and a **gitleaks** scan built from commit `83d9cd684c87d95d656c1458ef04895a7f1cbd8e`. That covers inventory, README sync, and the secret hooks. It does not cover natural-language semantic parity. Treat green CI as necessary, not sufficient, for agent-native readiness.
 
 ## Semantic smoke (agent NL parity)
 

@@ -1,4 +1,6 @@
-# Mechanical harness checks only (script index + skills README sync).
+# Harness checks, privacy hook tests, and a gitleaks scan.
+# The gitleaks job builds the CLI from a commit SHA so a moved tag cannot
+# change the scanner. Local --no-verify and SKIP= do not apply here.
 # Does not run natural-language semantic smoke; see CONTRIBUTING.md.
 name: CI
 
@@ -27,3 +29,45 @@ jobs:
 
       - name: Verify skills README
         run: python scripts/verify_skills_readme.py
+
+  privacy-hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pinned scp-mcp
+        run: pip install -r requirements.txt
+
+      - name: Hook tests
+        run: python -m unittest tests.test_mask_check_hook -v
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout OpenHarness
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout gitleaks at pinned commit
+        uses: actions/checkout@v4
+        with:
+          repository: gitleaks/gitleaks
+          ref: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e
+          path: gitleaks-src
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: gitleaks-src/go.mod
+
+      - name: Build pinned gitleaks
+        working-directory: gitleaks-src
+        run: go build -o "${RUNNER_TEMP}/gitleaks" .
+
+      - name: Scan
+        run: "${RUNNER_TEMP}/gitleaks" detect --redact --config .gitleaks.toml --verbose

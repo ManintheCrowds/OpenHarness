@@ -31,6 +31,7 @@ FIXTURE = Path(__file__).resolve().parent / "fixtures" / "handoff_planted_secret
 
 GITLEAKS_REV = "v8.30.1"
 GITLEAKS_VERSION = "8.30.1"
+GITLEAKS_COMMIT = "83d9cd684c87d95d656c1458ef04895a7f1cbd8e"
 SCP_SHA = "6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a"
 
 # Entry from gitleaks .pre-commit-hooks.yaml at tag v8.30.1 (id: gitleaks).
@@ -324,6 +325,16 @@ class PrivacyHookTests(unittest.TestCase):
                 "fixture",
             )
             self.assertEqual(_gitleaks_findings(binary, repo), set())
+
+    def test_ci_runs_hook_tests_and_pinned_gitleaks(self) -> None:
+        text = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+        self.assertIn("pip install -r requirements.txt", text)
+        self.assertIn("python -m unittest tests.test_mask_check_hook", text)
+        self.assertIn("repository: gitleaks/gitleaks", text)
+        self.assertIn(f"ref: {GITLEAKS_COMMIT}", text)
+        self.assertIn("detect --redact --config .gitleaks.toml", text)
+        self.assertNotIn("gitleaks/gitleaks-action@", text)
+        self.assertNotRegex(text, r"ref:\s*v?\d+\.\d+")
 
     def test_allowlist_blocks_lookalike_fixture_paths(self) -> None:
         token = _synthetic_aws_access_key()
