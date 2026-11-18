@@ -170,6 +170,30 @@ def _synthetic_ssn() -> str:
     return "-".join(("000", "00", "0000"))
 
 
+def _synthetic_github_pat() -> str:
+    """GitHub PAT-shaped token built at runtime so the source file does not store it."""
+    prefix = "gh" + "p_"
+    body = "".join(
+        (
+            "aB3k",
+            "m9Qx",
+            "Zp2L",
+            "n8Wc",
+            "R4tY",
+            "u6Hs",
+            "d1Jf",
+            "q5Ve",
+            "K7bN",
+        )
+    )
+    token = prefix + body
+    if not re.fullmatch(r"ghp_[0-9a-zA-Z]{36}", token):
+        raise AssertionError("synthetic github pat has the wrong shape")
+    if _entropy(token) < 3:
+        raise AssertionError("synthetic github pat entropy is below the gitleaks minimum")
+    return token
+
+
 def _synthetic_aws_access_key() -> str:
     """AWS-shaped token built at runtime so the source file does not store it."""
     prefix = "AK" + "IA"
@@ -331,6 +355,24 @@ class PrivacyHookTests(unittest.TestCase):
                 "fixture",
             )
             self.assertEqual(_gitleaks_findings(binary, repo), set())
+
+    def test_bare_token_in_state_blocked_by_a_hook(self) -> None:
+        binary = _gitleaks_bin()
+        for token in (_synthetic_aws_access_key(), _synthetic_github_pat()):
+            with tempfile.TemporaryDirectory() as tmp:
+                repo = Path(tmp)
+                _init_repo(repo)
+                target = repo / "state" / "bare.md"
+                target.parent.mkdir(parents=True)
+                target.write_text(token + "\n", encoding="utf-8")
+                self.assertIsNotNone(_mask_check_files().search("state/bare.md"))
+                mask_proc = _run([*_mask_check_argv(), str(target)], ROOT)
+                _git(repo, "add", "state/bare.md")
+                leak_proc = _run([str(binary), *GITLEAKS_HOOK_ARGS], repo)
+                _assert_values_hidden(mask_proc, [token])
+                _assert_values_hidden(leak_proc, [token])
+                self.assertTrue(mask_proc.returncode != 0 or leak_proc.returncode != 0)
+                self.assertNotEqual(leak_proc.returncode, 0)
 
     def test_mask_check_blocks_pii_in_state_yaml_and_txt(self) -> None:
         files_re = _mask_check_files()
