@@ -161,6 +161,14 @@ def _entropy(text: str) -> float:
     return -sum((count / total) * math.log2(count / total) for count in counts.values())
 
 
+def _synthetic_email() -> str:
+    return "synthetic-user" + "@" + "example.com"
+
+
+def _synthetic_ssn() -> str:
+    return "-".join(("000", "00", "0000"))
+
+
 def _synthetic_aws_access_key() -> str:
     """AWS-shaped token built at runtime so the source file does not store it."""
     prefix = "AK" + "IA"
@@ -325,6 +333,44 @@ class PrivacyHookTests(unittest.TestCase):
                 "fixture",
             )
             self.assertEqual(_gitleaks_findings(binary, repo), set())
+
+    def test_mask_check_blocks_pii_in_state_yaml_and_txt(self) -> None:
+        files_re = _mask_check_files()
+        matched = (
+            "state/note.yaml",
+            "state/note.txt",
+            "state/NOTE.YAML",
+            "state/NOTE.TXT",
+            "state/nested/Foo.YML",
+            "HANDOFF.md",
+            "docs/HANDOFF.md",
+            "handoffs/a.md",
+            "handoffs/nested/a.yaml",
+            "next_prompt.txt",
+            "dir/next_prompt.md",
+        )
+        for rel in matched:
+            self.assertIsNotNone(files_re.search(rel), rel)
+        for rel in (
+            "README.md",
+            "docs/examples/HANDOFF_EXAMPLE_SYNTHETIC.md",
+            "scripts/sanitize_input.py",
+            "state/script.py",
+        ):
+            self.assertIsNone(files_re.search(rel), rel)
+
+        email = _synthetic_email()
+        ssn = _synthetic_ssn()
+        body = f"email: {email}\nSSN: {ssn}\n"
+        for rel in ("state/note.yaml", "state/note.txt"):
+            with tempfile.TemporaryDirectory() as tmp:
+                target = Path(tmp) / rel
+                target.parent.mkdir(parents=True)
+                target.write_text(body, encoding="utf-8")
+                failed = _run([*_mask_check_argv(), str(target)], ROOT)
+                self.assertNotEqual(failed.returncode, 0, rel)
+                self.assertIn("SECRETS DETECTED", failed.stderr)
+                _assert_values_hidden(failed, [email, ssn])
 
     def test_ci_runs_hook_tests_and_pinned_gitleaks(self) -> None:
         text = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")

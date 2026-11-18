@@ -134,7 +134,7 @@ Hooks (see `.pre-commit-config.yaml`):
 | Hook | Purpose |
 |------|---------|
 | **gitleaks** | Scan staged changes with gitleaks **v8.30.1** (`.gitleaks.toml`) |
-| **mask-check** | `python -m scp.mask_secrets --check` on `state/**/*.{md,json,jsonl}` |
+| **mask-check** | `python -m scp.mask_secrets --check` on `state/**/*.{md,json,jsonl,txt,yaml,yml}` (any case), plus `HANDOFF.md`, `handoffs/`, and `next_prompt` files |
 | **sanitize-input** | Sanitize `state/*.md` before commit |
 | **handoff-scp** | Validate `state/handoff_latest.md` against SCP rules |
 | **verify-script-index** | `verify_script_index.py` — disk script basenames ↔ `capabilities.harness.yaml` `scripts[]` ↔ CHEATSHEET backticks |

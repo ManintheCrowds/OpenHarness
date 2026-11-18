@@ -18,15 +18,16 @@ repos:
 
   - repo: local
     hooks:
-      # Same check as MiscRepos mask-secrets: python masker --check on handoff/state
-      # markdown, json, and jsonl. Entry is SCP's module, not a copied script.
+      # Same check as MiscRepos mask-secrets: python masker --check on handoff/state.
+      # Case-insensitive. state/ text files, HANDOFF.md, handoffs/, and next_prompt files.
+      # Entry is SCP's module, not a copied script.
       # -W hides a runpy RuntimeWarning: importing scp loads mask_secrets before
       # `python -m scp.mask_secrets` executes that module.
       - id: mask-check
         name: Mask secrets check (handoff/state)
         entry: python -W ignore::RuntimeWarning -m scp.mask_secrets --check
         language: system
-        files: '^state/.*\.(md|json|jsonl)$'
+        files: '(?i)(?:^state/.+\.(?:md|json|jsonl|txt|yaml|yml)$|(?:^|/)HANDOFF\.md$|(?:^|/)handoffs/.+\.(?:md|json|jsonl|txt|yaml|yml)$|(?:^|/)[^/]*next_prompt[^/]*\.(?:md|json|jsonl|txt|yaml|yml)$)'
         stages: [pre-commit]
 
       - id: sanitize-input
