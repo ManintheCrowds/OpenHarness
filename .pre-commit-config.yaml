@@ -1,13 +1,34 @@
-# Harness pre-commit: SCP validation for handoff/state.
-# Install: pre-commit install
+# Harness pre-commit: secret scanning plus SCP validation for handoff/state.
+# Install: pip install -r requirements.txt pre-commit && pre-commit install
 # Run manually: pre-commit run --all-files
 #
 # Paths: harness uses state/ at repo root. When copying to a project with .cursor/state/,
-# update entry to python .cursor/scripts/sanitize_input.py and files to ^\.cursor/state/.*\.md$
+# update the state/ file patterns below to ^\.cursor/state/ and point sanitize-input at
+# python .cursor/scripts/sanitize_input.py.
+#
+# gitleaks CLI is pinned to the v8.30.1 tag (pre-commit rev below), same as SCP PR #97.
+# mask-check calls the installed SCP masker (requirements.txt). It does not vendor the module.
+# TODO: repin scp-mcp to a main SHA once https://github.com/ManintheCrowds/SCP/pull/97 merges.
 
 repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
   - repo: local
     hooks:
+      # Same check as MiscRepos mask-secrets: python masker --check on handoff/state
+      # markdown, json, and jsonl. Entry is SCP's module, not a copied script.
+      # -W hides a runpy RuntimeWarning: importing scp loads mask_secrets before
+      # `python -m scp.mask_secrets` executes that module.
+      - id: mask-check
+        name: Mask secrets check (handoff/state)
+        entry: python -W ignore::RuntimeWarning -m scp.mask_secrets --check
+        language: system
+        files: '^state/.*\.(md|json|jsonl)$'
+        stages: [pre-commit]
+
       - id: sanitize-input
         name: Sanitize input (handoff/state)
         entry: python scripts/sanitize_input.py

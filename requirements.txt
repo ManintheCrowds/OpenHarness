@@ -1,5 +1,8 @@
 # Harness optional dependencies
-# Install for pre-commit hooks (sanitize_input, validate_handoff_scp)
+# Install for pre-commit hooks (sanitize_input, validate_handoff_scp, mask-check)
 # PyYAML: verify_script_index.py, verify_skills_readme.py
-scp-mcp
+#
+# TODO: repin scp-mcp to a main SHA once https://github.com/ManintheCrowds/SCP/pull/97 merges.
+# mask_secrets --check exists on that draft commit. Do not vendor-copy the module.
+scp-mcp @ git+https://github.com/ManintheCrowds/SCP.git@6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a
 PyYAML>=6.0.1

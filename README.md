@@ -113,7 +113,7 @@ See [docs/CANONICAL_AGENT_BUNDLE.md](docs/CANONICAL_AGENT_BUNDLE.md) and [docs/V
 
 ## Dependencies
 
-- **SCP** (optional): Configure an **SCP MCP server** in `mcp.json` per [docs/MCP_PRIVATE_HOST.md](docs/MCP_PRIVATE_HOST.md). Public **contract**: [docs/contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md). A reference public package may exist (`scp-mcp`); **org-private** installs are supported. Run `validate_handoff_scp.py` and `sanitize_input.py` as pre-commit hooks when handoff/state files are staged. **Trust / env:** optional semantic judge and `OLLAMA_BASE_URL` — see [docs/SCP_ENV_AND_TRUST.md](docs/SCP_ENV_AND_TRUST.md).
+- **SCP**: Configure an **SCP MCP server** in `mcp.json` per [docs/MCP_PRIVATE_HOST.md](docs/MCP_PRIVATE_HOST.md). Public **contract**: [docs/contracts/scp_mcp_v1.md](docs/contracts/scp_mcp_v1.md). Pre-commit installs the pinned `scp-mcp` git commit from `requirements.txt` (see Pre-commit); do not vendor that package. Run `validate_handoff_scp.py`, `sanitize_input.py`, and `mask-check` when handoff/state files are staged. **Trust / env:** optional semantic judge and `OLLAMA_BASE_URL` — see [docs/SCP_ENV_AND_TRUST.md](docs/SCP_ENV_AND_TRUST.md).
 - **PyYAML** (`pip install -r requirements.txt`): used by `verify_script_index.py` and `verify_skills_readme.py` for manifest and skill front matter.
 
 ## Private wellbeing / survival corpora
@@ -123,18 +123,24 @@ Do **not** commit purchased PDFs or full extracted text to this harness. Use a p
 ## Pre-commit
 
 ```bash
-pip install pre-commit scp-mcp PyYAML
+pip install -r requirements.txt pre-commit
 pre-commit install
 ```
+
+`requirements.txt` pins `scp-mcp` to SCP commit `6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a` (draft PR [#97](https://github.com/ManintheCrowds/SCP/pull/97)), which is the masker `mask-check` imports. Do not copy that module into this repo. TODO: repin to a `main` SHA once that PR merges. The gitleaks hook is the upstream pre-commit hook at tag `v8.30.1`.
 
 Hooks (see `.pre-commit-config.yaml`):
 
 | Hook | Purpose |
 |------|---------|
+| **gitleaks** | Scan staged changes with gitleaks **v8.30.1** (`.gitleaks.toml`) |
+| **mask-check** | `python -m scp.mask_secrets --check` on `state/**/*.{md,json,jsonl}` |
 | **sanitize-input** | Sanitize `state/*.md` before commit |
-| **handoff-scp** | Validate `state/handoff_latest.md` against SCP rules | 
+| **handoff-scp** | Validate `state/handoff_latest.md` against SCP rules |
 | **verify-script-index** | `verify_script_index.py` — disk script basenames ↔ `capabilities.harness.yaml` `scripts[]` ↔ CHEATSHEET backticks |
 | **verify-skills-readme** | `verify_skills_readme.py` — `.cursor/skills/README.md` vs each `SKILL.md` `description:` |
+
+Proof that a planted synthetic handoff fails both privacy hooks, and the masked copy passes: `python -m unittest tests.test_mask_check_hook`. The test uses `GITLEAKS_BIN` when set, and otherwise downloads the gitleaks **v8.30.1** Linux x64 release (checksum checked) into the user cache.
 
 When copying harness into a project with `.cursor/state/`, set `HARNESS_STATE_DIR=.cursor/state` and update `.pre-commit-config.yaml` paths.
 
