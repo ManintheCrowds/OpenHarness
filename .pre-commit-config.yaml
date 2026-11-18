@@ -6,13 +6,13 @@
 # update the state/ file patterns below to ^\.cursor/state/ and point sanitize-input at
 # python .cursor/scripts/sanitize_input.py.
 #
-# gitleaks CLI is pinned to the v8.30.1 tag (pre-commit rev below), same as SCP PR #97.
+# gitleaks CLI is pinned to commit 83d9cd684c87d95d656c1458ef04895a7f1cbd8e (v8.30.1).
 # mask-check calls the installed SCP masker (requirements.txt). It does not vendor the module.
 # TODO: repin scp-mcp to a main SHA once https://github.com/ManintheCrowds/SCP/pull/97 merges.
 
 repos:
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.30.1
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e
     hooks:
       - id: gitleaks
 

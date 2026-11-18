@@ -127,13 +127,13 @@ pip install -r requirements.txt pre-commit
 pre-commit install
 ```
 
-`requirements.txt` pins `scp-mcp` to SCP commit `6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a` (draft PR [#97](https://github.com/ManintheCrowds/SCP/pull/97)), which is the masker `mask-check` imports. Do not copy that module into this repo. TODO: repin to a `main` SHA once that PR merges. The gitleaks hook is the upstream pre-commit hook at tag `v8.30.1`.
+`requirements.txt` pins `scp-mcp` to SCP commit `6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a` (draft PR [#97](https://github.com/ManintheCrowds/SCP/pull/97)), which is the masker `mask-check` imports. Do not copy that module into this repo. TODO: repin to a `main` SHA once that PR merges. The gitleaks hook is the upstream pre-commit hook at commit `83d9cd684c87d95d656c1458ef04895a7f1cbd8e` (v8.30.1).
 
 Hooks (see `.pre-commit-config.yaml`):
 
 | Hook | Purpose |
 |------|---------|
-| **gitleaks** | Scan staged changes with gitleaks **v8.30.1** (`.gitleaks.toml`) |
+| **gitleaks** | Scan staged changes with gitleaks commit `83d9cd684c87d95d656c1458ef04895a7f1cbd8e` (v8.30.1, `.gitleaks.toml`) |
 | **mask-check** | `python -m scp.mask_secrets --check` on `state/**/*.{md,json,jsonl,txt,yaml,yml}` (any case), plus `HANDOFF.md`, `handoffs/`, and `next_prompt` files |
 | **sanitize-input** | Sanitize `state/*.md` before commit |
 | **handoff-scp** | Validate `state/handoff_latest.md` against SCP rules |

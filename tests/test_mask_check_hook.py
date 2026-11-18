@@ -231,7 +231,7 @@ class PrivacyHookTests(unittest.TestCase):
         text = _config_text()
         self.assertIsNotNone(
             re.search(
-                r"repo:\s*https://github.com/gitleaks/gitleaks\s+rev:\s*" + re.escape(GITLEAKS_REV),
+                r"repo:\s*https://github.com/gitleaks/gitleaks\s+rev:\s*" + re.escape(GITLEAKS_COMMIT),
                 text,
             )
         )
@@ -371,6 +371,17 @@ class PrivacyHookTests(unittest.TestCase):
                 self.assertNotEqual(failed.returncode, 0, rel)
                 self.assertIn("SECRETS DETECTED", failed.stderr)
                 _assert_values_hidden(failed, [email, ssn])
+
+    def test_gitleaks_precommit_rev_is_commit_sha(self) -> None:
+        text = _config_text()
+        self.assertRegex(
+            text,
+            r"repo:\s*https://github.com/gitleaks/gitleaks\s+rev:\s*" + re.escape(GITLEAKS_COMMIT) + r"\b",
+        )
+        self.assertNotRegex(text, r"rev:\s*v8\.30\.1\b")
+        version = _run([str(_gitleaks_bin()), "version"], ROOT)
+        self.assertEqual(version.returncode, 0)
+        self.assertIn(GITLEAKS_VERSION, version.stdout + version.stderr)
 
     def test_ci_runs_hook_tests_and_pinned_gitleaks(self) -> None:
         text = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
