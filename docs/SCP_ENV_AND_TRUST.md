@@ -1,6 +1,6 @@
 # SCP environment and trust (OpenHarness)
 
-Pre-commit hooks [`scripts/sanitize_input.py`](../scripts/sanitize_input.py) and [`scripts/validate_handoff_scp.py`](../scripts/validate_handoff_scp.py) call the SCP package’s `run_pipeline` on handoff and state markdown. **mask-check** calls the same package’s `python -m scp.mask_secrets --check` on `state/**/*.{md,json,jsonl,txt,yaml,yml}` (any case), plus `HANDOFF.md`, `handoffs/`, and `next_prompt` files. **gitleaks** (CLI **v8.30.1**) scans staged changes. `scp-mcp` is pinned in `requirements.txt` to the SCP commit that added check mode; do not vendor that module.
+Pre-commit hooks [`scripts/sanitize_input.py`](../scripts/sanitize_input.py) and [`scripts/validate_handoff_scp.py`](../scripts/validate_handoff_scp.py) call the SCP package’s `run_pipeline` on handoff and state markdown. **mask-check** runs [`scripts/mask_check.py`](../scripts/mask_check.py), which refuses to scan unless installed `scp-mcp` is the pinned commit, then calls `mask_secrets --check` on `state/**/*.{md,json,jsonl,txt,yaml,yml}` (any case), plus `HANDOFF.md`, `handoffs/`, and `next_prompt` files. The pre-commit hook uses `language: python` so that commit is installed in the hook environment. **gitleaks** (CLI **v8.30.1**) scans staged changes. `scp-mcp` is pinned in `requirements.txt` to the SCP commit that added check mode; do not vendor that module.
 
 ## Optional semantic judge
 

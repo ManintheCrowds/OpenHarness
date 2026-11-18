@@ -20,13 +20,14 @@ repos:
     hooks:
       # Same check as MiscRepos mask-secrets: python masker --check on handoff/state.
       # Case-insensitive. state/ text files, HANDOFF.md, handoffs/, and next_prompt files.
-      # Entry is SCP's module, not a copied script.
-      # -W hides a runpy RuntimeWarning: importing scp loads mask_secrets before
-      # `python -m scp.mask_secrets` executes that module.
+      # language: python installs the pinned scp-mcp into the hook env.
+      # scripts/mask_check.py refuses to scan if that commit is not what is installed.
       - id: mask-check
         name: Mask secrets check (handoff/state)
-        entry: python -W ignore::RuntimeWarning -m scp.mask_secrets --check
-        language: system
+        entry: python scripts/mask_check.py --check
+        language: python
+        additional_dependencies:
+          - git+https://github.com/ManintheCrowds/SCP.git@6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a
         files: '(?i)(?:^state/.+\.(?:md|json|jsonl|txt|yaml|yml)$|(?:^|/)HANDOFF\.md$|(?:^|/)handoffs/.+\.(?:md|json|jsonl|txt|yaml|yml)$|(?:^|/)[^/]*next_prompt[^/]*\.(?:md|json|jsonl|txt|yaml|yml)$)'
         stages: [pre-commit]
 

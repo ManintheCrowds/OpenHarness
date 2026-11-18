@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -243,10 +244,7 @@ class PrivacyHookTests(unittest.TestCase):
 
         section = _mask_check_section()
         argv = _mask_check_argv()
-        self.assertEqual(
-            argv[1:],
-            ["-W", "ignore::RuntimeWarning", "-m", "scp.mask_secrets", "--check"],
-        )
+        self.assertEqual(argv[1:], ["scripts/mask_check.py", "--check"])
         self.assertIn("stages: [pre-commit]", section)
         files_re = _mask_check_files()
         self.assertIsNotNone(files_re.search("state/handoff_latest.md"))
@@ -371,6 +369,32 @@ class PrivacyHookTests(unittest.TestCase):
                 self.assertNotEqual(failed.returncode, 0, rel)
                 self.assertIn("SECRETS DETECTED", failed.stderr)
                 _assert_values_hidden(failed, [email, ssn])
+
+    def _load_mask_check(self):
+        path = ROOT / "scripts" / "mask_check.py"
+        spec = importlib.util.spec_from_file_location("mask_check_hook", path)
+        if spec is None or spec.loader is None:
+            raise AssertionError("mask_check module missing")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    def test_mask_check_hook_fails_closed_on_scp_pin(self) -> None:
+        section = _mask_check_section()
+        self.assertIn("language: python", section)
+        self.assertNotIn("language: system", section)
+        self.assertIn("git+https://github.com/ManintheCrowds/SCP.git@" + SCP_SHA, section)
+        module = self._load_mask_check()
+        self.assertEqual(module.PIN, SCP_SHA)
+        self.assertTrue(module.pin_ok(module.installed_commit()))
+        self.assertFalse(module.pin_ok(""))
+        self.assertFalse(module.pin_ok("0" * 40))
+        original = module.installed_commit
+        module.installed_commit = lambda: "0" * 40
+        try:
+            self.assertEqual(module.main(), 1)
+        finally:
+            module.installed_commit = original
 
     def test_gitleaks_precommit_rev_is_commit_sha(self) -> None:
         text = _config_text()

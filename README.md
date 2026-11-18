@@ -134,7 +134,7 @@ Hooks (see `.pre-commit-config.yaml`):
 | Hook | Purpose |
 |------|---------|
 | **gitleaks** | Scan staged changes with gitleaks commit `83d9cd684c87d95d656c1458ef04895a7f1cbd8e` (v8.30.1, `.gitleaks.toml`) |
-| **mask-check** | `python -m scp.mask_secrets --check` on `state/**/*.{md,json,jsonl,txt,yaml,yml}` (any case), plus `HANDOFF.md`, `handoffs/`, and `next_prompt` files |
+| **mask-check** | `python scripts/mask_check.py --check` on `state/**/*.{md,json,jsonl,txt,yaml,yml}` (any case), plus `HANDOFF.md`, `handoffs/`, and `next_prompt` files. The hook installs pinned `scp-mcp` and refuses to scan on any other commit. |
 | **sanitize-input** | Sanitize `state/*.md` before commit |
 | **handoff-scp** | Validate `state/handoff_latest.md` against SCP rules |
 | **verify-script-index** | `verify_script_index.py` — disk script basenames ↔ `capabilities.harness.yaml` `scripts[]` ↔ CHEATSHEET backticks |
