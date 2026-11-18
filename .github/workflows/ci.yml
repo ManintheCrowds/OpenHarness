@@ -70,4 +70,5 @@ jobs:
         run: go build -o "${RUNNER_TEMP}/gitleaks" .
 
       - name: Scan
-        run: "${RUNNER_TEMP}/gitleaks" detect --redact --config .gitleaks.toml --verbose
+        run: |
+          "${RUNNER_TEMP}/gitleaks" detect --redact --config .gitleaks.toml --verbose

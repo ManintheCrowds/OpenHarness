@@ -22,6 +22,7 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
+import yaml
 from scp.mask_secrets import mask
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -451,6 +452,9 @@ class PrivacyHookTests(unittest.TestCase):
 
     def test_ci_runs_hook_tests_and_pinned_gitleaks(self) -> None:
         text = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+        workflow = yaml.safe_load(text)
+        self.assertIn("privacy-hooks", workflow["jobs"])
+        self.assertIn("gitleaks", workflow["jobs"])
         self.assertIn("pip install -r requirements.txt", text)
         self.assertIn("python -m unittest tests.test_mask_check_hook", text)
         self.assertIn("repository: gitleaks/gitleaks", text)
