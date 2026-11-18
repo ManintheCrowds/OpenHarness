@@ -1,7 +1,17 @@
-# Gitleaks — secret scanning in CI (.github/workflows/ci.yml job: gitleaks).
-# Docs: https://github.com/gitleaks/gitleaks — extend with [[allowlist]] if needed for false positives.
+# Gitleaks config read by the pre-commit hook pinned to
+# 83d9cd684c87d95d656c1458ef04895a7f1cbd8e (v8.30.1).
+# Docs: https://github.com/gitleaks/gitleaks
 
 title = "openharness"
 
+# Allowlist-only files do not load built-in rules. Extend so the pinned CLI scans.
 [extend]
 useDefault = true
+
+# Exact synthetic fixture only. Anchored so state/tests/fixtures/ and
+# docs/tests/fixtures/ are still scanned.
+[allowlist]
+description = "Synthetic mask-check fixture file."
+paths = [
+  '''^tests/fixtures/handoff_planted_secret\.md$''',
+]

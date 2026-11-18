@@ -1,13 +1,36 @@
-# Harness pre-commit: SCP validation for handoff/state.
-# Install: pre-commit install
+# Harness pre-commit: secret scanning plus SCP validation for handoff/state.
+# Install: pip install -r requirements.txt pre-commit && pre-commit install
 # Run manually: pre-commit run --all-files
 #
 # Paths: harness uses state/ at repo root. When copying to a project with .cursor/state/,
-# update entry to python .cursor/scripts/sanitize_input.py and files to ^\.cursor/state/.*\.md$
+# update the state/ file patterns below to ^\.cursor/state/ and point sanitize-input at
+# python .cursor/scripts/sanitize_input.py.
+#
+# gitleaks CLI is pinned to commit 83d9cd684c87d95d656c1458ef04895a7f1cbd8e (v8.30.1).
+# mask-check calls the installed SCP masker (requirements.txt). It does not vendor the module.
+# TODO: repin scp-mcp to a main SHA once https://github.com/ManintheCrowds/SCP/pull/97 merges.
 
 repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e
+    hooks:
+      - id: gitleaks
+
   - repo: local
     hooks:
+      # Same check as MiscRepos mask-secrets: python masker --check on handoff/state.
+      # Case-insensitive. state/ text files, HANDOFF.md, handoffs/, and next_prompt files.
+      # language: python installs the pinned scp-mcp into the hook env.
+      # scripts/mask_check.py refuses to scan if that commit is not what is installed.
+      - id: mask-check
+        name: Mask secrets check (handoff/state)
+        entry: python scripts/mask_check.py --check
+        language: python
+        additional_dependencies:
+          - git+https://github.com/ManintheCrowds/SCP.git@6f8bcbdcb2c602b64f0d63b14a42897f8cf92d5a
+        files: '(?i)(?:^state/.+\.(?:md|json|jsonl|txt|yaml|yml)$|(?:^|/)HANDOFF\.md$|(?:^|/)handoffs/.+\.(?:md|json|jsonl|txt|yaml|yml)$|(?:^|/)[^/]*next_prompt[^/]*\.(?:md|json|jsonl|txt|yaml|yml)$)'
+        stages: [pre-commit]
+
       - id: sanitize-input
         name: Sanitize input (handoff/state)
         entry: python scripts/sanitize_input.py

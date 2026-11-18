@@ -40,6 +40,7 @@ harness_capability:
     - copy_continue_prompt.cmd
     - validate_handoff_scp.py
     - sanitize_input.py
+    - mask_check.py
     - build_brain_map.py
     - verify_canonical_bundle.ps1
     - update_canonical_bundle_hashes.ps1
