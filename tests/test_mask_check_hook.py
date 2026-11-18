@@ -6,6 +6,8 @@
 from __future__ import annotations
 
 import hashlib
+import json
+import math
 import os
 import re
 import shutil
@@ -16,6 +18,7 @@ import tarfile
 import tempfile
 import unittest
 import urllib.request
+from collections import Counter
 from pathlib import Path
 
 from scp.mask_secrets import mask
@@ -151,6 +154,69 @@ def _git(repo: Path, *args: str) -> None:
         raise AssertionError(f"git {' '.join(args)} failed")
 
 
+def _entropy(text: str) -> float:
+    counts = Counter(text)
+    total = len(text)
+    return -sum((count / total) * math.log2(count / total) for count in counts.values())
+
+
+def _synthetic_aws_access_key() -> str:
+    """AWS-shaped token built at runtime so the source file does not store it."""
+    prefix = "AK" + "IA"
+    body = "".join(("Q7M4", "N6P3", "R5WX", "2Y6K"))
+    token = prefix + body
+    if not re.fullmatch(r"AKIA[A-Z2-7]{16}", token):
+        raise AssertionError("synthetic aws key has the wrong shape")
+    if _entropy(token) < 3:
+        raise AssertionError("synthetic aws key entropy is below the gitleaks minimum")
+    if token.endswith("EXAMPLE"):
+        raise AssertionError("synthetic aws key hits the gitleaks example allowlist")
+    return token
+
+
+def _init_repo(repo: Path) -> None:
+    _git(repo, "init")
+    shutil.copy(GITLEAKS_TOML, repo / ".gitleaks.toml")
+    _git(repo, "add", ".gitleaks.toml")
+    _git(
+        repo,
+        "-c",
+        "user.email=privacy-hook-test@example.com",
+        "-c",
+        "user.name=privacy-hook-test",
+        "commit",
+        "-m",
+        "baseline",
+    )
+
+
+def _gitleaks_findings(binary: Path, repo: Path) -> set[str]:
+    report = repo / "gitleaks-report.json"
+    proc = _run(
+        [
+            str(binary),
+            "detect",
+            "--redact",
+            "--no-banner",
+            "--config",
+            str(repo / ".gitleaks.toml"),
+            "--report-format",
+            "json",
+            "--report-path",
+            str(report),
+        ],
+        repo,
+    )
+    if not report.is_file():
+        raise AssertionError("gitleaks did not write a report")
+    data = json.loads(report.read_text(encoding="utf-8") or "[]")
+    report.unlink()
+    files = {str(item.get("File", "")) for item in data}
+    if proc.returncode == 0 and files:
+        raise AssertionError("gitleaks reported files but exited 0")
+    return files
+
+
 class PrivacyHookTests(unittest.TestCase):
     def test_config_pins_gitleaks_mask_check_and_scp_sha(self) -> None:
         text = _config_text()
@@ -217,19 +283,7 @@ class PrivacyHookTests(unittest.TestCase):
         values = _planted_values(raw)
         with tempfile.TemporaryDirectory() as tmp:
             repo = Path(tmp)
-            _git(repo, "init")
-            shutil.copy(GITLEAKS_TOML, repo / ".gitleaks.toml")
-            _git(repo, "add", ".gitleaks.toml")
-            _git(
-                repo,
-                "-c",
-                "user.email=privacy-hook-test@example.com",
-                "-c",
-                "user.name=privacy-hook-test",
-                "commit",
-                "-m",
-                "baseline",
-            )
+            _init_repo(repo)
 
             planted = repo / "state" / "handoff_planted.md"
             planted.parent.mkdir(parents=True)
@@ -248,22 +302,60 @@ class PrivacyHookTests(unittest.TestCase):
             _assert_values_hidden(passed, values)
 
     def test_committed_fixture_is_allowlisted(self) -> None:
+        text = GITLEAKS_TOML.read_text(encoding="utf-8")
+        self.assertIn(r"^tests/fixtures/handoff_planted_secret\.md$", text)
+        self.assertNotIn("'''tests/fixtures/'''", text)
         binary = _gitleaks_bin()
-        proc = _run(
-            [
-                str(binary),
-                "detect",
-                "--no-git",
-                "--redact",
-                "--source",
-                "tests/fixtures/handoff_planted_secret.md",
-                "--config",
-                str(GITLEAKS_TOML),
-            ],
-            ROOT,
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            _init_repo(repo)
+            dest = repo / "tests" / "fixtures" / "handoff_planted_secret.md"
+            dest.parent.mkdir(parents=True)
+            shutil.copy(FIXTURE, dest)
+            _git(repo, "add", "tests/fixtures/handoff_planted_secret.md")
+            _git(
+                repo,
+                "-c",
+                "user.email=privacy-hook-test@example.com",
+                "-c",
+                "user.name=privacy-hook-test",
+                "commit",
+                "-m",
+                "fixture",
+            )
+            self.assertEqual(_gitleaks_findings(binary, repo), set())
+
+    def test_allowlist_blocks_lookalike_fixture_paths(self) -> None:
+        token = _synthetic_aws_access_key()
+        binary = _gitleaks_bin()
+        relatives = (
+            "state/tests/fixtures/leak.md",
+            "docs/tests/fixtures/secret.md",
+            "prefix_tests/fixtures/secret.md",
         )
-        self.assertEqual(proc.returncode, 0, "synthetic fixture should be allowlisted")
-        _assert_values_hidden(proc, _planted_values(FIXTURE.read_text(encoding="utf-8")))
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp)
+            _init_repo(repo)
+            for rel in relatives:
+                path = repo / rel
+                path.parent.mkdir(parents=True)
+                path.write_text(token + "\n", encoding="utf-8")
+                _git(repo, "add", rel)
+            _git(
+                repo,
+                "-c",
+                "user.email=privacy-hook-test@example.com",
+                "-c",
+                "user.name=privacy-hook-test",
+                "commit",
+                "-m",
+                "lookalikes",
+            )
+            found = _gitleaks_findings(binary, repo)
+            for rel in relatives:
+                self.assertIn(rel, found)
+            report_text = "\n".join(sorted(found))
+            self.assertNotIn(token, report_text)
 
 
 if __name__ == "__main__":

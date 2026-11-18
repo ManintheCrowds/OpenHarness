@@ -7,9 +7,10 @@ title = "openharness"
 [extend]
 useDefault = true
 
-# Synthetic mask-check fixtures only. Do not put real credentials here.
+# Exact synthetic fixture only. Anchored so state/tests/fixtures/ and
+# docs/tests/fixtures/ are still scanned.
 [allowlist]
-description = "Synthetic mask-check fixtures."
+description = "Synthetic mask-check fixture file."
 paths = [
-  '''tests/fixtures/''',
+  '''^tests/fixtures/handoff_planted_secret\.md$''',
 ]
